@@ -21,12 +21,21 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup');
 Route::post('/signup', [AuthController::class, 'signup']);
-Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::resource('userprofiles', UserProfileController::class);
-
+Route::middleware(['auth.check'])->group(function () {
+    // Your protected routes go here
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // });
+    Route::get('/anggota-relawan', function () {
+        return view('anggota-relawan');
+    });
+    Route::get('/help', function () {
+        return view('help');
+    });
+});
 
 Route::redirect('/', '/login');
-Route::get('/help', function () {
-    return view('help');
-});

@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.login', ['pageTitle' => "Login"]);
     }
 
     public function login(Request $request)
@@ -25,12 +25,12 @@ class AuthController extends Controller
             return redirect()->route('dashboard'); // Replace 'dashboard' with your desired route
         }
 
-        return redirect()->back()->withErrors(['nik' => 'Invalid credentials']);
+        return redirect()->back()->withErrors(['nik' => 'Password salah']);
     }
 
     public function showSignupForm()
     {
-        return view('auth.signup');
+        return view('auth.signup',['pageTitle' => "Daftar Akun"]);
     }
 
     public function signup(Request $request)
@@ -54,6 +54,12 @@ class AuthController extends Controller
 
         return redirect()->route('login')->with('success', 'Account created successfully. You can now log in.');
     }
+    public function logout()
+{
+    Auth::logout();
+
+    return redirect('/login');
+}
     public function dashboard()
     {
         $user = Auth::user(); // Retrieve the authenticated user

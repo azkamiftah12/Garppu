@@ -1,0 +1,56 @@
+:root {
+    --color-dark-blue: #363062;
+    --color-soft-blue: #4D4C7D;
+    --color-yellow: #F99417;
+    --color-white: #F5F5F5;
+    --color-white-brown: #EBE4D1
+}
+
+body {
+    background-color: var(--color-white);
+    color: var(--color-dark-blue);
+}
+.container-default {
+    min-height: 93vh;
+    padding-top: 80px
+}
+.navbar-bg {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white);
+}
+
+.navbar-bg .navbar-nav .nav-link {
+    color: var(--color-white);
+}
+
+.navbar-bg .navbar-nav .nav-item {
+    transition: background-color 1s ease;
+}
+
+.navbar-bg .navbar-nav .nav-link:hover {
+    color: var(--color-yellow);
+    font-weight: bold;
+}
+
+.navbar-bg .navbar-nav .nav-item.active .nav-link {
+    color: var(--color-yellow);
+    font-weight: bold;
+}
+
+.navbar-collapse {
+    margin-left: 60px
+}
+.btn-logout{
+    color: var(--color-white);
+}
+.btn-logout:hover{
+    color: var(--color-yellow);
+}
+.footer {
+    text-align: center;
+}
+
+.footer-bg {
+    background-color: var(--color-dark-blue);
+    color: var(--color-white)
+}
