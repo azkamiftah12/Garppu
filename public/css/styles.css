@@ -3,7 +3,8 @@
     --color-soft-blue: #4D4C7D;
     --color-yellow: #F99417;
     --color-white: #F5F5F5;
-    --color-white-brown: #EBE4D1
+    --color-white-brown: #EBE4D1;
+    --color-red: #B31312;
 }
 
 body {
@@ -40,10 +41,25 @@ body {
 .navbar-collapse {
     margin-left: 60px
 }
-.btn-logout{
+.btn-red{
+    background-color: var(--color-red);
     color: var(--color-white);
 }
-.btn-logout:hover{
+.btn-red:hover{
+    color: var(--color-yellow);
+}
+.btn-yellow{
+    background-color: var(--color-yellow);
+    color: var(--color-white);
+}
+.btn-yellow:hover{
+    color: var(--color-black);
+}
+.btn-soft-blue{
+    background-color: var(--color-soft-blue);
+    color: var(--color-white);
+}
+.btn-soft-blue:hover{
     color: var(--color-yellow);
 }
 .footer {

@@ -6,6 +6,11 @@
 @section('content')
     <form action="{{ route('signup') }}" method="post">
         @csrf
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
+            </div>
+        @endif
         <div class="mb-3">
             <label class="form-label" for="nik">Nomor Induk Kependudukan (NIK)</label>
             <input class="form-control" id="nik" type="text" name="nik" required>

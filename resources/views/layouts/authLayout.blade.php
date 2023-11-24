@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
+    <title>Garppu - {{ $pageTitle }}</title>
+    <link rel="icon" href="{{ asset('images/garppu-logo.png') }}" type="image/icon type">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Login</title>
     <style>
         .btn-login {
             background-color: var(--color-dark-blue);
@@ -36,7 +37,12 @@
                     style="background-color: var(--color-dark-blue); color: var(--color-white)">
                     {{ $pageTitle }}
                 </div>
-                <div class="card-body my-5">
+                <div class="card-body mt-3 mb-4">
+                    <div class="d-flex justify-content-center mb-5">
+
+                        <img src="{{ asset('images/garppu-logo.png') }}" alt="Garppu Logo" width="140"
+                            height="100">
+                    </div>
                     @yield('content')
                 </div>
 

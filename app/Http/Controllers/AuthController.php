@@ -25,7 +25,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard'); // Replace 'dashboard' with your desired route
         }
 
-        return redirect()->back()->withErrors(['nik' => 'Password salah']);
+        return redirect()->back()->withErrors(['nik' => 'kombinasi NIK dan Password salah']);
     }
 
     public function showSignupForm()
@@ -40,6 +40,8 @@ class AuthController extends Controller
             'nama' => 'required|string',
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
+        ], [
+            'nik.unique' => 'NIK sudah terdaftar. Login jika sudah mempunyai akun atau kontak admin',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'
