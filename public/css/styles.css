@@ -70,3 +70,23 @@ body {
     background-color: var(--color-dark-blue);
     color: var(--color-white)
 }
+@media (max-width: 768px) {
+    .btn-logout-mobile {
+        display: block !important;
+    }
+
+    .btn-logout-large {
+        display: none !important;
+    }
+}
+
+/* Media query for screens 768px and larger */
+@media (min-width: 769px) {
+    .btn-logout-mobile {
+        display: none !important;
+    }
+
+    .btn-logout-large {
+        display: block !important;
+    }
+}
