@@ -27,8 +27,8 @@
 
             <!-- Add other form fields as needed -->
 
-            <button type="submit" class="btn btn-primary">Create</button>
-            <a href="/subrelawan" class="btn btn-danger">Cancel</a>
+            <button type="submit" class="btn btn-soft-blue">Create</button>
+            <a href="/subrelawan" class="btn btn-red">Cancel</a>
         </form>
     </div>
 @endsection

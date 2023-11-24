@@ -62,12 +62,6 @@ body {
 .btn-soft-blue:hover{
     color: var(--color-yellow);
 }
-.btn-logout-mobile{
-    display: none;
-}
-.btn-logout-large{
-    display: block;
-}
 .footer {
     text-align: center;
 }
@@ -75,13 +69,4 @@ body {
 .footer-bg {
     background-color: var(--color-dark-blue);
     color: var(--color-white)
-}
-@media (max-width: 768px) {
-    .btn-logout-mobile {
-        display: block;
-    }
-
-    .btn-logout-large {
-        display: none;
-    }
-}
+};

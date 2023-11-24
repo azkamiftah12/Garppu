@@ -43,13 +43,6 @@
                         <li class="nav-item {{ request()->is('help') ? 'active' : '' }}">
                             <a class="nav-link mx-3" href="{{ url('/help') }}">Help</a>
                         </li>
-                        <div class="btn-logout-mobile">
-
-                            <form action="{{ route('logout') }}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-red my-5">Logout</button>
-                            </form>
-                        </div>
                     </ul>
                 </div>
                 {{-- <div class="offcanvas-body">
@@ -81,7 +74,7 @@
                     </form>
                 </div> --}}
             </div>
-            <div class="ml-auto btn-logout-large">
+            <div class="ml-auto">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-red">Logout</button>
