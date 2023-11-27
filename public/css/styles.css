@@ -62,7 +62,7 @@ body {
 .btn-soft-blue:hover{
     color: var(--color-yellow);
 }
-.table-container {
+.dataTables_wrapper {
     overflow-x: auto;
 }
 .footer {
