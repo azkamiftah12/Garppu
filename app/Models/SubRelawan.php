@@ -13,7 +13,7 @@ class SubRelawan extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'nikSubRelawan', 'name', 'nik',
+        'nikSubRelawan', 'name', 'nik', 'telephone'
         // Add other columns as needed
     ];
 

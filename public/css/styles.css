@@ -62,6 +62,9 @@ body {
 .btn-soft-blue:hover{
     color: var(--color-yellow);
 }
+.table-container {
+    overflow-x: auto;
+}
 .footer {
     text-align: center;
 }

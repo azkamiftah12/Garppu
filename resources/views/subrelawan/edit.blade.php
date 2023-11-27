@@ -28,6 +28,11 @@
                     required>
             </div>
             <div class="mb-3">
+                <label for="telephone" class="form-label">Nomor Telephone</label>
+                <input type="text" class="form-control" id="telephone" name="telephone"
+                    value="{{ $subRelawan->telephone }}" required>
+            </div>
+            {{-- <div class="mb-3">
                 <label for="nik" class="form-label">Relasi</label>
                 <select class="form-control" id="nik" name="nik" required readonly>
                     @foreach ($userProfiles as $user)
@@ -36,10 +41,10 @@
                         </option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
             {{-- Add other form fields as needed --}}
-            <button type="submit" class="btn btn-soft-blue">Update</button>
-            <a href="/subrelawan" class="btn btn-red">Cancel</a>
+            <button type="submit" class="btn btn-yellow me-2">Ubah Data</button>
+            <a href="/subrelawan" class="btn btn-red">Batal</a>
         </form>
     </div>
 @endsection

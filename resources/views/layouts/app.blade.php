@@ -18,6 +18,9 @@
         <div class="container">
             <a class="navbar-brand mr-auto" href="/dashboard"><img src="{{ asset('images/garppu-logo.png') }}"
                     alt="Garppu Logo" width="120" height="80"></a>
+            <div class="d-none d-md-block me-5">
+                <h4>Gerakan Pemantau Pemilu</h4>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -45,6 +48,12 @@
                             <a class="nav-link mx-3" href="{{ url('/help') }}">Help</a>
                         </li>
                     </ul>
+                    <div class="ml-auto d-xs-block d-sm-block d-md-none">
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-red">Logout</button>
+                        </form>
+                    </div>
                 </div>
                 {{-- <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -75,7 +84,7 @@
                     </form>
                 </div> --}}
             </div>
-            <div class="ml-auto btn-logout">
+            <div class="ml-auto d-none d-md-block">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-red">Logout</button>
@@ -123,8 +132,8 @@
             @yield('content')
         </div>
     </div>
-    <footer class="footer mt-auto py-3 footer-bg text-center">
-        <div class="container">
+    <footer class="footer mt-auto py-3 footer-bg text-center container-fluid">
+        <div class="container-fluid">
             <span>Copyright &copy; Garppu</span>
         </div>
     </footer>

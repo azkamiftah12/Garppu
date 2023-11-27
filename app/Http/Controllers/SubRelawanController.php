@@ -30,7 +30,7 @@ class SubRelawanController extends Controller
         $request->validate([
             'nikSubRelawan' => 'required|string|unique:sub_relawans',
             'name' => 'required|string',
-            // Add validation rules for other columns as needed
+            'telephone' => 'nullable|string',
         ], [
             'nikSubRelawan.unique' => 'NIK sudah terdaftar. Check NIK Kembali',
         ]);
@@ -42,7 +42,7 @@ class SubRelawanController extends Controller
 
         SubRelawan::create($request->all());
 
-        return redirect()->route('subrelawan.index')->with('success', 'SubRelawan created successfully.');
+        return redirect()->route('subrelawan.index')->with('success', 'Anggota Berhasil ditambahkan.');
     }
 
     public function show($nikSubRelawan)
@@ -67,7 +67,7 @@ class SubRelawanController extends Controller
             'string',
             Rule::unique('sub_relawans')->ignore($nikSubRelawan, 'nikSubRelawan'),
         ],
-        // Add validation rules for other columns as needed
+        'telephone' => 'nullable|string',
     ], [
         'nikSubRelawan.unique' => 'NIK sudah terdaftar. Check NIK Kembali',
     ]);
@@ -76,10 +76,11 @@ class SubRelawanController extends Controller
     $subRelawan->update([
         'name' => $request->input('name'),
         'nikSubRelawan' => $request->input('nikSubRelawan'),
+        'telephone' => $request->input('telephone'),
         // Update other columns as needed
     ]);
 
-    return redirect()->route('subrelawan.index')->with('success', 'SubRelawan updated successfully.');
+    return redirect()->route('subrelawan.index')->with('success', 'Ubah Data Anggota Berhasil.');
 }
 
     public function destroy($nikSubRelawan)
@@ -87,7 +88,7 @@ class SubRelawanController extends Controller
         $subRelawan = SubRelawan::findOrFail($nikSubRelawan);
         $subRelawan->delete();
 
-        return redirect()->route('subrelawan.index')->with('success', 'SubRelawan deleted successfully.');
+        return redirect()->route('subrelawan.index')->with('success', 'Anggota Berhasil dihapus.');
     }
 }
 

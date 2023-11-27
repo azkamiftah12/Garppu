@@ -9,8 +9,8 @@
         }
     </style>
     <div class="container mt-4">
-        <h2>Anggota List</h2>
-        <div class="d-flex justify-content-center mb-3">
+        <h2>Daftar Anggota</h2>
+        <div class="d-flex justify-content-center my-5">
             <a href="{{ route('subrelawan.create') }}" class="btn btn-soft-blue">Tambah Anggota</a>
         </div>
 
@@ -18,40 +18,44 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <table class="table table-secondary my-3">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nik SubRelawan</th>
-                    <th>Name</th>
-                    <th>Relasi</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($subRelawans as $index => $subRelawan)
+        <div class="table-container">
+            <table class="table table-secondary my-3">
+                <thead>
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $subRelawan->nikSubRelawan }}</td>
-                        <td>{{ $subRelawan->name }}</td>
-                        <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
-                        <td>
-                            <a href="{{ route('subrelawan.show', $subRelawan->nikSubRelawan) }}"
-                                class="btn btn-soft-blue">View</a>
-                            <a href="{{ route('subrelawan.edit', $subRelawan->nikSubRelawan) }}"
-                                class="btn btn-yellow">Edit</a>
-                            <form action="{{ route('subrelawan.destroy', $subRelawan->nikSubRelawan) }}" method="post"
-                                style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-red"
-                                    onclick="return confirm('Are you sure?')">Delete</button>
-                            </form>
-                        </td>
+                        <th>No</th>
+                        <th>Nik Anggota</th>
+                        <th>Nama</th>
+                        <th>No Telephone</th>
+                        <th>Relasi</th>
+                        <th>Menu</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($subRelawans as $index => $subRelawan)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $subRelawan->nikSubRelawan }}</td>
+                            <td>{{ $subRelawan->name }}</td>
+                            <td>{{ $subRelawan->telephone }}</td>
+                            <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
+                            <td>
+                                <a href="{{ route('subrelawan.show', $subRelawan->nikSubRelawan) }}"
+                                    class="btn btn-soft-blue mb-1">Detail</a>
+                                <a href="{{ route('subrelawan.edit', $subRelawan->nikSubRelawan) }}"
+                                    class="btn btn-yellow mb-1">Edit</a>
+                                <form action="{{ route('subrelawan.destroy', $subRelawan->nikSubRelawan) }}" method="post"
+                                    style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-red mb-1"
+                                        onclick="return confirm('YAKIN INGIN MENGHAPUS DATA?')">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Initialize DataTables -->
