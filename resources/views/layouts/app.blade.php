@@ -3,6 +3,7 @@
 
 <head>
     <title>Garppu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/garppu-logo.png') }}" type="image/icon type">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -74,7 +75,7 @@
                     </form>
                 </div> --}}
             </div>
-            <div class="ml-auto">
+            <div class="ml-auto btn-logout">
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
                     <button type="submit" class="btn btn-red">Logout</button>

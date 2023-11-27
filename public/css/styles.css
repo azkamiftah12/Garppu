@@ -70,3 +70,15 @@ body {
     background-color: var(--color-dark-blue);
     color: var(--color-white)
 };
+@media (max-width: 768px) {
+    .btn-logout {
+        display: none;
+    }
+}
+
+/* Media query for screens 768px and larger */
+@media (min-width: 769px) {
+    .btn-logout {
+        display: block;
+    }
+}
