@@ -62,9 +62,9 @@ body {
 .btn-soft-blue:hover{
     color: var(--color-yellow);
 }
-.dataTables_wrapper {
+/* .table-container {
     overflow-x: auto;
-}
+} */
 .footer {
     text-align: center;
 }

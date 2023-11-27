@@ -18,7 +18,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <div class="table-container">
+        <div class="table-container" style="overflow-x: auto">
             <table class="table table-secondary my-3">
                 <thead>
                     <tr>
