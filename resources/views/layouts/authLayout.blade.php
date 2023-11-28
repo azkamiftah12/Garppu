@@ -3,7 +3,7 @@
 
 <head>
     <title>Garppu - {{ $pageTitle }}</title>
-    <meta name="description" content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu">
+    <meta name="description" content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu.">
     <link rel="icon" href="{{ asset('images/garppu-logo.png') }}" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
