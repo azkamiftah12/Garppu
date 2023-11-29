@@ -1,4 +1,4 @@
-name: Deploy to Hosting
+name: Deploy to Hosting manually
 
 on:
   workflow_dispatch
