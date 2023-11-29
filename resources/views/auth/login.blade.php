@@ -16,6 +16,7 @@
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="passwprd" name="password" required>
+            <div id="password" class="form-text">Masukkan Password anda</div>
         </div>
         {{-- <div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -26,6 +27,7 @@
         </div>
     </form>
     <div class="text-center mt-3">
-        <p>Belum punya akun? <a href="{{ route('signup') }}" style="color: var(--color-yellow)">Daftar disini</a></p>
+        <p>Belum punya akun? <a href="{{ route('signup') }}" style="color: var(--color-yellow); font-weight: 900">Daftar
+                disini</a></p>
     </div>
 @endsection

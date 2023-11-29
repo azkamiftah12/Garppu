@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>COMING SOON!!!!</h1>
+    <h1>FITUR AKAN SEGERA HADIR</h1>
 @endsection

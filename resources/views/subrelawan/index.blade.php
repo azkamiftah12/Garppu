@@ -9,7 +9,7 @@
         }
     </style>
     <div class="container mt-4">
-        <h2>Daftar Anggota</h2>
+        <h1>Daftar Anggota</h1>
         <div class="d-flex justify-content-center my-5">
             <a href="{{ route('subrelawan.create') }}" class="btn btn-soft-blue">Tambah Anggota</a>
         </div>
@@ -39,17 +39,19 @@
                             <td>{{ $subRelawan->telephone }}</td>
                             <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
                             <td>
-                                <a href="{{ route('subrelawan.show', $subRelawan->nikSubRelawan) }}"
-                                    class="btn btn-soft-blue mb-1">Detail</a>
-                                <a href="{{ route('subrelawan.edit', $subRelawan->nikSubRelawan) }}"
-                                    class="btn btn-yellow mb-1">Edit</a>
-                                <form action="{{ route('subrelawan.destroy', $subRelawan->nikSubRelawan) }}" method="post"
-                                    style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-red mb-1"
-                                        onclick="return confirm('YAKIN INGIN MENGHAPUS DATA?')">Hapus</button>
-                                </form>
+                                <div class="d-flex">
+                                    <a href="{{ route('subrelawan.show', $subRelawan->nikSubRelawan) }}"
+                                        class="btn btn-soft-blue me-1">Lihat</a>
+                                    <a href="{{ route('subrelawan.edit', $subRelawan->nikSubRelawan) }}"
+                                        class="btn btn-yellow me-1">Edit</a>
+                                    <form action="{{ route('subrelawan.destroy', $subRelawan->nikSubRelawan) }}"
+                                        method="post" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-red me-1"
+                                            onclick="return confirm('YAKIN INGIN MENGHAPUS DATA?')">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

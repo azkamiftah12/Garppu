@@ -14,18 +14,22 @@
         <div class="mb-3">
             <label class="form-label" for="nik">Nomor Induk Kependudukan (NIK)</label>
             <input class="form-control" id="nik" type="text" name="nik" required>
+            <div id="nik" class="form-text">Masukkan NIK anda</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="nama">Nama</label>
             <input class="form-control" id="nama" type="text" name="nama" required>
+            <div id="nik" class="form-text">Masukkan Nama anda</div>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="noTelp">Nomor Telepon</label>
+            <label class="form-label" for="noTelp">Nomor Telepone</label>
             <input class="form-control" id="noTelp" type="text" name="noTelp">
+            <div id="nik" class="form-text">Masukkan Nomor Telepone anda</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="password">Password</label>
             <input class="form-control" id="password" type="password" name="password" required>
+            <div id="nik" class="form-text">Masukkan Password anda</div>
         </div>
 
         <div class="d-flex justify-content-center">
@@ -33,6 +37,8 @@
         </div>
     </form>
     <div class="text-center mt-3">
-        <p>Sudah punya akun? <a href="{{ route('login') }}" style="color: var(--color-yellow)">Login disini</a></p>
+        <p>Sudah punya akun atau sudah daftar? silahkan <a href="{{ route('login') }}"
+                style="color: var(--color-yellow); font-weight: 900">Login
+                disini</a></p>
     </div>
 @endsection

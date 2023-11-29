@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login', ['pageTitle' => "Login"]);
+        return view('auth.login', ['pageTitle' => "Masuk atau Login"]);
     }
 
     public function login(Request $request)
@@ -41,7 +41,7 @@ class AuthController extends Controller
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
         ], [
-            'nik.unique' => 'NIK sudah terdaftar. Login jika sudah mempunyai akun atau kontak admin',
+            'nik.unique' => 'NIK sudah terdaftar. Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7245-0026',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'

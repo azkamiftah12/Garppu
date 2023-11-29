@@ -12,10 +12,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
+        .form-label {
+            font-weight: 900;
+        }
+
         .btn-login {
-            background-color: var(--color-dark-blue);
+            background-color: var(--color-soft-blue);
             color: var(--color-white);
-            justify-content: center
+            justify-content: center;
+            font-weight: 700;
         }
 
         .btn-login:hover {
@@ -33,7 +38,7 @@
     <div class="container my-5 d-flex justify-content-center">
         <div class="col-lg-6 col-sm-3">
 
-            <div class="card shadow-lg bg-body rounded">
+            <div class="card shadow-lg bg-body rounded" style="background-color: var(--color-white)">
                 <div class="card-header text-center"
                     style="background-color: var(--color-dark-blue); color: var(--color-white)">
                     {{ $pageTitle }}

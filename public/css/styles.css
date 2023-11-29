@@ -9,7 +9,12 @@
 
 body {
     background-color: var(--color-white);
-    color: var(--color-dark-blue);
+    color: var(--color-soft-blue);
+}
+h1{
+    font-weight: 900;
+    text-transform: capitalize;
+    color: var(--color-soft-blue);
 }
 .container-default {
     min-height: 93vh;
@@ -30,16 +35,19 @@ body {
 
 .navbar-bg .navbar-nav .nav-link:hover {
     color: var(--color-yellow);
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .navbar-bg .navbar-nav .nav-item.active .nav-link {
     color: var(--color-yellow);
-    font-weight: bold;
+    font-weight: 900;
 }
 
 .navbar-collapse {
     margin-left: 60px
+}
+.btn{
+    font-weight: 700;
 }
 .btn-red{
     background-color: var(--color-red);

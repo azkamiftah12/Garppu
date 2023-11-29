@@ -12,6 +12,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <style>
+        .offcanvas.show {
+            max-width: 270px;
+        }
+
+        .form-label {
+            font-weight: 900;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,22 +40,22 @@
                 <div class="offcanvas-header">
                     <a class="navbar-brand mr-auto" href="/dashboard"><img src="{{ asset('images/garppu-logo.png') }}"
                             alt="Garppu Logo" width="120" height="80"></a>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
+                        style="background-color: var(--color-red)"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav" style="font-weight: 600">
                         <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
                             <a class="nav-link mx-3" href="{{ url('/dashboard') }}">Home</a>
                         </li>
-                        <li class="nav-item {{ Request::is('subrelawan') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('subrelawan*') ? 'active' : '' }}">
                             <a class="nav-link mx-3" href="{{ url('/subrelawan') }}">AnggotaKu</a>
                         </li>
                         <li class="nav-item {{ Request::is('quickcount') ? 'active' : '' }}">
                             <a class="nav-link mx-3" href="{{ url('/quickcount') }}">Quick Count</a>
                         </li>
                         <li class="nav-item {{ request()->is('help') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/help') }}">Help</a>
+                            <a class="nav-link mx-3" href="{{ url('/help') }}">Pertolongan</a>
                         </li>
                     </ul>
                 </div>
