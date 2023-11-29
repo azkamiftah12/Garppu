@@ -23,7 +23,7 @@
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
 </div> --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-login mt-3">Login</button>
+            <button type="submit" class="btn btn-login mt-3">Masuk</button>
         </div>
     </form>
     <div class="text-center mt-3">
