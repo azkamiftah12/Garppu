@@ -14,7 +14,6 @@ class SubRelawan extends Model
 
     protected $fillable = [
         'nikSubRelawan', 'name', 'nik', 'telephone'
-        // Add other columns as needed
     ];
 
     // Relationships

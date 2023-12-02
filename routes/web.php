@@ -19,6 +19,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubRelawanController;
 
 
+Route::redirect('/', '/dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup');
@@ -46,4 +47,3 @@ Route::middleware(['auth.check'])->group(function () {
         });
     });
 
-    Route::redirect('/', '/login');

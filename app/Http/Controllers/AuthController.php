@@ -41,7 +41,7 @@ class AuthController extends Controller
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
         ], [
-            'nik.unique' => 'NIK sudah terdaftar. Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7245-0026',
+            'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7245-0026',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'
@@ -54,7 +54,7 @@ class AuthController extends Controller
             'userRole' => $data['userRole'],
         ]);
 
-        return redirect()->route('login')->with('success', 'Account created successfully. You can now log in.');
+        return redirect()->route('login')->with('success', 'Akun berhasil terdaftar. Silahkan Masuk atau Login');
     }
     public function logout()
 {
