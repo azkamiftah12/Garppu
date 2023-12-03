@@ -3,11 +3,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        .dataTables_length {
-            margin-bottom: 20px;
-        }
-    </style>
     <div class="container mt-4">
         <h1>Daftar Anggota</h1>
         <div class="d-flex justify-content-center my-5">

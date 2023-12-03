@@ -22,10 +22,22 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard'); // Replace 'dashboard' with your desired route
+            return $this->redirectBasedOnRole(Auth::user());
         }
 
         return redirect()->back()->withErrors(['nik' => 'kombinasi NIK dan Password salah']);
+    }
+    protected function redirectBasedOnRole(User $user)
+    {
+        if ($user->userRole === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
+        return redirect()->route('dashboard');
+    }
+    public function authenticated(Request $request, $user)
+    {
+        return $this->redirectBasedOnRole($user);
     }
 
     public function showSignupForm()
@@ -54,7 +66,7 @@ class AuthController extends Controller
             'userRole' => $data['userRole'],
         ]);
 
-        return redirect()->route('login')->with('success', 'Akun berhasil terdaftar. Silahkan Masuk atau Login');
+        return redirect()->route('login')->with('success', 'Akun berhasil terdaftar. Silahkan Masuk atau Login dengan cara mengisi formulir dibawah ini lalu pilih tombol masuk');
     }
     public function logout()
 {

@@ -22,7 +22,7 @@
             <a class="navbar-brand mr-auto" href="/dashboard"><img src="{{ asset('images/garppu-logo.png') }}"
                     alt="Garppu Logo" width="120" height="80"></a>
             <div class="d-none d-md-block me-5">
-                <h4>Gerakan Pemantau Pemilu</h4>
+                <h4>Admin</h4>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
@@ -31,24 +31,22 @@
             <div class="offcanvas offcanvas-end navbar-bg" tabindex="-1" id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <a class="navbar-brand mr-auto" href="/dashboard"><img src="{{ asset('images/garppu-logo.png') }}"
-                            alt="Garppu Logo" width="120" height="80"></a>
+                    <a class="navbar-brand mr-auto" href="/admin/dashboard"><img
+                            src="{{ asset('images/garppu-logo.png') }}" alt="Garppu Logo" width="120"
+                            height="80"></a>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
                         style="background-color: var(--color-red)"></button>
                 </div>
                 <div class="offcanvas-body">
                     <ul class="navbar-nav" style="font-weight: 600">
-                        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/dashboard') }}">Home</a>
+                        <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                            <a class="nav-link mx-3" href="{{ url('/admin/dashboard') }}">Home</a>
                         </li>
-                        <li class="nav-item {{ Request::is('subrelawan*') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/subrelawan') }}">AnggotaKu</a>
+                        <li class="nav-item {{ Request::is('admin/relawan') ? 'active' : '' }}">
+                            <a class="nav-link mx-3" href="{{ url('/admin/relawan') }}">Relawan</a>
                         </li>
-                        <li class="nav-item {{ Request::is('quickcount') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/quickcount') }}">Quick Count</a>
-                        </li>
-                        <li class="nav-item {{ request()->is('help') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/help') }}">Pertolongan</a>
+                        <li class="nav-item {{ Request::is('admin/anggota-relawan') ? 'active' : '' }}">
+                            <a class="nav-link mx-3" href="{{ url('/admin/anggota-relawan') }}">Anggota Relawan</a>
                         </li>
                     </ul>
                 </div>
@@ -91,5 +89,6 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
     </script>
 </body>
+
 
 </html>

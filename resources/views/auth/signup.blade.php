@@ -19,17 +19,21 @@
         <div class="mb-3">
             <label class="form-label" for="nama">Nama</label>
             <input class="form-control" id="nama" type="text" name="nama" required>
-            <div id="nik" class="form-text">Masukkan Nama anda</div>
+            <div id="nama" class="form-text">Masukkan Nama anda</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="noTelp">Nomor Telepone</label>
             <input class="form-control" id="noTelp" type="text" name="noTelp">
-            <div id="nik" class="form-text">Masukkan Nomor Telepone anda</div>
+            <div id="nama" class="form-text">Masukkan Nomor Telepone anda</div>
         </div>
         <div class="mb-3">
             <label class="form-label" for="password">Password</label>
             <input class="form-control" id="password" type="password" name="password" required>
-            <div id="nik" class="form-text">Masukkan Password anda</div>
+            <div id="nama" class="form-text">Masukkan Password anda</div>
+            <div class="form-check mt-2">
+                <input type="checkbox" onclick="togglePasswordVisibility()">
+                <label class="form-check-label" for="togglePassword">Lihat isi password</label>
+            </div>
         </div>
 
         <div class="d-flex justify-content-center">
