@@ -55,6 +55,13 @@
                         <li class="nav-item {{ request()->is('help') ? 'active' : '' }}">
                             <a class="nav-link mx-3" href="{{ url('/help') }}">Pertolongan</a>
                         </li>
+                        @if (Auth::user()->userRole === 'admin')
+                            <!-- Add more admin-specific menu items here -->
+                            <li class="nav-item">
+                                <a class="nav-link mx-3" href="{{ url('/admin/dashboard') }}">Admin Page</a>
+                            </li>
+                            <!-- Add more admin-specific menu items as needed -->
+                        @endif
                     </ul>
                 </div>
                 <div class="ml-auto d-xs-flex d-sm-flex d-md-none mt-auto">
