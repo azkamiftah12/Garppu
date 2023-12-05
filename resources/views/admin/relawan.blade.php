@@ -6,6 +6,7 @@
         <table class="table table-secondary my-3">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>No. Telp</th>
@@ -13,8 +14,9 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $user)
+                @foreach ($users as $index => $user)
                     <tr>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $user->nik }}</td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->noTelp }}</td>

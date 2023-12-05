@@ -6,18 +6,20 @@
         <table class="table table-secondary my-3">
             <thead>
                 <tr>
-                    <th>NIK SubRelawan</th>
-                    <th>Nama</th>
+                    <th>No</th>
                     <th>relasi</th>
+                    <th>Nama</th>
+                    <th>NIK SubRelawan</th>
                     <!-- Add more columns as needed -->
                 </tr>
             </thead>
             <tbody>
-                @foreach ($subRelawans as $subRelawan)
+                @foreach ($subRelawans as $index => $subRelawan)
                     <tr>
-                        <td>{{ $subRelawan->nikSubRelawan }}</td>
-                        <td>{{ $subRelawan->name }}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
+                        <td>{{ $subRelawan->name }}</td>
+                        <td>{{ $subRelawan->nikSubRelawan }}</td>
                         <!-- Add more columns as needed -->
                     </tr>
                 @endforeach

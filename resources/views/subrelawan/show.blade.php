@@ -10,7 +10,7 @@
             <dt class="col-sm-3">Nama</dt>
             <dd class="col-sm-9">: {{ $subRelawan->name }}</dd>
             <dt class="col-sm-3">Nomor Telephone</dt>
-            <dd class="col-sm-9">: {{ $subRelawan->userprofile->telephone ?? 'nomor kosong' }}</dd>
+            <dd class="col-sm-9">: {{ $subRelawan->telephone ?? 'Nomor Telephone Kosong!!!' }}</dd>
             <dt class="col-sm-3">Relasi</dt>
             <dd class="col-sm-9">: {{ $subRelawan->userprofile->nama ?? 'Unknown' }}</dd>
         </dl>
