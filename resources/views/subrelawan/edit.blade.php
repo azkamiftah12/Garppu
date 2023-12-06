@@ -46,7 +46,7 @@
                 </select>
             </div> --}}
             {{-- Add other form fields as needed --}}
-            <button type="submit" class="btn btn-yellow me-2 mb-2">Ubah Data</button>
+            <button type="submit" class="btn btn-yellow mr-2 mb-2">Ubah Data</button>
             <a href="/subrelawan" class="btn btn-red mb-2">Batal</a>
         </form>
     </div>

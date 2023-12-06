@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -79,5 +80,39 @@ class AuthController extends Controller
         $user = Auth::user(); // Retrieve the authenticated user
         return view('dashboard', compact('user'));
     }
+    public function profileku(){
+        $user = Auth::user(); // Retrieve the authenticated user
+        return view('profileku.index', compact('user'));
+    }
+    // AdminController.php
+
+public function resetPassword(Request $request, User $user)
+{
+    $newPassword = $request->input('new_password');
+
+        // Update the user's password with the hashed new password
+        $user->update(['password' => Hash::make($newPassword)]);
+
+        // Display the new password to the admin (you might want to send it via email instead)
+        return redirect()->route('admin.relawan')->with('success', 'Password reset successfully. New password: <strong>' . $newPassword . '</strong>');
+}
+public function userResetPassword(Request $request, User $user)
+    {
+        $request->validate([
+            'old_password' => 'required|string',
+            'new_password' => 'required|min:6',
+        ]);
+
+        // Check if the old password matches the user's current password
+        if (!Hash::check($request->input('old_password'), $user->password)) {
+            return redirect()->back()->withErrors(['old_password' => 'Ganti Password Gagal! "Password Sekarang" tidak cocok. Masukkan "Password Sekarang" dengan Password yang anda gunakan untuk login']);
+        }
+
+        // Update the user's password with the hashed new password
+        $user->update(['password' => Hash::make($request->input('new_password'))]);
+
+        return redirect()->route('profileku')->with('success', 'Password Berhasil dirubah.');
+    }
+
 }
 

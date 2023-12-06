@@ -29,6 +29,13 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
 Route::resource('userprofiles', UserProfileController::class);
 
+Route::post('/admin/relawan/{user}', [AuthController::class, 'resetPassword'])->name('admin.reset-password');
+// web.php
+
+Route::post('/profileku/index/{user}', [AuthController::class, 'userResetPassword'])->name('user.reset-password');
+
+
+
 // routes/web.php
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
@@ -45,9 +52,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
 Route::middleware(['auth.check'])->group(function () {
     // Your protected routes go here
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-    // Route::get('/dashboard', function () {
-        //     return view('dashboard');
-        // });
         Route::resource('subrelawan', SubRelawanController::class);
 
         Route::get('/anggota-relawan', function () {
@@ -59,5 +63,6 @@ Route::middleware(['auth.check'])->group(function () {
         Route::get('/help', function () {
             return view('help');
         });
+        Route::get('/profileku', [AuthController::class, 'profileku'])->name('profileku');
     });
 

@@ -36,14 +36,14 @@
                             <td>
                                 <div class="d-flex">
                                     <a href="{{ route('subrelawan.show', $subRelawan->nikSubRelawan) }}"
-                                        class="btn btn-soft-blue me-1">Lihat</a>
+                                        class="btn btn-soft-blue mr-1">Lihat</a>
                                     <a href="{{ route('subrelawan.edit', $subRelawan->nikSubRelawan) }}"
-                                        class="btn btn-yellow me-1">Edit</a>
+                                        class="btn btn-yellow mr-1">Edit</a>
                                     <form action="{{ route('subrelawan.destroy', $subRelawan->nikSubRelawan) }}"
                                         method="post" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-red me-1"
+                                        <button type="submit" class="btn btn-red mr-1"
                                             onclick="return confirm('YAKIN INGIN MENGHAPUS DATA?')">Hapus</button>
                                     </form>
                                 </div>

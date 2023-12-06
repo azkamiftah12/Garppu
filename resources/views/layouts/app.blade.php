@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <title>Garppu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu.">
     <link rel="icon" href="{{ asset('images/garppu-logo.png') }}" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
@@ -22,86 +23,123 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-dark navbar-bg fixed-top">
-        <div class="container">
-            <a class="navbar-brand mr-auto" href="/dashboard"><img src="{{ asset('images/garppu-logo.png') }}"
-                    alt="Garppu Logo" width="120" height="80"></a>
-            <div class="d-none d-md-block me-5">
-                <h4>Gerakan Pemantau Pemilu</h4>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-                aria-controls="offcanvasNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="offcanvas offcanvas-end navbar-bg" tabindex="-1" id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel">
-                <div class="offcanvas-header">
-                    <a class="navbar-brand mr-auto" href="/dashboard"><img src="{{ asset('images/garppu-logo.png') }}"
-                            alt="Garppu Logo" width="120" height="80"></a>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"
-                        style="background-color: var(--color-red)"></button>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <div class="d-flex justify-content-center">
+
+                    <a href="{{ url('/dashboard') }}"><img src="{{ asset('images/garppu-logo.png') }}" alt="Garppu Logo"
+                            width="170" height="120">
+                    </a>
                 </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav" style="font-weight: 600">
-                        <li class="nav-item {{ Request::is('dashboard') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/dashboard') }}">Home</a>
-                        </li>
-                        <li class="nav-item {{ Request::is('subrelawan*') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/subrelawan') }}">AnggotaKu</a>
-                        </li>
-                        <li class="nav-item {{ Request::is('quickcount') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/quickcount') }}">Quick Count</a>
-                        </li>
-                        <li class="nav-item {{ request()->is('help') ? 'active' : '' }}">
-                            <a class="nav-link mx-3" href="{{ url('/help') }}">Pertolongan</a>
-                        </li>
-                        @if (Auth::user()->userRole === 'admin')
-                            <!-- Add more admin-specific menu items here -->
-                            <li class="nav-item">
-                                <a class="nav-link mx-3" href="{{ url('/admin/dashboard') }}">Admin Page</a>
+                <h4 class="text-center mb-5">Gerakan Pemantau Pemilu</h4>
+                <ul class="list-unstyled components mb-5">
+                    {{-- <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Home</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="#">Home 1</a>
                             </li>
-                            <!-- Add more admin-specific menu items as needed -->
-                        @endif
-                    </ul>
-                </div>
-                <div class="ml-auto d-xs-flex d-sm-flex d-md-none mt-auto">
+                            <li>
+                                <a href="#">Home 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Home 3</a>
+                            </li>
+                        </ul>
+                    </li> --}}
+                    <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
+                        <a href="{{ url('/dashboard') }}">Home</a>
+                    </li>
+                    <li class="{{ Request::is('subrelawan*') ? 'active' : '' }}">
+                        <a href="{{ url('/subrelawan') }}">Anggotaku</a>
+                    </li>
+                    <li class="{{ Request::is('quickcount') ? 'active' : '' }}">
+                        <a href="{{ url('/quickcount') }}">Quick Count</a>
+                    </li>
+                    <li class="{{ Request::is('help') ? 'active' : '' }}">
+                        <a href="{{ url('/help') }}">Pertolongan</a>
+                    </li>
+                    <li class="{{ Request::is('profileku*') ? 'active' : '' }}">
+                        <a href="{{ url('/profileku') }}">ProfileKu</a>
+                    </li>
+                    @if (Auth::user()->userRole === 'admin')
+                        <!-- Add more admin-specific menu items here -->
+                        <li>
+                            <a href="{{ url('/admin/dashboard') }}">Admin Menu</a>
+                        </li>
+                        <!-- Add more admin-specific menu items as needed -->
+                    @endif
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button type="submit" class="btn btn-red py-3 w-100">Logout</button>
+                        <button type="submit" class="btn btn-red my-5 py-2 w-100">Logout</button>
                     </form>
+                </ul>
+
+                <div class="footer">
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script> Garppu
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
                 </div>
 
             </div>
-            <div class="ml-auto d-none d-md-block">
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <button type="submit" class="btn btn-red">Logout</button>
-                </form>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    {{-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button> --}}
+
+                    {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Portfolio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div> --}}
+                </div>
+            </nav>
+
+            <div class="container my-5">
+
+                @yield('content')
             </div>
         </div>
-    </nav>
-    <div class="container container-default">
-        <div class="container my-5">
-
-            @yield('content')
-        </div>
     </div>
-    <footer class="footer mt-auto py-3 footer-bg text-center container-fluid">
-        <div class="container-fluid">
-            <span>Copyright &copy; Garppu</span>
-        </div>
-    </footer>
     <script>
         $(document).ready(function() {
             $('.table').DataTable();
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
-    </script>
+    <script src="{{ asset('js/popper.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 
 </html>
