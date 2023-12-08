@@ -22,7 +22,7 @@
                         <h5>Jika anda mengalami kendala, Anda dapat menghubungi admin di nomor 0877-7245-0026</h5>
                     </div>
                     <div class="col-12 mb-5">
-                        <a href="https://wa.me/6287772450026?text=Halo%20saya%20tertarik%20dengan%20layanan%20Anda"
+                        <a href="https://wa.me/6287772450026?text=Halo%20admin,%20saya%20butuh%20bantuan%20anda"
                             class="btn btn-whatsapp">
                             <i class="fa fa-phone"></i> HUBUNGI SEKARANG
                         </a>
