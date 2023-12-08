@@ -38,5 +38,9 @@
     <div class="text-center mt-3">
         <p>Belum punya akun? <a href="{{ route('signup') }}" style="color: var(--color-yellow); font-weight: 900">Daftar
                 disini</a></p>
+        <a href="https://wa.me/6287772450026?text=Halo%20saya%20tertarik%20dengan%20layanan%20Anda"
+            class="btn btn-whatsapp mt-5">
+            <i class="fa fa-phone"></i> Hubungi Admin
+        </a>
     </div>
 @endsection

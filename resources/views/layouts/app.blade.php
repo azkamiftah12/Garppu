@@ -19,6 +19,16 @@
         .dataTables_length {
             margin-bottom: 20px;
         }
+
+        @media (max-width: 575.98px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h5 {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 
@@ -60,7 +70,7 @@
                         <a href="{{ url('/quickcount') }}">Quick Count</a>
                     </li>
                     <li class="{{ Request::is('help') ? 'active' : '' }}">
-                        <a href="{{ url('/help') }}">Pertolongan</a>
+                        <a href="{{ url('/help') }}">Pusat Bantuan</a>
                     </li>
                     <li class="{{ Request::is('profileku*') ? 'active' : '' }}">
                         <a href="{{ url('/profileku') }}">ProfileKu</a>
@@ -92,41 +102,44 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5">
+        <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+            <div class="px-4 px-md-5 pt-4 pt-md-5">
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                        <i class="fa fa-bars"></i>
-                        <span class="sr-only">Toggle Menu</span>
-                    </button>
-                    {{-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                    </button> --}}
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
 
-                    {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Portfolio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div> --}}
-                </div>
-            </nav>
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Toggle Menu</span>
+                        </button>
+                        {{-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa fa-bars"></i>
+                        </button> --}}
 
-            <div class="container my-5">
+                        {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Portfolio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div> --}}
+                    </div>
+                </nav>
+            </div>
+
+            <div class="my-5">
 
                 @yield('content')
             </div>
