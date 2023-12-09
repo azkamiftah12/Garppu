@@ -54,7 +54,7 @@ class AuthController extends Controller
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
         ], [
-            'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7245-0026',
+            'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7670-0102',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'
