@@ -18,7 +18,7 @@ class AdminController extends Controller
     }
     public function allUsers()
 {
-    $users = User::all();
+    $users = User::withCount('subRelawans')->get();
     return view('admin.relawan', compact('users'));
 }
 

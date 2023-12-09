@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Model implements Authenticatable
 {
@@ -45,6 +46,11 @@ class User extends Model implements Authenticatable
     public function getAuthPassword()
     {
         return $this->password;
+    }
+
+    public function subRelawans(): HasMany
+    {
+        return $this->hasMany(SubRelawan::class, 'nik', 'nik');
     }
 
     /**

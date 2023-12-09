@@ -4,17 +4,19 @@
     <h1 class="my-5 text-center">Relawan</h1>
     @if (session('success'))
         <div class="alert alert-success">
-            <h4>{!! session('success') !!}</h4>
+            <h5>{!! session('success') !!}</h5>
         </div>
     @endif
     <div class="table-container" style="overflow-x: auto">
-        <table class="table table-secondary my-3">
+        <table class="table table-secondary my-3 text-center">
             <thead>
                 <tr>
                     <th>No</th>
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>No. Telp</th>
+                    <th>Jumlah Anggota</th>
+                    <th>role</th>
                     <th>Action</th>
                     <!-- Add more columns as needed -->
                 </tr>
@@ -26,6 +28,8 @@
                         <td>{{ $user->nik }}</td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->noTelp }}</td>
+                        <td>{{ $user->sub_relawans_count }}</td>
+                        <td>{{ $user->userRole }}</td>
                         <td>
                             <div class="d-flex">
                                 <!-- Add a confirmation dialog using JavaScript -->

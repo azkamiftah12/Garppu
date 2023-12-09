@@ -6,17 +6,23 @@
         <div class="row">
             <div class="col-md-12">
                 @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
+                    <div class="alert alert-success">
+                        <h5>{{ session('success') }}</h5>
+                    </div>
                 @endif
                 @if (session('error'))
-                    <div class="alert alert-error">{{ session('error') }}</div>
+                    <div class="alert alert-error">
+                        <h5>
+                            {{ session('error') }}
+                        </h5>
+                    </div>
                 @endif
                 @error('old_password')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <h1>Nama: {{ $user->nama }}</h1>
-                <h4>NIK: {{ $user->nik }}</h4>
-                <h4>No Telp: {{ $user->noTelp }}</h4>
+                <h5>NIK: {{ $user->nik }}</h5>
+                <h5>No Telp: {{ $user->noTelp }}</h5>
                 <button type="button" class="btn btn-yellow my-4" data-toggle="modal" data-target="#exampleModal">
                     Ganti Password
                 </button>

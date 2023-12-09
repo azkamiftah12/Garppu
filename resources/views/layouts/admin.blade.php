@@ -19,6 +19,16 @@
         .dataTables_length {
             margin-bottom: 20px;
         }
+
+        @media (max-width: 575.98px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            h5 {
+                font-size: 18px;
+            }
+        }
     </style>
 </head>
 

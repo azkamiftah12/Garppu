@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-
+    <div class="container text-center">
         <h1 class="mb-4">Bantuan</h1>
         <h5 class="mb-4">Jika anda butuh bantuan mengenai website Garppu silahkan Hubungi Admin </h5>
         <h5 class="mb-4">Kontak Admin: 0877-7245-0026</h5>

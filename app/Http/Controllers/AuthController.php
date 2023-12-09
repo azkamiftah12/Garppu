@@ -105,7 +105,7 @@ public function userResetPassword(Request $request, User $user)
 
         // Check if the old password matches the user's current password
         if (!Hash::check($request->input('old_password'), $user->password)) {
-            return redirect()->back()->withErrors(['old_password' => 'Ganti Password Gagal! "Password Sekarang" tidak cocok. Masukkan "Password Sekarang" dengan Password yang anda gunakan untuk login']);
+            return redirect()->back()->withErrors(['old_password' => 'Ganti Password Gagal. Masukkan "Password Sekarang" dengan Password yang anda gunakan untuk login']);
         }
 
         // Update the user's password with the hashed new password

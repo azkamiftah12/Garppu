@@ -10,11 +10,13 @@
         </div>
 
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success">
+                <h5>{{ session('success') }}</h5>
+            </div>
         @endif
 
         <div class="table-container" style="overflow-x: auto">
-            <table class="table table-secondary my-3">
+            <table class="table table-secondary my-3 text-center">
                 <thead>
                     <tr>
                         <th>No</th>
