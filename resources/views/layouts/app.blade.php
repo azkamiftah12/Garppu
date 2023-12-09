@@ -104,9 +104,9 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <div class="px-4 px-md-5 pt-4 pt-md-5">
+            <div class="position-sticky sticky-top">
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light mx-4 mx-md-5 mt-4 mt-md-5 ">
                     <div class="container-fluid">
 
                         <button type="button" id="sidebarCollapse" class="btn btn-primary">
