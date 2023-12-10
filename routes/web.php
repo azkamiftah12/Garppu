@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\BatchController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\UserProfileController;
-
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubRelawanController;
@@ -44,6 +45,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/relawan', [AdminController::class, 'allUsers'])->name('admin.relawan');
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
+
+    // Batch routes
+    Route::get('/batches', [BatchController::class, 'index'])->name('admin.batches.index');
+    Route::get('/batches/create', [BatchController::class, 'create'])->name('admin.batches.create');
+    Route::post('/batches', [BatchController::class, 'store'])->name('admin.batches.store');
+    Route::get('/batches/{batch}/edit', [BatchController::class, 'edit'])->name('admin.batches.edit');
+    Route::put('/batches/{batch}', [BatchController::class, 'update'])->name('admin.batches.update');
+    Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->name('admin.batches.destroy');
+
+    // Candidate routes
+    Route::get('/candidates', [CandidateController::class, 'index'])->name('admin.candidates.index');
+    Route::get('/candidates/create', [CandidateController::class, 'create'])->name('admin.candidates.create');
+    Route::post('/candidates', [CandidateController::class, 'store'])->name('admin.candidates.store');
+    Route::get('/candidates/{candidate}/edit', [CandidateController::class, 'edit'])->name('admin.candidates.edit');
+    Route::put('/candidates/{candidate}', [CandidateController::class, 'update'])->name('admin.candidates.update');
+    Route::delete('/candidates/{candidate}', [CandidateController::class, 'destroy'])->name('admin.candidates.destroy');
 });
 
 

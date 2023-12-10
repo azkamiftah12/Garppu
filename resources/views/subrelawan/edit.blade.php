@@ -1,6 +1,4 @@
-<!-- resources/views/subrelawan/edit.blade.php -->
-
-@extends('layouts.app') {{-- Assuming you have a default app layout --}}
+@extends('layouts.app')
 
 @section('content')
     <div class="container mt-3">

@@ -1,5 +1,3 @@
-<!-- resources/views/subrelawan/index.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -46,7 +44,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-red mr-1"
-                                            onclick="return confirm('YAKIN INGIN MENGHAPUS DATA?')">Hapus</button>
+                                            onclick="return confirm('YAKIN INGIN MENGHAPUS ANGGOTA INI?')">Hapus</button>
                                     </form>
                                 </div>
                             </td>

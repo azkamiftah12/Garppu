@@ -32,7 +32,9 @@
     <style>
         .dataTables_length {
             margin-bottom: 20px;
+            margin-right: 20px;
         }
+
 
         @media (max-width: 575.98px) {
             h1 {
@@ -83,6 +85,12 @@
                     <li class="{{ Request::is('admin/anggota-relawan') ? 'active' : '' }}">
                         <a href="{{ url('/admin/anggota-relawan') }}">Anggota Relawan</a>
                     </li>
+                    <li class="{{ Request::is('admin/batches') ? 'active' : '' }}">
+                        <a href="{{ url('/admin/batches') }}">Batch Pemilihan</a>
+                    </li>
+                    <li class="{{ Request::is('admin/candidates') ? 'active' : '' }}">
+                        <a href="{{ url('/admin/candidates') }}">Paslon</a>
+                    </li>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-red my-5 py-2 w-100">Logout</button>
@@ -126,8 +134,12 @@
     <script>
         $(document).ready(function() {
             $('.table').DataTable({
-                dom: 'Bfrtip',
-                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                dom: 'lBfrtip',
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, 'All']
+                ],
             });
         });
     </script>
