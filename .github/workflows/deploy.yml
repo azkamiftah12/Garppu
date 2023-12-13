@@ -17,4 +17,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: cd /home/u702718502/domains/garppu.online/Garppu
+        script: cd /home/u702718502/domains/garppu.online/Garppu && git pull origin dev && php artisan migrate
