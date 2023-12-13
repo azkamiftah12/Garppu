@@ -1,9 +1,9 @@
-name: Deploy to Hosting
+name: Deploy to dev Hosting
 
 on:
   push:
     branches:
-      - main
+      - dev
 
 jobs:
   deploy:
@@ -17,4 +17,4 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: cd /home/u702718502/domains/garppu.com/Garppu && git pull origin main && php artisan migrate
+        script: cd /home/u702718502/domains/garppu.online/Garppu && git pull origin dev && php artisan migrate
