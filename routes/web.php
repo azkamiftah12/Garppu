@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+//test diterima
+
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\UserProfileController;
