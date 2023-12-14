@@ -9,26 +9,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 
-class AdminController extends Controller
+class SuperAdminController extends Controller
 {
     public function dashboard()
     {
         $user = Auth::user(); // Retrieve the authenticated user
-        return view('admin.dashboard', compact('user'));
+        return view('superadmin.dashboard', compact('user'));
     }
-    public function getUsersRelawan()
+    public function allUsers()
 {
-    $users = User::withCount('subRelawans')
-                    ->where('userRole', 'relawan')
-                    ->get();
-
-    return view('admin.relawan', compact('users'));
+    $users = User::withCount('subRelawans')->get();
+    return view('superadmin.relawan', compact('users'));
 }
 
 public function allSubRelawans()
 {
     $subRelawans = SubRelawan::all();
-    return view('admin.anggota-relawan', compact('subRelawans'));
+    return view('superadmin.anggota-relawan', compact('subRelawans'));
 }
 
 }

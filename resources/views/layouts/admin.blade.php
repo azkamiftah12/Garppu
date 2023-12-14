@@ -61,36 +61,48 @@
                 </div>
                 <h4 class="text-center mb-5">Gerakan Pemantau Pemilu</h4>
                 <ul class="list-unstyled components mb-5">
-                    {{-- <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                            class="dropdown-toggle">Home</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
-                    </li> --}}
-                    <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/dashboard') }}">Home</a>
-                    </li>
-                    <li class="{{ Request::is('admin/relawan') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/relawan') }}">Relawan</a>
-                    </li>
-                    <li class="{{ Request::is('admin/anggota-relawan') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/anggota-relawan') }}">Anggota Relawan</a>
-                    </li>
-                    <li class="{{ Request::is('admin/batches') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/batches') }}">Batch Pemilihan</a>
-                    </li>
-                    <li class="{{ Request::is('admin/candidates') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/candidates') }}">Paslon</a>
-                    </li>
+
+                    @if (Auth::user()->userRole === 'superadmin')
+                        <!-- Add more admin-specific menu items here -->
+                        <li class="{{ Request::is('superadmin/dashboard') ? 'active' : '' }}">
+                            <a href="{{ url('/superadmin/dashboard') }}">Home</a>
+                        </li>
+                        <li class="">
+                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Relawan</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                                <li class="{{ Request::is('superadmin/relawan') ? 'active' : '' }}">
+                                    <a href="{{ url('/superadmin/relawan') }}">Relawan</a>
+                                </li>
+                                <li class="{{ Request::is('superadmin/anggota-relawan') ? 'active' : '' }}">
+                                    <a href="{{ url('/superadmin/anggota-relawan') }}">Anggota Relawan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="{{ Request::is('superadmin/batches') ? 'active' : '' }}">
+                            <a href="{{ url('/superadmin/batches') }}">Batch Pemilihan</a>
+                        </li>
+                    @endif
+                    @if (Auth::user()->userRole === 'admin')
+                        <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/dashboard') }}">Home</a>
+                        </li>
+                        <li class="">
+                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Relawan</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenu">
+                                <li class="{{ Request::is('admin/relawan') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/relawan') }}">Relawan</a>
+                                </li>
+                                <li class="{{ Request::is('admin/anggota-relawan') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/anggota-relawan') }}">Anggota Relawan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="{{ Request::is('admin/candidates') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/candidates') }}">Paslon</a>
+                        </li>
+                    @endif
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-red my-5 py-2 w-100">Logout</button>
@@ -120,7 +132,14 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle Menu</span>
                     </button>
-                    <h2 style="color: var(--color-dark-blue); font-weight:700">Admin Page</h2>
+                    <h2 style="color: var(--color-dark-blue); font-weight:700">
+                        @if (Auth::user()->userRole === 'superadmin')
+                            Super Admin Page
+                        @endif
+                        @if (Auth::user()->userRole === 'admin')
+                            Admin Page
+                        @endif
+                    </h2>
                     <div></div>
                 </div>
             </nav>

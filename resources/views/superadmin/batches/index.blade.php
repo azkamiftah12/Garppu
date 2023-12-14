@@ -9,7 +9,7 @@
     @endif
 
     <div class="d-flex justify-content-center my-5">
-        <a href="{{ route('admin.batches.create') }}" class="btn btn-soft-blue">Adakan Pemilihan</a>
+        <a href="{{ route('superadmin.batches.create') }}" class="btn btn-soft-blue">Adakan Pemilihan</a>
     </div>
 
     <div class="table-container" style="overflow-x: auto">
@@ -29,8 +29,8 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $batch->vote_type }}</td>
                         <td>
-                            <a href="{{ route('admin.batches.edit', $batch->id) }}" class="btn btn-yellow">Edit</a>
-                            <form action="{{ route('admin.batches.destroy', $batch->id) }}" method="POST"
+                            <a href="{{ route('superadmin.batches.edit', $batch->id) }}" class="btn btn-yellow">Edit</a>
+                            <form action="{{ route('superadmin.batches.destroy', $batch->id) }}" method="POST"
                                 style="display: inline;">
                                 @csrf
                                 @method('DELETE')

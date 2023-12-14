@@ -12,7 +12,7 @@ class User extends Model implements Authenticatable
     protected $primaryKey = 'nik';
     public $incrementing = false;
     protected $keyType = 'string';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'nik', 'nama', 'noTelp', 'password', 'userRole',

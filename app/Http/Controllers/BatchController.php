@@ -10,12 +10,12 @@ class BatchController extends Controller
     public function index()
     {
         $batches = Batch::all();
-        return view('admin.batches.index', compact('batches'));
+        return view('superadmin.batches.index', compact('batches'));
     }
 
     public function create()
     {
-        return view('admin.batches.create');
+        return view('superadmin.batches.create');
     }
 
     public function store(Request $request)
@@ -26,12 +26,12 @@ class BatchController extends Controller
 
         Batch::create($request->all());
 
-        return redirect()->route('admin.batches.index')->with('success', 'Batch Pemilihan Berhasil ditambahkan');
+        return redirect()->route('superadmin.batches.index')->with('success', 'Batch Pemilihan Berhasil ditambahkan');
     }
     public function edit($id)
     {
         $batch = Batch::findOrFail($id);
-        return view('admin.batches.edit', compact('batch'));
+        return view('superadmin.batches.edit', compact('batch'));
     }
 
     public function update(Request $request, $id)
@@ -44,7 +44,7 @@ class BatchController extends Controller
 
         $batch->update($request->all());
 
-        return redirect()->route('admin.batches.index')->with('success', 'Batch updated successfully.');
+        return redirect()->route('superadmin.batches.index')->with('success', 'Batch updated successfully.');
     }
 
     public function destroy($id)
@@ -52,6 +52,6 @@ class BatchController extends Controller
         $batch = Batch::findOrFail($id);
         $batch->delete();
 
-        return redirect()->route('admin.batches.index')->with('success', 'Batch deleted successfully.');
+        return redirect()->route('superadmin.batches.index')->with('success', 'Batch deleted successfully.');
     }
 }
