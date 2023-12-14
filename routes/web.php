@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// teest changes
 
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CandidateController;
