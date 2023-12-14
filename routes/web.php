@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     // Your admin routes go here, e.g., admin dashboard
     // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/relawan', [AdminController::class, 'allUsers'])->name('admin.relawan');
+    Route::get('/relawan', [AdminController::class, 'getUsersRelawan'])->name('admin.relawan');
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
 
 

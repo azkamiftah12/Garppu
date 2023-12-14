@@ -10,7 +10,7 @@
                     <th>relasi</th>
                     <th>Nama</th>
                     <th>NIK SubRelawan</th>
-                    <!-- Add more columns as needed -->
+                    <th>Waktu Input</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
                         <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
                         <td>{{ $subRelawan->name }}</td>
                         <td>{{ $subRelawan->nikSubRelawan }}</td>
-                        <!-- Add more columns as needed -->
+                        <td>{{ $subRelawan->created_at }}</td>
                     </tr>
                 @endforeach
             </tbody>

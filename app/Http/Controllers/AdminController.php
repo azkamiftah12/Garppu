@@ -16,9 +16,12 @@ class AdminController extends Controller
         $user = Auth::user(); // Retrieve the authenticated user
         return view('admin.dashboard', compact('user'));
     }
-    public function allUsers()
+    public function getUsersRelawan()
 {
-    $users = User::withCount('subRelawans')->get();
+    $users = User::withCount('subRelawans')
+                    ->where('userRole', 'relawan')
+                    ->get();
+
     return view('admin.relawan', compact('users'));
 }
 

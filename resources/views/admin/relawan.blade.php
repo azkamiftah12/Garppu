@@ -16,9 +16,8 @@
                     <th>Nama</th>
                     <th>No. Telp</th>
                     <th>Jumlah Anggota</th>
-                    <th>role</th>
+                    <th>Waktu Input</th>
                     <th>Action</th>
-                    <!-- Add more columns as needed -->
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +28,7 @@
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->noTelp }}</td>
                         <td>{{ $user->sub_relawans_count }}</td>
-                        <td>{{ $user->userRole }}</td>
+                        <td>{{ $user->created_at }}</td>
                         <td>
                             <div class="d-flex">
                                 <!-- Add a confirmation dialog using JavaScript -->

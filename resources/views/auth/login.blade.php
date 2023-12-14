@@ -5,12 +5,16 @@
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
-                {{ $errors->first() }}
+                <h5>
+                    {{ $errors->first() }}
+                </h5>
             </div>
         @endif
         @if (session('success'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                <h5>
+                    {{ session('success') }}
+                </h5>
             </div>
         @endif
         <div class="mb-3">
