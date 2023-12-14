@@ -24,6 +24,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubRelawanController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\DapilController;
 
 Route::redirect('/', '/dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -55,6 +56,12 @@ Route::group(['prefix' => 'superadmin', 'middleware' => ['auth', 'superadmin']],
     Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->name('superadmin.batches.destroy');
 
     //dapil routes
+    Route::get('/dapil', [DapilController::class, 'index'])->name('superadmin.dapil.index');
+    Route::get('/dapil/create', [DapilController::class, 'create'])->name('superadmin.dapil.create');
+    Route::post('/dapil', [DapilController::class, 'store'])->name('superadmin.dapil.store');
+    Route::get('/dapil/{id}/edit', [DapilController::class, 'edit'])->name('superadmin.dapil.edit');
+    Route::put('/dapil/{id}', [DapilController::class, 'update'])->name('superadmin.dapil.update');
+    Route::delete('/dapil/{id}', [DapilController::class, 'destroy'])->name('superadmin.dapil.destroy');
 
 });
 

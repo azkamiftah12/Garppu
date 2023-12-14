@@ -82,6 +82,9 @@
                         <li class="{{ Request::is('superadmin/batches') ? 'active' : '' }}">
                             <a href="{{ url('/superadmin/batches') }}">Batch Pemilihan</a>
                         </li>
+                        <li class="{{ Request::is('superadmin/dapil') ? 'active' : '' }}">
+                            <a href="{{ url('/superadmin/dapil') }}">Dapil</a>
+                        </li>
                     @endif
                     @if (Auth::user()->userRole === 'admin')
                         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
