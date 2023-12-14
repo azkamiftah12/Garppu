@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//test diterima
+//test2
 
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\CandidateController;
