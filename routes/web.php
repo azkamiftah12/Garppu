@@ -19,7 +19,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubRelawanController;
-
+use App\Http\Controllers\SuperAdminController;
 
 Route::redirect('/', '/dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -31,14 +31,30 @@ Route::resource('subrelawan', SubRelawanController::class);
 Route::resource('userprofiles', UserProfileController::class);
 
 Route::post('/admin/relawan/{user}', [AuthController::class, 'resetPassword'])->name('admin.reset-password');
-// web.php
+Route::post('/superadmin/relawan/{user}', [AuthController::class, 'superAdminResetPassword'])->name('superadmin.reset-password');
+
 
 Route::post('/profileku/index/{user}', [AuthController::class, 'userResetPassword'])->name('user.reset-password');
 
+// superadmin routes
+Route::group(['prefix' => 'superadmin', 'middleware' => ['auth', 'superadmin']], function () {
+    Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('superadmin.dashboard');
+    Route::get('/relawan', [SuperAdminController::class, 'allUsers'])->name('superadmin.relawan');
+    Route::get('/anggota-relawan', [SuperAdminController::class, 'allSubRelawans'])->name('superadmin.anggota-relawan');
 
+    // Batch routes
+    Route::get('/batches', [BatchController::class, 'index'])->name('superadmin.batches.index');
+    Route::get('/batches/create', [BatchController::class, 'create'])->name('superadmin.batches.create');
+    Route::post('/batches', [BatchController::class, 'store'])->name('superadmin.batches.store');
+    Route::get('/batches/{batch}/edit', [BatchController::class, 'edit'])->name('superadmin.batches.edit');
+    Route::put('/batches/{batch}', [BatchController::class, 'update'])->name('superadmin.batches.update');
+    Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->name('superadmin.batches.destroy');
 
-// routes/web.php
+    //dapil routes
 
+});
+
+// admin routes
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     // Your admin routes go here, e.g., admin dashboard
     // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -46,13 +62,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/relawan', [AdminController::class, 'allUsers'])->name('admin.relawan');
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
 
-    // Batch routes
-    Route::get('/batches', [BatchController::class, 'index'])->name('admin.batches.index');
-    Route::get('/batches/create', [BatchController::class, 'create'])->name('admin.batches.create');
-    Route::post('/batches', [BatchController::class, 'store'])->name('admin.batches.store');
-    Route::get('/batches/{batch}/edit', [BatchController::class, 'edit'])->name('admin.batches.edit');
-    Route::put('/batches/{batch}', [BatchController::class, 'update'])->name('admin.batches.update');
-    Route::delete('/batches/{batch}', [BatchController::class, 'destroy'])->name('admin.batches.destroy');
 
     // Candidate routes
     Route::get('/candidates', [CandidateController::class, 'index'])->name('admin.candidates.index');

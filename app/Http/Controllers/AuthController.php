@@ -32,9 +32,11 @@ class AuthController extends Controller
     {
         if ($user->userRole === 'admin') {
             return redirect()->route('admin.dashboard');
+        } elseif ($user->userRole === 'superadmin') {
+            return redirect()->route('superadmin.dashboard');
+        } else {
+            return redirect()->route('dashboard');
         }
-
-        return redirect()->route('dashboard');
     }
     public function authenticated(Request $request, $user)
     {
@@ -84,7 +86,6 @@ class AuthController extends Controller
         $user = Auth::user(); // Retrieve the authenticated user
         return view('profileku.index', compact('user'));
     }
-    // AdminController.php
 
 public function resetPassword(Request $request, User $user)
 {
@@ -93,8 +94,18 @@ public function resetPassword(Request $request, User $user)
         // Update the user's password with the hashed new password
         $user->update(['password' => Hash::make($newPassword)]);
 
-        // Display the new password to the admin (you might want to send it via email instead)
+
         return redirect()->route('admin.relawan')->with('success', 'Password reset successfully. New password: <strong>' . $newPassword . '</strong>');
+}
+public function superAdminResetPassword(Request $request, User $user)
+{
+    $newPassword = $request->input('new_password');
+
+        // Update the user's password with the hashed new password
+        $user->update(['password' => Hash::make($newPassword)]);
+
+
+        return redirect()->route('superadmin.relawan')->with('success', 'Password reset successfully. New password: <strong>' . $newPassword . '</strong>');
 }
 public function userResetPassword(Request $request, User $user)
     {

@@ -22,7 +22,7 @@
             <div id="nama" class="form-text">Masukkan Nama anda</div>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="noTelp">Nomor Telepone</label>
+            <label class="form-label" for="noTelp">Nomor Telephone</label>
             <input class="form-control" id="noTelp" type="text" name="noTelp">
             <div id="nama" class="form-text">Masukkan Nomor Telepone anda</div>
         </div>

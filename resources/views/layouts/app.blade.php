@@ -83,6 +83,13 @@
                         </li>
                         <!-- Add more admin-specific menu items as needed -->
                     @endif
+                    @if (Auth::user()->userRole === 'superadmin')
+                        <!-- Add more admin-specific menu items here -->
+                        <li>
+                            <a href="{{ url('/superadmin/dashboard') }}">Super Admin Menu</a>
+                        </li>
+                        <!-- Add more admin-specific menu items as needed -->
+                    @endif
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="btn btn-red my-5 py-2 w-100">Logout</button>
