@@ -18,8 +18,10 @@ class AdminController extends Controller
     }
     public function getUsersRelawan()
 {
+    $user = Auth::user();
     $users = User::withCount('subRelawans')
                     ->where('userRole', 'relawan')
+                    ->where('id_dapil', $user->id_dapil)
                     ->get();
 
     return view('admin.relawan', compact('users'));
@@ -27,7 +29,11 @@ class AdminController extends Controller
 
 public function allSubRelawans()
 {
-    $subRelawans = SubRelawan::all();
+    $user = Auth::user();
+
+    $subRelawans = SubRelawan::leftJoin('userprofile', 'sub_relawans.nik', '=', 'userprofile.nik')
+        ->where('userprofile.id_dapil', $user->id_dapil)
+        ->get();
     return view('admin.anggota-relawan', compact('subRelawans'));
 }
 

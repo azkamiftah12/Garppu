@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="my-5 text-center">Anggota Relawan</h1>
+    <h1 class="my-5 text-center">Anggota Relawan - {{ auth()->user()->nama_dapil }}</h1>
     <div class="table-container" style="overflow-x: auto">
         <table class="table table-secondary my-3 text-center">
             <thead>

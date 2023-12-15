@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dapil;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,18 +46,27 @@ class AuthController extends Controller
 
     public function showSignupForm()
     {
-        return view('auth.signup',['pageTitle' => "Daftar Akun"]);
+        $dapils = Dapil::all();
+        return view('auth.signup',['pageTitle' => "Daftar Akun"], compact('dapils'));
     }
 
     public function signup(Request $request)
     {
         $data = $request->validate([
-            'nik' => 'required|string|unique:userprofile',
+            'nik' => 'required|string|digits:16|unique:userprofile',
             'nama' => 'required|string',
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
+            'kelurahan' => 'nullable|string',
+            'rt' => 'nullable|string',
+            'rw' => 'nullable|string',
+            'no_tps' => 'nullable|string',
+            'rekening_bank' => 'nullable|string',
+            'no_rekening' => 'nullable|string',
+            'id_dapil' => 'nullable|exists:dapil,id',
         ], [
             'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7670-0102',
+            'nik.digits' => 'Format NIK Salah. NIK harus berjumlah 16 digit! Masukkan NIK anda yang sesua!',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'
@@ -67,6 +77,13 @@ class AuthController extends Controller
             'noTelp' => $data['noTelp'],
             'password' => Hash::make($data['password']),
             'userRole' => $data['userRole'],
+            'kelurahan' => $data['kelurahan'],
+            'rt' => $data['rt'],
+            'rw' => $data['rw'],
+            'no_tps' => $data['no_tps'],
+            'rekening_bank' => $data['rekening_bank'],
+            'no_rekening' => $data['no_rekening'],
+            'id_dapil' => $data['id_dapil'],
         ]);
 
         return redirect()->route('login')->with('success', 'Akun berhasil terdaftar. Silahkan Masuk atau Login dengan cara mengisi formulir dibawah ini lalu pilih tombol masuk');

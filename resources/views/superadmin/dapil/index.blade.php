@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="my-5 text-center">Paslon - {{ auth()->user()->nama_dapil }}</h1>
+    <h1 class="my-5">Daerah Pilihan (DAPIL)</h1>
     @if (session('success'))
         <div class="alert alert-success">
             <h5>{!! session('success') !!}</h5>
@@ -9,7 +9,7 @@
     @endif
 
     <div class="d-flex justify-content-center my-5">
-        <a href="{{ route('admin.candidates.create') }}" class="btn btn-soft-blue">Tambah Paslon</a>
+        <a href="{{ route('superadmin.dapil.create') }}" class="btn btn-soft-blue">Tambah Dapil</a>
     </div>
 
     <div class="table-container" style="overflow-x: auto">
@@ -17,28 +17,25 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nomor Urut</th>
-                    <th>Nama Paslon</th>
                     <th>Dapil</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($candidates as $index => $candidate)
+                @foreach ($dapils as $index => $dapil)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $candidate->nomor_urut }}</td>
-                        <td>{{ $candidate->name }}</td>
-                        <td>{{ $candidate->dapil->nama_dapil }}</td>
+                        <td>{{ $dapil->nama_dapil }}</td>
+                        <td>{{ $dapil->batch->vote_type }}</td>
                         <td>
-                            <a href="{{ route('admin.candidates.edit', $candidate->id) }}" class="btn btn-yellow">Edit</a>
+                            <a href="{{ route('superadmin.dapil.edit', $dapil->id) }}" class="btn btn-yellow">Edit</a>
 
-                            <form action="{{ route('admin.candidates.destroy', $candidate->id) }}" method="POST"
+                            <form action="{{ route('superadmin.dapil.destroy', $dapil->id) }}" method="POST"
                                 style="display: inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-red"
-                                    onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS PASLON INI?')">Hapus</button>
+                                    onclick="return confirm('ANDA YAKIN AKAN MENGHAPUS DAPIL INI?')">Hapus</button>
                             </form>
                         </td>
                     </tr>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Batch;
+use App\Models\Dapil;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
@@ -16,8 +18,7 @@ class CandidateController extends Controller
 
     public function create()
     {
-        $batches = Batch::all();
-        return view('admin.candidates.create', compact('batches'));
+        return view('admin.candidates.create');
     }
 
     public function store(Request $request)
@@ -25,18 +26,26 @@ class CandidateController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nomor_urut' => 'required|integer',
-            'batch_id' => 'required|exists:batches,id',
         ]);
 
-        Candidate::create($request->all());
+        // Mendapatkan user saat ini yang sedang login
+        $user = Auth::user();
+
+        // $request->merge(['id_dapil' => $user->id_dapil]);
+
+        // Menambahkan data candidate dengan id_dapil dari user
+        Candidate::create([
+            'name' => $request->input('name'),
+            'nomor_urut' => $request->input('nomor_urut'),
+            'id_dapil' => $user->id_dapil,
+        ]);
 
         return redirect()->route('admin.candidates.index')->with('success', 'Paslon Berhasil ditambahkan');
     }
     public function edit($id)
     {
         $candidate = Candidate::findOrFail($id);
-        $batches = Batch::all();
-        return view('admin.candidates.edit', compact('candidate', 'batches'));
+        return view('admin.candidates.edit', compact('candidate'));
     }
 
     public function update(Request $request, $id)
@@ -46,7 +55,6 @@ class CandidateController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nomor_urut' => 'required|integer',
-            'batch_id' => 'required|exists:batches,id',
         ]);
 
         $candidate->update($request->all());
