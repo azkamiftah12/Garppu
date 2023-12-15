@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="my-5">Paslon</h1>
+    <h1 class="my-5 text-center">Paslon - {{ auth()->user()->nama_dapil }}</h1>
     @if (session('success'))
         <div class="alert alert-success">
             <h5>{!! session('success') !!}</h5>

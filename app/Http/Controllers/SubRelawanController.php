@@ -28,11 +28,12 @@ class SubRelawanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nikSubRelawan' => 'required|string|unique:sub_relawans',
+            'nikSubRelawan' => 'required|string|digits:16|unique:sub_relawans',
             'name' => 'required|string',
             'telephone' => 'nullable|string',
         ], [
             'nikSubRelawan.unique' => 'NIK sudah terdaftar. Check NIK Kembali',
+            'nik.digits' => 'Format NIK Salah. NIK harus berjumlah 16 digit! Masukkan NIK anggota anda yang sesua!',
         ]);
 
         $user = Auth::user();
@@ -65,11 +66,13 @@ class SubRelawanController extends Controller
         'nikSubRelawan' => [
             'required',
             'string',
+            'digits:16',
             Rule::unique('sub_relawans')->ignore($nikSubRelawan, 'nikSubRelawan'),
         ],
         'telephone' => 'nullable|string',
     ], [
         'nikSubRelawan.unique' => 'NIK sudah terdaftar. Check NIK Kembali',
+        'nik.digits' => 'Format NIK Salah. NIK harus berjumlah 16 digit! Masukkan NIK anda yang sesua!',
     ]);
 
     $subRelawan = SubRelawan::findOrFail($nikSubRelawan);
