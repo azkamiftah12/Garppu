@@ -18,7 +18,6 @@
                 <tr>
                     <th>No</th>
                     <th>Dapil</th>
-                    <th>Provinsi</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -27,7 +26,6 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $dapil->nama_dapil }}</td>
-                        <td>{{ $dapil->provinsi }}</td>
                         <td>{{ $dapil->batch->vote_type }}</td>
                         <td>
                             <a href="{{ route('superadmin.dapil.edit', $dapil->id) }}" class="btn btn-yellow">Edit</a>

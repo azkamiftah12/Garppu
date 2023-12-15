@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dapil;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,13 +46,14 @@ class AuthController extends Controller
 
     public function showSignupForm()
     {
-        return view('auth.signup',['pageTitle' => "Daftar Akun"]);
+        $dapils = Dapil::all();
+        return view('auth.signup',['pageTitle' => "Daftar Akun"], compact('dapils'));
     }
 
     public function signup(Request $request)
     {
         $data = $request->validate([
-            'nik' => 'required|string|unique:userprofile',
+            'nik' => 'required|string|digits:16|unique:userprofile',
             'nama' => 'required|string',
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
@@ -64,7 +66,6 @@ class AuthController extends Controller
             'id_dapil' => 'nullable|exists:dapil,id',
         ], [
             'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7670-0102',
-            'id_dapil.exists' => 'Dapil tidak valid.',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'

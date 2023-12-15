@@ -12,11 +12,6 @@
                 required>
         </div>
         <div class="form-group">
-            <label for="provinsi">Provinsi:</label>
-            <input type="text" name="provinsi" id="provinsi" class="form-control" value="{{ $dapil->provinsi }}"
-                required>
-        </div>
-        <div class="form-group">
             <label for="batch_id">Batch:</label>
             <select name="batch_id" id="batch_id" class="form-control" required>
                 @foreach ($batches as $batch)
