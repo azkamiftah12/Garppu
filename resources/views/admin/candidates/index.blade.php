@@ -19,7 +19,7 @@
                     <th>No</th>
                     <th>Nomor Urut</th>
                     <th>Nama Paslon</th>
-                    <th>Batch</th>
+                    <th>Dapil</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $candidate->nomor_urut }}</td>
                         <td>{{ $candidate->name }}</td>
-                        <td>{{ $candidate->batch->vote_type }}</td>
+                        <td>{{ $candidate->dapil->nama_dapil }}</td>
                         <td>
                             <a href="{{ route('admin.candidates.edit', $candidate->id) }}" class="btn btn-yellow">Edit</a>
 

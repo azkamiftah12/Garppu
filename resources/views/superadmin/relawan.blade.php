@@ -36,7 +36,7 @@
                                     onclick="confirmResetPassword('{{ $user->nik }}')">Reset Password</button>
 
                                 <form id="resetForm{{ $user->nik }}"
-                                    action="{{ route('admin.reset-password', $user->nik) }}" method="post"
+                                    action="{{ route('superadmin.reset-password', $user->nik) }}" method="post"
                                     style="display: none;">
                                     @csrf
                                     @method('post')
