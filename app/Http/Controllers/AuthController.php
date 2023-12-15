@@ -55,8 +55,16 @@ class AuthController extends Controller
             'nama' => 'required|string',
             'noTelp' => 'nullable|string',
             'password' => 'required|string|min:6',
+            'kelurahan' => 'nullable|string',
+            'rt' => 'nullable|string',
+            'rw' => 'nullable|string',
+            'no_tps' => 'nullable|string',
+            'rekening_bank' => 'nullable|string',
+            'no_rekening' => 'nullable|string',
+            'id_dapil' => 'nullable|exists:dapil,id',
         ], [
             'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7670-0102',
+            'id_dapil.exists' => 'Dapil tidak valid.',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'
@@ -67,6 +75,13 @@ class AuthController extends Controller
             'noTelp' => $data['noTelp'],
             'password' => Hash::make($data['password']),
             'userRole' => $data['userRole'],
+            'kelurahan' => $data['kelurahan'],
+            'rt' => $data['rt'],
+            'rw' => $data['rw'],
+            'no_tps' => $data['no_tps'],
+            'rekening_bank' => $data['rekening_bank'],
+            'no_rekening' => $data['no_rekening'],
+            'id_dapil' => $data['id_dapil'],
         ]);
 
         return redirect()->route('login')->with('success', 'Akun berhasil terdaftar. Silahkan Masuk atau Login dengan cara mengisi formulir dibawah ini lalu pilih tombol masuk');

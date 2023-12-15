@@ -16,12 +16,11 @@ class CreateDapilTable extends Migration
         Schema::create('dapil', function (Blueprint $table) {
             $table->id();
             $table->string('nama_dapil');
-            $table->string('provinsi');
             $table->unsignedBigInteger('batch_id'); // Foreign key column
 
             // Define foreign key relationship
             $table->foreign('batch_id')->references('id')->on('batches'); // Delete related records if batch is deleted
-              
+
             $table->timestamps();
         });
     }

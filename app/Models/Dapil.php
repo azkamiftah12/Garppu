@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dapil extends Model
 {
-    protected $table = 'dapil'; // Sesuaikan dengan nama tabel yang Anda gunakan
+    protected $table = 'dapil';
 
     protected $fillable = [
-        'nama_dapil', 'provinsi', 'batch_id',
+        'nama_dapil', 'batch_id',
     ];
 
     public function batch()

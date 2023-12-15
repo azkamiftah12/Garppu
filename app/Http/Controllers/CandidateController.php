@@ -26,6 +26,7 @@ class CandidateController extends Controller
             'name' => 'required|string|max:255',
             'nomor_urut' => 'required|integer',
             'batch_id' => 'required|exists:batches,id',
+            'id_dapil' => 'required|exists:dapil,id',
         ]);
 
         Candidate::create($request->all());
@@ -47,6 +48,7 @@ class CandidateController extends Controller
             'name' => 'required|string|max:255',
             'nomor_urut' => 'required|integer',
             'batch_id' => 'required|exists:batches,id',
+            'id_dapil' => 'required|exists:dapil,id',
         ]);
 
         $candidate->update($request->all());

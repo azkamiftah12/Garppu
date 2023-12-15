@@ -25,7 +25,6 @@ class DapilController extends Controller
         // Validasi data yang diterima dari formulir
         $request->validate([
             'nama_dapil' => 'required',
-            'provinsi' => 'required',
             'batch_id' => 'required|exists:batches,id',
         ]);
 
@@ -49,7 +48,6 @@ class DapilController extends Controller
         // Validasi data yang diterima dari formulir
         $request->validate([
             'nama_dapil' => 'required',
-            'provinsi' => 'required',
             'batch_id' => 'required|exists:batches,id',
         ]);
         // Update data Dapil di database

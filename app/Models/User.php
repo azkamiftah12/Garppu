@@ -16,6 +16,7 @@ class User extends Model implements Authenticatable
 
     protected $fillable = [
         'nik', 'nama', 'noTelp', 'password', 'userRole',
+        'kelurahan', 'rt', 'rw', 'no_tps', 'rekening_bank', 'no_rekening', 'id_dapil',
     ];
 
     /**
@@ -82,5 +83,9 @@ class User extends Model implements Authenticatable
     public function getRememberTokenName()
     {
         return 'remember_token';
+    }
+    public function dapil()
+    {
+        return $this->belongsTo(Dapil::class, 'id_dapil');
     }
 }
