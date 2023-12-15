@@ -66,6 +66,7 @@ class AuthController extends Controller
             'id_dapil' => 'nullable|exists:dapil,id',
         ], [
             'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7670-0102',
+            'nik.digits' => 'Format NIK Salah. NIK harus berjumlah 16 digit! Masukkan NIK anda yang sesua!',
         ]);
 
         $data['userRole'] = 'relawan'; // Set userRole to 'relawan'
