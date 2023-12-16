@@ -5,6 +5,7 @@
 
 @section('content')
     <form autocomplete="off" action="{{ route('signup') }}" method="post">
+        <input autocomplete="false" name="hidden" type="text" style="display:none;">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
