@@ -15,6 +15,8 @@
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>No. Telp</th>
+                    <th>Type Pemilihan</th>
+                    <th>Dapil</th>
                     <th>Role</th>
                     <th>Action</th>
                 </tr>
@@ -26,6 +28,8 @@
                         <td>{{ $user->nik }}</td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->noTelp }}</td>
+                        <td>{{ $user->dapil->batch->vote_type ?? '-' }}</td>
+                        <td>{{ $user->dapil->nama_dapil ?? '-' }}</td>
                         <td>{{ $user->userRole }}</td>
                         <td>
                             <div class="d-flex">
