@@ -4,7 +4,7 @@
 @extends('layouts.authLayout') {{-- Assuming you have a default app layout --}}
 
 @section('content')
-    <form action="{{ route('signup') }}" method="post">
+    <form autocomplete="off" action="{{ route('signup') }}" method="post">
         @csrf
         @if ($errors->any())
             <div class="alert alert-danger">
