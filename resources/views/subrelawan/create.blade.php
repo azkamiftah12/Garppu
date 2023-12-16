@@ -32,8 +32,8 @@
                 <div id="nikSubRelawan" class="form-text">Masukkan Nomor Telepone Anggota</div>
             </div>
 
-            <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Tambah</button>
             <a href="/subrelawan" class="btn btn-red mb-2">Batal</a>
+            <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Tambah</button>
         </form>
     </div>
 @endsection

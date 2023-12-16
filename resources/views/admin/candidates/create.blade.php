@@ -13,7 +13,7 @@
             <label for="name">Nama:</label>
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Tambah Paslon</button>
         <a href="/admin/candidates" class="btn btn-red mb-2">Batal</a>
+        <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Tambah Paslon</button>
     </form>
 @endsection

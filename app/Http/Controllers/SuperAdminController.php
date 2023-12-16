@@ -18,8 +18,15 @@ class SuperAdminController extends Controller
     }
     public function allUsers()
 {
-    $users = User::withCount('subRelawans')->get();
+    $users = User::with(['subRelawans', 'dapil.batch'])->withCount('subRelawans') // Eager load the relationships
+                    ->where('userRole', 'relawan')
+                    ->get();
     return view('superadmin.relawan', compact('users'));
+}
+    public function allAdmin()
+{
+    $users = User::withCount('subRelawans')->whereIn('userRole', ['admin', 'superadmin'])->get();
+    return view('superadmin.admin.index', compact('users'));
 }
 
 public function allSubRelawans()

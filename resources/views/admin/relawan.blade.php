@@ -1,7 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1 class="my-5 text-center">Relawan - {{ auth()->user()->nama_dapil }}</h1>
+    @php
+        $user = auth()
+            ->user()
+            ->load('dapil.batch');
+    @endphp
+
+    <h1 class="my-5 text-center">{{ $user->dapil->batch->vote_type }} - {{ $user->dapil->nama_dapil }}</h1>
+    <h1 class="my-5 text-center">Relawan</h1>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -17,6 +24,12 @@
                     <th>Nama</th>
                     <th>No. Telp</th>
                     <th>Jumlah Anggota</th>
+                    <th>RT</th>
+                    <th>RW</th>
+                    <th>kelurahan</th>
+                    <th>No. TPS</th>
+                    <th>rekening bank</th>
+                    <th>No. Rekening</th>
                     <th>Waktu Input</th>
                     <th>Action</th>
                 </tr>
@@ -29,6 +42,12 @@
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->noTelp }}</td>
                         <td>{{ $user->sub_relawans_count }}</td>
+                        <td>{{ $user->rt }}</td>
+                        <td>{{ $user->rw }}</td>
+                        <td>{{ $user->kelurahan }}</td>
+                        <td>{{ $user->no_tps }}</td>
+                        <td>{{ $user->rekening_bank }}</td>
+                        <td>{{ $user->no_rekening }}</td>
                         <td>{{ $user->created_at }}</td>
                         <td>
                             <div class="d-flex">

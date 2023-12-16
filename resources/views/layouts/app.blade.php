@@ -34,7 +34,11 @@
 </head>
 
 <body>
-
+    @if (request()->getHost() == 'garppu.online')
+        <div class="alert alert-danger text-center mb-0">
+            This Website for Demo and Development. Go to <a href="https://garppu.com">garppu.com</a>
+        </div>
+    @endif
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">

@@ -68,5 +68,13 @@ class DapilController extends Controller
         // Redirect ke halaman index atau ke halaman lain sesuai kebutuhan
         return redirect()->route('superadmin.dapil.index')->with('success', 'Dapil Berhasil dihapus');
     }
+
+    public function getDapilsOnBatch($batchId)
+    {
+        $dapils = Dapil::where('batch_id', $batchId)->get();
+
+        return response()->json($dapils);
+    }
+
     // Metode lainnya seperti show, edit, update, destroy, dll. sesuai kebutuhan
 }

@@ -18,6 +18,7 @@
                 <tr>
                     <th>No</th>
                     <th>Dapil</th>
+                    <th>Type Pemilihan</th>
                     <th>Actions</th>
                 </tr>
             </thead>

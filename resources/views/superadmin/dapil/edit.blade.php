@@ -20,7 +20,7 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-yellow mr-2 mb-2">Update</button>
         <a href="/superadmin/dapil" class="btn btn-red mb-2">Batal</a>
+        <button type="submit" class="btn btn-yellow mr-2 mb-2">Update</button>
     </form>
 @endsection

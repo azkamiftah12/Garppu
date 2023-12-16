@@ -40,12 +40,18 @@ Route::post('/superadmin/relawan/{user}', [AuthController::class, 'superAdminRes
 
 
 Route::post('/profileku/index/{user}', [AuthController::class, 'userResetPassword'])->name('user.reset-password');
+Route::get('/get-dapils/{batchId}', [DapilController::class, 'getDapilsOnBatch']);
 
 // superadmin routes
 Route::group(['prefix' => 'superadmin', 'middleware' => ['auth', 'superadmin']], function () {
     Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('superadmin.dashboard');
     Route::get('/relawan', [SuperAdminController::class, 'allUsers'])->name('superadmin.relawan');
     Route::get('/anggota-relawan', [SuperAdminController::class, 'allSubRelawans'])->name('superadmin.anggota-relawan');
+
+    //admin management routes
+    Route::get('/admin', [SuperAdminController::class, 'allAdmin'])->name('superadmin.admin.index');
+
+
 
     // Batch routes
     Route::get('/batches', [BatchController::class, 'index'])->name('superadmin.batches.index');
@@ -62,7 +68,6 @@ Route::group(['prefix' => 'superadmin', 'middleware' => ['auth', 'superadmin']],
     Route::get('/dapil/{id}/edit', [DapilController::class, 'edit'])->name('superadmin.dapil.edit');
     Route::put('/dapil/{id}', [DapilController::class, 'update'])->name('superadmin.dapil.update');
     Route::delete('/dapil/{id}', [DapilController::class, 'destroy'])->name('superadmin.dapil.destroy');
-
 });
 
 // admin routes

@@ -9,7 +9,7 @@
             <label for="vote_type">Type Pemilihan:</label>
             <input type="text" name="vote_type" id="vote_type" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Buat</button>
         <a href="/superadmin/batches" class="btn btn-red mb-2">Batal</a>
+        <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Buat</button>
     </form>
 @endsection

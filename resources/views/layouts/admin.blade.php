@@ -49,7 +49,11 @@
 </head>
 
 <body>
-
+    @if (request()->getHost() == 'garppu.online')
+        <div class="alert alert-danger text-center mb-0">
+            This Website for Demo and Development. Go to <a href="https://garppu.com">garppu.com</a>
+        </div>
+    @endif
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="p-4 pt-5">
@@ -67,10 +71,19 @@
                         <li class="{{ Request::is('superadmin/dashboard') ? 'active' : '' }}">
                             <a href="{{ url('/superadmin/dashboard') }}">Home</a>
                         </li>
+                        <li class="{{ Request::is('superadmin/batches') ? 'active' : '' }}">
+                            <a href="{{ url('/superadmin/batches') }}">Batch Pemilihan</a>
+                        </li>
+                        <li class="{{ Request::is('superadmin/dapil') ? 'active' : '' }}">
+                            <a href="{{ url('/superadmin/dapil') }}">Dapil</a>
+                        </li>
                         <li class="">
                             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                                class="dropdown-toggle">Relawan</a>
+                                class="dropdown-toggle">Users</a>
                             <ul class="collapse list-unstyled" id="homeSubmenu">
+                                <li class="{{ Request::is('superadmin/admin') ? 'active' : '' }}">
+                                    <a href="{{ url('/superadmin/admin') }}">Admin</a>
+                                </li>
                                 <li class="{{ Request::is('superadmin/relawan') ? 'active' : '' }}">
                                     <a href="{{ url('/superadmin/relawan') }}">Relawan</a>
                                 </li>
@@ -78,12 +91,6 @@
                                     <a href="{{ url('/superadmin/anggota-relawan') }}">Anggota Relawan</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="{{ Request::is('superadmin/batches') ? 'active' : '' }}">
-                            <a href="{{ url('/superadmin/batches') }}">Batch Pemilihan</a>
-                        </li>
-                        <li class="{{ Request::is('superadmin/dapil') ? 'active' : '' }}">
-                            <a href="{{ url('/superadmin/dapil') }}">Dapil</a>
                         </li>
                     @endif
                     @if (Auth::user()->userRole === 'admin')
@@ -137,10 +144,10 @@
                     </button>
                     <h2 style="color: var(--color-dark-blue); font-weight:700">
                         @if (Auth::user()->userRole === 'superadmin')
-                            Super Admin Page
+                            Super Admin
                         @endif
                         @if (Auth::user()->userRole === 'admin')
-                            Admin Page
+                            Admin
                         @endif
                     </h2>
                     <div></div>

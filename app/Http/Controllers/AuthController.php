@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use App\Models\Dapil;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,8 +47,9 @@ class AuthController extends Controller
 
     public function showSignupForm()
     {
+        $batches = Batch::all();
         $dapils = Dapil::all();
-        return view('auth.signup',['pageTitle' => "Daftar Akun"], compact('dapils'));
+        return view('auth.signup',['pageTitle' => "Daftar Akun"], compact('batches','dapils'));
     }
 
     public function signup(Request $request)

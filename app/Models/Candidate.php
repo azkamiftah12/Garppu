@@ -12,10 +12,6 @@ use HasFactory;
 protected $fillable = ['name', 'nomor_urut', 'batch_id', 'id_dapil'];
 
 // Define the relationship with the batch
-public function batch()
-{
-    return $this->belongsTo(Batch::class);
-}
 
 public function dapil()
     {
