@@ -93,6 +93,6 @@ class User extends Model implements Authenticatable
     }
     public function dapil()
     {
-        return $this->belongsTo(Dapil::class, 'id_dapil');
+        return $this->belongsTo(Dapil::class, 'id_dapil')->with('batch');
     }
 }

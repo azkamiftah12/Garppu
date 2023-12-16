@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="my-5 text-center">All Relawan</h1>
+    <h1 class="my-5 text-center">All Admin</h1>
     @if (session('success'))
         <div class="alert alert-success">
             <h5>{!! session('success') !!}</h5>
@@ -15,16 +15,6 @@
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>No. Telp</th>
-                    <th>Jumlah Anggota</th>
-                    <th>RT</th>
-                    <th>RW</th>
-                    <th>kelurahan</th>
-                    <th>No. TPS</th>
-                    <th>rekening bank</th>
-                    <th>No. Rekening</th>
-                    <th>Type Pemilihan</th>
-                    <th>Dapil</th>
-                    <th>Waktu Input</th>
                     <th>Role</th>
                     <th>Action</th>
                 </tr>
@@ -36,16 +26,6 @@
                         <td>{{ $user->nik }}</td>
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->noTelp }}</td>
-                        <td>{{ $user->sub_relawans_count }}</td>
-                        <td>{{ $user->rt }}</td>
-                        <td>{{ $user->rw }}</td>
-                        <td>{{ $user->kelurahan }}</td>
-                        <td>{{ $user->no_tps }}</td>
-                        <td>{{ $user->rekening_bank }}</td>
-                        <td>{{ $user->no_rekening }}</td>
-                        <td>{{ $user->dapil->batch->vote_type ?? '-' }}</td>
-                        <td>{{ $user->dapil->nama_dapil ?? '-' }}</td>
-                        <td>{{ $user->created_at }}</td>
                         <td>{{ $user->userRole }}</td>
                         <td>
                             <div class="d-flex">

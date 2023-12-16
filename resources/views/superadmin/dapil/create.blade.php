@@ -17,7 +17,7 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Tambah Dapil</button>
         <a href="/superadmin/dapil" class="btn btn-red mb-2">Batal</a>
+        <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Tambah Dapil</button>
     </form>
 @endsection

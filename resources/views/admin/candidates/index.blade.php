@@ -1,7 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="my-5 text-center">Paslon - {{ auth()->user()->nama_dapil }}</h1>
+    @php
+        $user = auth()
+            ->user()
+            ->load('dapil.batch');
+    @endphp
+
+    <h1 class="my-5 text-center">{{ $user->dapil->batch->vote_type }} - {{ $user->dapil->nama_dapil }}</h1>
+    <h1 class="my-5 text-center">Paslon</h1>
     @if (session('success'))
         <div class="alert alert-success">
             <h5>{!! session('success') !!}</h5>

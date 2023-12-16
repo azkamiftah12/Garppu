@@ -12,8 +12,8 @@ class Batch extends Model
     protected $fillable = ['vote_type'];
 
     // Define the relationship with candidates
-    public function candidates()
+    public function dapil()
     {
-        return $this->hasMany(Candidate::class);
+        return $this->hasMany(Dapil::class);
     }
 }

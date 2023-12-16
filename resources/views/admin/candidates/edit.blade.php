@@ -16,7 +16,7 @@
             <input type="text" name="name" id="name" class="form-control" value="{{ $candidate->name }}"
                 required>
         </div>
-        <button type="submit" class="btn btn-yellow mr-2 mb-2">Update</button>
         <a href="/admin/candidates" class="btn btn-red mb-2">Batal</a>
+        <button type="submit" class="btn btn-yellow mr-2 mb-2">Update</button>
     </form>
 @endsection
