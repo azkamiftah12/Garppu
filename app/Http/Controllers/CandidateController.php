@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Models\Batch;
 use App\Models\Dapil;
+use App\Models\Partai;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
