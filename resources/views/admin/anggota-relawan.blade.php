@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>relasi</th>
+                    <th>Relasi</th>
                     <th>Nama</th>
                     <th>NIK SubRelawan</th>
                     <th>Waktu Input</th>

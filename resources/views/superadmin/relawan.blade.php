@@ -33,20 +33,20 @@
                 @foreach ($users as $index => $user)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $user->nik }}</td>
-                        <td>{{ $user->nama }}</td>
-                        <td>{{ $user->noTelp }}</td>
-                        <td>{{ $user->sub_relawans_count }}</td>
-                        <td>{{ $user->rt }}</td>
-                        <td>{{ $user->rw }}</td>
-                        <td>{{ $user->kelurahan }}</td>
-                        <td>{{ $user->no_tps }}</td>
-                        <td>{{ $user->rekening_bank }}</td>
-                        <td>{{ $user->no_rekening }}</td>
-                        <td>{{ $user->dapil->batch->vote_type ?? '-' }}</td>
-                        <td>{{ $user->dapil->nama_dapil ?? '-' }}</td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>{{ $user->userRole }}</td>
+                        <td>{{ $user->nik ?? '-' }}</td>
+                        <td>{{ $user->nama ?? '-' }}</td>
+                        <td>{{ $user->noTelp ?? '-' }}</td>
+                        <td>{{ $user->sub_relawans_count ?? '-' }}</td>
+                        <td>{{ $user->rt ?? '-' }}</td>
+                        <td>{{ $user->rw ?? '-' }}</td>
+                        <td>{{ $user->kelurahan ?? '-' }}</td>
+                        <td>{{ $user->no_tps ?? '-' }}</td>
+                        <td>{{ $user->rekening_bank ?? '-' }}</td>
+                        <td>{{ $user->no_rekening ?? '-' }}</td>
+                        <td>{{ $user->dapil->batch->vote_type ?? ('-' ?? '-') }}</td>
+                        <td>{{ $user->dapil->nama_dapil ?? ('-' ?? '-') }}</td>
+                        <td>{{ $user->created_at ?? '-' }}</td>
+                        <td>{{ $user->userRole ?? '-' }}</td>
                         <td>
                             <div class="d-flex">
                                 <!-- Add a confirmation dialog using JavaScript -->
