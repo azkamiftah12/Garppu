@@ -64,9 +64,9 @@
                 placeholder="Masukkan Nomor Telephone anda">
         </div>
         <div class="mb-3">
-            <label class="form-label" for="rekening_bank">Rekening Bank</label>
+            <label class="form-label" for="rekening_bank">Nama Bank</label>
             <input class="form-control" id="rekening_bank" type="text" name="rekening_bank" required
-                placeholder="Masukkan Rekening anda">
+                placeholder="Masukkan Nama Bank anda, contoh: BCA, Mandiri, BRI">
         </div>
         <div class="mb-3">
             <label class="form-label" for="no_rekening">Nomor Rekening</label>
