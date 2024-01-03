@@ -29,7 +29,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="nik">Nomor Induk Kependudukan (NIK)</label>
-            <input class="form-control" id="nik" type="text" name="nik" required
+            <input autocomplete="UserName" class="form-control" id="nik" type="text" name="nik" required
                 placeholder="Masukkan NIK anda">
             <div id="nik" class="form-text"></div>
         </div>
@@ -70,12 +70,12 @@
         </div>
         <div class="mb-3">
             <label class="form-label" for="no_rekening">Nomor Rekening</label>
-            <input autocomplete="off" class="form-control" id="no_rekening" type="text" name="no_rekening" required
+            <input class="form-control" id="no_rekening" type="text" name="no_rekening" required
                 placeholder="Masukkan Nomor Rekening anda">
         </div>
         <div class="mb-3">
             <label class="form-label" for="password">Password</label>
-            <input autocomplete="off" class="form-control" id="password" type="password" name="password" required
+            <input class="form-control" id="password" type="password" name="password" required
                 placeholder="Masukkan Password anda">
             <div id="nama" class="form-text"></div>
             <div class="form-check mt-2">
