@@ -25,6 +25,7 @@
                 <tr>
                     <th>No</th>
                     <th>Nomor Urut</th>
+                    <th>Partai</th>
                     <th>Nama Paslon</th>
                     <th>Dapil</th>
                     <th>Actions</th>
@@ -35,6 +36,7 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $candidate->nomor_urut }}</td>
+                        <td>{{ $candidate->partai->nama_partai ?? '-' }}</td>
                         <td>{{ $candidate->name }}</td>
                         <td>{{ $candidate->dapil->nama_dapil }}</td>
                         <td>

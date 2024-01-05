@@ -12,6 +12,18 @@
                 required>
         </div>
         <div class="form-group">
+            <label class="form-label" for="partai_id">Pilih Partai Paslon:</label>
+            <select name="partai_id" id="partaiDropdown" class="form-control" required>
+                <option value="" {{ is_null($candidate->partai_id) ? 'selected' : '' }}>Click untuk pilih Partai
+                    Paslon</option>
+                @foreach ($partais as $partai)
+                    <option value="{{ $partai->id }}" {{ $partai->id == $candidate->partai_id ? 'selected' : '' }}>
+                        {{ $partai->nama_partai }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="name">Nama:</label>
             <input type="text" name="name" id="name" class="form-control" value="{{ $candidate->name }}"
                 required>

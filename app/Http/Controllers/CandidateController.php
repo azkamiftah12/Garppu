@@ -19,7 +19,8 @@ class CandidateController extends Controller
 
     public function create()
     {
-        return view('admin.candidates.create');
+        $partais = Partai::all();
+        return view('admin.candidates.create', compact('partais'));
     }
 
     public function store(Request $request)
@@ -27,6 +28,7 @@ class CandidateController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nomor_urut' => 'required|integer',
+            'partai_id' => 'nullable|exists:partais,id',
         ]);
 
         // Mendapatkan user saat ini yang sedang login
@@ -39,14 +41,16 @@ class CandidateController extends Controller
             'name' => $request->input('name'),
             'nomor_urut' => $request->input('nomor_urut'),
             'id_dapil' => $user->id_dapil,
+            'partai_id' => $request['partai_id'],
         ]);
 
         return redirect()->route('admin.candidates.index')->with('success', 'Paslon Berhasil ditambahkan');
     }
     public function edit($id)
     {
+        $partais = Partai::all();
         $candidate = Candidate::findOrFail($id);
-        return view('admin.candidates.edit', compact('candidate'));
+        return view('admin.candidates.edit', compact('candidate', 'partais'));
     }
 
     public function update(Request $request, $id)
@@ -56,6 +60,7 @@ class CandidateController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nomor_urut' => 'required|integer',
+            'partai_id' => 'nullable|exists:partais,id',
         ]);
 
         $candidate->update($request->all());
