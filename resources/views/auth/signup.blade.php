@@ -12,7 +12,7 @@
             </div>
         @endif
         <div class="form-group mb-3">
-            <label class="form-label" for="id_dapil">Pilih Acara Pemilihan:</label>
+            <label class="form-label" for="batch_id">Pilih Acara Pemilihan:</label>
             <select name="batch_id" id="batchDropdown" class="form-control" required>
                 @foreach ($batches as $batch)
                     <option value="{{ $batch->id }}">{{ $batch->vote_type }}</option>
