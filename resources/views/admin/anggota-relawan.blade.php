@@ -17,6 +17,7 @@
                     <th>Relasi</th>
                     <th>Nama</th>
                     <th>NIK SubRelawan</th>
+                    <th>No Telephone</th>
                     <th>Waktu Input</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                         <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
                         <td>{{ $subRelawan->name }}</td>
                         <td>{{ $subRelawan->nikSubRelawan }}</td>
+                        <td>{{ $subRelawan->telephone }}</td>
                         <td>{{ $subRelawan->created_at }}</td>
                     </tr>
                 @endforeach
