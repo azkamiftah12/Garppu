@@ -7,7 +7,7 @@
             ->load('dapil.batch');
     @endphp
 
-    <h1 class="my-5 text-center">{{ $user->dapil->batch->vote_type }} - {{ $user->dapil->nama_dapil }}</h1>
+    <h1 class="my-5 text-center">{{ $user->dapil->nama_dapil ?? 'Anda tidak terdaftar di dapil manapun!' }}</h1>
     <h1 class="my-5 text-center">Paslon</h1>
     @if (session('success'))
         <div class="alert alert-success">
@@ -27,6 +27,7 @@
                     <th>Nomor Urut</th>
                     <th>Partai</th>
                     <th>Nama Paslon</th>
+                    <th>Type Pemilu</th>
                     <th>Dapil</th>
                     <th>Actions</th>
                 </tr>
@@ -38,9 +39,11 @@
                         <td>{{ $candidate->nomor_urut }}</td>
                         <td>{{ $candidate->partai->nama_partai ?? '-' }}</td>
                         <td>{{ $candidate->name }}</td>
+                        <td>{{ $candidate->batch->vote_type ?? '-' }}</td>
                         <td>{{ $candidate->dapil->nama_dapil }}</td>
-                        <td>
-                            <a href="{{ route('admin.candidates.edit', $candidate->id) }}" class="btn btn-yellow">Edit</a>
+                        <td class="d-flex space-between">
+                            <a href="{{ route('admin.candidates.edit', $candidate->id) }}"
+                                class="btn btn-yellow mr-2">Edit</a>
 
                             <form action="{{ route('admin.candidates.destroy', $candidate->id) }}" method="POST"
                                 style="display: inline-block">

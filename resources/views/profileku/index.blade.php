@@ -25,8 +25,8 @@
                 <h5>No Telp: {{ $user->noTelp }}</h5>
                 <h5>Dapil anda: {{ $user->dapil->nama_dapil }}</h5>
                 <h5>Kelurahan: {{ $user->kelurahan ?? '-' }}</h5>
-                <h5>Rt: {{ $user->rt ?? '-' }}</h5>
-                <h5>Rw: {{ $user->rw ?? '-' }}</h5>
+                <h5>RT: {{ $user->rt ?? '-' }}</h5>
+                <h5>RW: {{ $user->rw ?? '-' }}</h5>
                 <h5>Nomor TPS: {{ $user->rw ?? '-' }}</h5>
                 <h5>Nama Bank: {{ $user->rekening_bank ?? '-' }}</h5>
                 <h5>Nomor Rekening Bank: {{ $user->no_rekening ?? '-' }}</h5>

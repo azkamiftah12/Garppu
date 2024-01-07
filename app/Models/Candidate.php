@@ -22,6 +22,10 @@ class Candidate extends Model
     {
         return $this->belongsTo(Partai::class, 'partai_id');
     }
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class, 'batch_id');
+    }
 
     // Define the relationship with votes
     // public function votes()

@@ -20,6 +20,15 @@
             </select>
         </div>
         <div class="form-group">
+            <label class="form-label" for="batch_id">Pilih Type Pemilihan Paslon:</label>
+            <select name="batch_id" id="partaiDropdown" class="form-control" required>
+                <option style="color: #888;" value="" disabled selected>Click untuk pilih Type Pemilihan</option>
+                @foreach ($batches as $batch)
+                    <option value="{{ $batch->id }}">{{ $batch->vote_type }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label for="name">Nama:</label>
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
