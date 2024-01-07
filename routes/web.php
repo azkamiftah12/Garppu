@@ -31,6 +31,10 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/signup', [AuthController::class, 'showSignupForm'])->name('signup');
 Route::post('/signup', [AuthController::class, 'signup']);
+
+Route::get('/profileku/edit', [AuthController::class, 'editProfileForm'])->name('profile.edit.form');
+Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
 Route::resource('userprofiles', UserProfileController::class);

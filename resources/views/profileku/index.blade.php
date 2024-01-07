@@ -23,7 +23,15 @@
                 <h1>Nama: {{ $user->nama }}</h1>
                 <h5>NIK: {{ $user->nik }}</h5>
                 <h5>No Telp: {{ $user->noTelp }}</h5>
-                <button type="button" class="btn btn-yellow my-4" data-toggle="modal" data-target="#exampleModal">
+                <h5>Dapil anda: {{ $user->dapil->nama_dapil }}</h5>
+                <h5>Kelurahan: {{ $user->kelurahan ?? '-' }}</h5>
+                <h5>Rt: {{ $user->rt ?? '-' }}</h5>
+                <h5>Rw: {{ $user->rw ?? '-' }}</h5>
+                <h5>Nomor TPS: {{ $user->rw ?? '-' }}</h5>
+                <h5>Nama Bank: {{ $user->rekening_bank ?? '-' }}</h5>
+                <h5>Nomor Rekening Bank: {{ $user->no_rekening ?? '-' }}</h5>
+                <a href="{{ route('profile.edit.form') }}" class="btn btn-yellow my-4 mr-4">Edit Profile Saya</a>
+                <button type="button" class="btn btn-red my-4 mr-4" data-toggle="modal" data-target="#exampleModal">
                     Ganti Password
                 </button>
                 {{-- modal start --}}

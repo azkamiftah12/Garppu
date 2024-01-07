@@ -9,7 +9,10 @@
                     ->user()
                     ->load('dapil.batch');
             @endphp
-            <h1 class="mb-5 text-center">{{ $user->dapil->batch->vote_type }} - {{ $user->dapil->nama_dapil }}</h1>
+            <h1 class="mb-5 text-center">
+                {{-- {{ $user->dapil->batch->vote_type ?? '-' }} -  --}}
+                {{ $user->dapil->nama_dapil ?? 'Anda tidak terdaftar di dapil manapun.' }}
+            </h1>
             <h5>Nama: {{ $user->nama }}</h5>
             <h5>NIK: {{ $user->nik }}</h5>
             <h5>No Telp: {{ $user->noTelp }}</h5>

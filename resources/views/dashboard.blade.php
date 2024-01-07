@@ -7,6 +7,10 @@
 
             <div class="col-md-12">
                 <h1 class="mb-5">Selamat Datang, {{ $user->nama }}</h1>
+                <h1 class="mb-5">
+                    {{-- {{ $user->dapil->batch->vote_type ?? '-' }} -  --}}
+                    {{ $user->dapil->nama_dapil ?? 'Anda tidak terdaftar di dapil manapun.' }}
+                </h1>
             </div>
         </div>
     </div>
