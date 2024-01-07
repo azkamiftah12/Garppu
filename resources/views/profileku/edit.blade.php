@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Edit Pemilihan</h1>
+        <h1>Edit Profile Saya</h1>
 
         <form action="{{ route('profile.edit') }}" method="POST">
             @csrf
