@@ -48,7 +48,7 @@
                                 <h5>Jika anda lupa password silahkan hubungi admin dibawah ini melalui Whatsapp</h5>
                                 <div class="d-flex justify-content-center">
 
-                                    <a href="https://wa.me/6287776700102?text=Halo%20admin,%20saya%20butuh%20bantuan%20anda"
+                                    <a href="https://wa.me/6287776700102?text=Halo%20admin,%20saya%20butuh%20bantuan%20anda%20mengenai%20password%20akun%20saya."
                                         class="btn btn-whatsapp my-3">
                                         <i class="fa fa-phone"></i> Hubungi Admin
                                     </a>

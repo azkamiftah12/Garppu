@@ -90,6 +90,33 @@ class AuthController extends Controller
 
         return redirect()->route('login')->with('success', 'Akun berhasil terdaftar. Silahkan Masuk atau Login dengan cara mengisi formulir dibawah ini lalu pilih tombol masuk');
     }
+
+    public function editProfileForm()
+    {
+        // $user = User::findOrFail($nik);
+        return view('profileku.edit');
+    }
+
+    public function editProfile(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+        $data = $request->validate([
+            'nama' => 'required|string',
+            'noTelp' => 'nullable|string',
+            'kelurahan' => 'nullable|string',
+            'rt' => 'nullable|string',
+            'rw' => 'nullable|string',
+            'no_tps' => 'nullable|string',
+            'rekening_bank' => 'nullable|string',
+            'no_rekening' => 'nullable|string',
+        ]);
+
+        $user->update($data);
+
+        return redirect()->route('profileku')->with('success', 'Edit profile berhasil!');
+    }
+
     public function logout()
 {
     Auth::logout();
