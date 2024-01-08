@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\C1;
-use App\Models\User; // Pastikan model Userprofile diimpor
-
+use App\Models\Batch;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class C1Controller extends Controller
 {
     public function index()
@@ -17,19 +18,34 @@ class C1Controller extends Controller
     public function create()
     {
 
-        return view('c1.create');
+        $batches = Batch::all();
+        return view('c1.create', compact('batches'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|exists:userprofile,nik',
-            'img_c1' => 'required|string',
+            'img_c1' => 'required|image|mimes:png,jpg,jpeg',
+            'batch_id' => 'required|exists:batches,id'
         ]);
 
-        C1::create($request->all());
+        $user = Auth::user();
 
-        return redirect()->route('c1.index')->with('success', 'Data C1 berhasil disimpan.');
+        // Automatically fill the 'nik' field with the user's 'nik'
+        $request->merge(['nik' => $user->nik]);
+
+
+        $imgC1Path = $request->file('img_c1')->store('public/C1');
+        $imgC1Path = str_replace('public/', 'storage/', $imgC1Path);
+
+
+        C1::create([
+            'nik' => $request->nik,
+            'img_c1' => $imgC1Path,
+            'batch_id' =>$request->batch_id
+        ]);
+
+        return redirect()->route('superadmin.dashboard')->with('success', 'Data C1 berhasil disimpan.');
     }
 
     public function show(C1 $c1)

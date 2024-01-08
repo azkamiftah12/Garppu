@@ -7,5 +7,6 @@
             <h5>NIK: {{ $user->nik }}</h5>
             <h5>No Telp: {{ $user->noTelp }}</h5>
         </div>
+        <a class="btn btn-primary" href="{{route('c1.create')}}">Add C1</a>
     </div>
 @endsection

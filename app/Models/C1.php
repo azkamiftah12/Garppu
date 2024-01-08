@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class C1 extends Model
 {
-    use HasFactory;
+
+    protected $table = 'c1';
 
     protected $fillable = [
         'nik',
@@ -18,5 +19,10 @@ class C1 extends Model
     public function userprofile()
     {
         return $this->belongsTo(User::class, 'nik', 'nik');
+    }
+
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class, 'batch_id', 'id');
     }
 }

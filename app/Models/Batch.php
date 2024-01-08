@@ -16,4 +16,9 @@ class Batch extends Model
     {
         return $this->hasMany(Dapil::class);
     }
+
+    public function c1()
+    {
+        return $this->hasMany(C1::class);
+    }
 }

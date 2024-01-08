@@ -26,6 +26,7 @@ use App\Http\Controllers\SubRelawanController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DapilController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\C1Controller;
 
 Route::redirect('/', '/dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -35,6 +36,10 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::get('/profileku/edit', [AuthController::class, 'editProfileForm'])->name('profile.edit.form');
 Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
+
+//C1
+Route::get('/c1/create', [C1Controller::class, 'create'])->name('c1.create');
+Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
 
 // Vote
 Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
