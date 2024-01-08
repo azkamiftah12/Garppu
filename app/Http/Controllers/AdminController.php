@@ -37,6 +37,8 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('user', 'relawans', 'totalRelawans', 'totalSubRelawans', 'targetSubRelawans', 'targetRelawans', 'progressRelawans', 'progressSubRelawans', 'totaltargetSubRelawans', 'progresstotalSubRelawans'));
     }
+
+
     public function getUsersRelawan()
 {
     $user = Auth::user();
@@ -53,6 +55,7 @@ public function allSubRelawans()
     $user = Auth::user();
 
     $subRelawans = SubRelawan::leftJoin('userprofile', 'sub_relawans.nik', '=', 'userprofile.nik')
+        ->where('userprofile.userRole', 'relawan')
         ->where('userprofile.id_dapil', $user->id_dapil)
         ->get();
     return view('admin.anggota-relawan', compact('subRelawans'));
