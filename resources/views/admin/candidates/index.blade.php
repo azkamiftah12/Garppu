@@ -23,7 +23,7 @@
         <table class="table table-secondary my-3 text-center">
             <thead>
                 <tr>
-                    <th>No</th>
+                    {{-- <th>No</th> --}}
                     <th>Nomor Urut</th>
                     <th>Partai</th>
                     <th>Nama Paslon</th>
@@ -35,7 +35,7 @@
             <tbody>
                 @foreach ($candidates as $index => $candidate)
                     <tr>
-                        <td>{{ $index + 1 }}</td>
+                        {{-- <td>{{ $index + 1 }}</td> --}}
                         <td>{{ $candidate->nomor_urut }}</td>
                         <td>{{ $candidate->partai->nama_partai ?? '-' }}</td>
                         <td>{{ $candidate->name }}</td>
