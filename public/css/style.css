@@ -491,8 +491,8 @@ pre {
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 25px;
+  padding-left: 25px;
   margin-right: auto;
   margin-left: auto; }
   @media (min-width: 576px) {
@@ -4363,7 +4363,7 @@ input[type="button"].btn-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 1rem;
+  height: 30px;
   overflow: hidden;
   font-size: 0.75rem;
   background-color: #e9ecef;
@@ -4380,7 +4380,8 @@ input[type="button"].btn-block {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  color: #fff;
+  color: var(--color-soft-blue);
+  font-weight: 700;
   text-align: center;
   white-space: nowrap;
   background-color: #007bff;

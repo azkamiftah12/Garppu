@@ -136,28 +136,29 @@
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" class="p-4 p-md-5">
+        <div id="content">
+            <div class="position-sticky sticky-top">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light mx-4 mx-md-5 mt-4 mt-md-5">
+                    <div class="container-fluid">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light position-sticky sticky-top">
-                <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                            <i class="fa fa-bars"></i>
+                            <span class="sr-only">Toggle Menu</span>
+                        </button>
+                        <h2 style="color: var(--color-dark-blue); font-weight:700">
+                            @if (Auth::user()->userRole === 'superadmin')
+                                Super Admin
+                            @endif
+                            @if (Auth::user()->userRole === 'admin')
+                                Admin
+                            @endif
+                        </h2>
+                        <div></div>
+                    </div>
+                </nav>
+            </div>
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
-                        <i class="fa fa-bars"></i>
-                        <span class="sr-only">Toggle Menu</span>
-                    </button>
-                    <h2 style="color: var(--color-dark-blue); font-weight:700">
-                        @if (Auth::user()->userRole === 'superadmin')
-                            Super Admin
-                        @endif
-                        @if (Auth::user()->userRole === 'admin')
-                            Admin
-                        @endif
-                    </h2>
-                    <div></div>
-                </div>
-            </nav>
-
-            <div class="container my-5">
+            <div class="my-5">
 
                 @yield('content')
             </div>
