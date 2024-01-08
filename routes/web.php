@@ -25,6 +25,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubRelawanController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DapilController;
+use App\Http\Controllers\VoteController;
 
 Route::redirect('/', '/dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -34,6 +35,15 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::get('/profileku/edit', [AuthController::class, 'editProfileForm'])->name('profile.edit.form');
 Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
+
+// Vote
+Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
+Route::get('/votes/create', [VoteController::class, 'create'])->name('votes.create');
+Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
+Route::get('/votes/{vote}', [VoteController::class, 'show'])->name('votes.show');
+Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
+Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
+Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
