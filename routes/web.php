@@ -51,6 +51,7 @@ Route::group(['prefix' => 'superadmin', 'middleware' => ['auth', 'superadmin']],
     Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('superadmin.dashboard');
     Route::get('/relawan', [SuperAdminController::class, 'allUsers'])->name('superadmin.relawan');
     Route::get('/anggota-relawan', [SuperAdminController::class, 'allSubRelawans'])->name('superadmin.anggota-relawan');
+    Route::get('/candidates', [SuperAdminController::class, 'allCandidates'])->name('superadmin.candidates.index');
 
     //admin management routes
     Route::get('/admin', [SuperAdminController::class, 'allAdmin'])->name('superadmin.admin.index');

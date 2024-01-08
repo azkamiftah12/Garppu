@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use App\Models\User;
 use App\Models\SubRelawan;
 use Illuminate\Http\Request;
@@ -33,6 +34,11 @@ public function allSubRelawans()
 {
     $subRelawans = SubRelawan::all();
     return view('superadmin.anggota-relawan', compact('subRelawans'));
+}
+public function allCandidates()
+{
+    $candidates = Candidate::all();
+    return view('superadmin.candidates.index', compact('candidates'));
 }
 
 }

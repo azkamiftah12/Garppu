@@ -77,6 +77,9 @@
                         <li class="{{ Request::is('superadmin/dapil') ? 'active' : '' }}">
                             <a href="{{ url('/superadmin/dapil') }}">Dapil</a>
                         </li>
+                        <li class="{{ Request::is('superadmin/candidates') ? 'active' : '' }}">
+                            <a href="{{ url('/superadmin/candidates') }}">Paslon</a>
+                        </li>
                         <li class="">
                             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                                 class="dropdown-toggle">Users</a>
