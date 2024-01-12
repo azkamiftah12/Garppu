@@ -6,6 +6,9 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        @php
+                            $existingC1 = \App\Models\C1::where('nik', Auth::user()->nik)->first();
+                        @endphp
                         <form action="{{ route('c1.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
@@ -28,8 +31,8 @@
                                 </select>
                             </div>
                             <a class="btn btn-red mr-2 mb-2" href="{{ route('votes.index') }}">Batal</a>
-                            <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Simpan</button>
-
+                            <button type="submit" class="btn btn-soft-blue mr-2 mb-2"
+                                @if ($existingC1) disabled @endif>Simpan C1</button>
                         </form>
                     </div>
                 </div>

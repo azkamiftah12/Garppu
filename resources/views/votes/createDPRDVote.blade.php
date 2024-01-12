@@ -23,6 +23,13 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($candidates as $candidate)
+                                            @php
+                                                // Check if there is an existing vote for the current user and candidate
+                                                $existingVote = \App\Models\Vote::where('nik', Auth::user()->nik)
+                                                    ->where('candidate_id', $candidate->id)
+                                                    ->first();
+                                            @endphp
+
                                             <tr>
                                                 <td>{{ $candidate->nomor_urut }}</td>
                                                 <td>{{ $candidate->name }}</td>
@@ -31,7 +38,9 @@
                                                         value="{{ $candidate->id }}">
                                                     <input type="text" class="form-control text-center w-25"
                                                         name="jumlah_vote_{{ $candidate->id }}" pattern="[0-9]+"
-                                                        title="Hanya Bisa diinput Oleh Angka!" required>
+                                                        title="Hanya Bisa diinput Oleh Angka!" required
+                                                        @if ($existingVote) value="{{ $existingVote->jumlah_vote }}"
+                                                        readonly  {{-- Make the input readonly if an existing vote is found --}} @endif>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -40,7 +49,8 @@
                             </div>
                         </div>
                         <a class="btn btn-red mr-2" href="{{ route('votes.index') }}">Cancel</a>
-                        <button type="submit" class="btn btn-soft-blue">Input Votes</button>
+                        <button type="submit" class="btn btn-soft-blue"
+                            @if ($existingVote) disabled @endif>Input Votes</button>
                         <a class="btn btn-yellow" href="{{ route('c1.create') }}">Input C1</a>
 
                     </form>

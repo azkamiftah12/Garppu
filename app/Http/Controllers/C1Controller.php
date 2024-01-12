@@ -45,7 +45,7 @@ class C1Controller extends Controller
             'batch_id' =>$request->batch_id
         ]);
 
-        return redirect()->route('superadmin.dashboard')->with('success', 'Data C1 berhasil disimpan.');
+        return redirect()->route('votes.index')->with('success', 'Data C1 berhasil disimpan.');
     }
 
     public function show(C1 $c1)

@@ -13,6 +13,7 @@ class C1 extends Model
     protected $fillable = [
         'nik',
         'img_c1',
+        'batch_id'
     ];
 
     // Relasi ke model Userprofile
