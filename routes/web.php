@@ -43,7 +43,7 @@ Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
 
 // Vote
 Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
-Route::get('/votes/create', [VoteController::class, 'create'])->name('votes.create');
+Route::get('/votes/createDPRDVote', [VoteController::class, 'createDPRDVote'])->name('votes.createDPRDVote');
 Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
 Route::get('/votes/{vote}', [VoteController::class, 'show'])->name('votes.show');
 Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');

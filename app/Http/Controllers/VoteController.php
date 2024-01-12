@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batch;
 use Illuminate\Http\Request;
 use App\Models\Vote;
 use App\Models\Candidate;
@@ -15,30 +16,49 @@ class VoteController extends Controller
         return view('votes.index', compact('votes'));
     }
 
-    public function createDPRD()
+    public function createDPRDVote()
     {
         $user = Auth::user();
-        $candidates = Candidate::where('batches.vote_type', 'PEMILU DPRD 2024') -> where('id_dapil', $user->id_dapil) -> get() ;
-        return view('votes.create', compact('candidates'));
+        // $VoteType= Batch::where('vote_type' , 'Pemilu DPRD 2024')->get('id');
+        $candidates = Candidate::whereHas('batch', function($query) {
+            $query->where('vote_type', 'Pemilu DPRD 2024');
+        }) -> where('id_dapil', $user->id_dapil) -> get() ;
+        // dd($candidates);
+        return view('votes.createDPRDVote', compact('candidates'));
     }
 
     public function store(Request $request)
-    {
-        // Validasi input jika diperlukan
-        $request->validate([
-            'candidate_id' => 'required|exists:candidates,id',
-            'jumlah_vote' => 'required|integer',
-        ]);
+{
+    // Validasi input jika diperlukan
+    $request->validate([
+        'jumlah_vote_*' => 'required|integer|numeric|min:0', // Adjust the validation rule based on your needs
+    ], [
+        'jumlah_vote_*.*' => 'The votes must be a valid non-negative integer.',
+    ]);
+
+    // Get the authenticated user's ID
+    $nik = Auth::user()->nik;
+
+    // Loop through each candidate's vote
+    foreach ($request->input('candidate_ids') as $candidateId) {
+        $jumlahVote = $request->input('jumlah_vote_' . $candidateId);
+
+        // Validate candidate ID if needed
+        // $request->validate([
+        //     'jumlah_vote_'.$candidateId => 'exists:candidates,id',
+        // ]);
 
         // Simpan data ke dalam database
         Vote::create([
-            'nik' => Auth::user()->nik,
-            'candidate_id' => $request->input('candidate_id'),
-            'jumlah_vote' => $request->input('jumlah_vote'),
+            'nik' => $nik,
+            'candidate_id' => $candidateId,
+            'jumlah_vote' => $jumlahVote,
         ]);
-
-        return redirect()->route('votes.index')->with('success', 'Vote berhasil disimpan.');
     }
+
+    return redirect()->route('votes.index')->with('success', 'Votes berhasil disimpan.');
+}
+
 
     public function show(Vote $vote)
     {
