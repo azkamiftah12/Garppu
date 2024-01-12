@@ -1,14 +1,24 @@
 @extends('layouts.app') {{-- Assuming you have a default app layout --}}
 
 @section('content')
+    @php
+        $existingC1 = \App\Models\C1::where('nik', Auth::user()->nik)->first();
+    @endphp
     <div class="wrapper">
         <div class="container">
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        @php
-                            $existingC1 = \App\Models\C1::where('nik', Auth::user()->nik)->first();
-                        @endphp
+                        <h1 class="text-center">Input C1</h1>
+                        @if ($existingC1 ?? false)
+                            <div class="alert alert-success mt-5">
+                                <h3 class="text-center">Anda telah Menginput C1</h3>
+                            </div>
+                            <div class="d-flex justify-content-center my-5">
+                                <img src="{{ asset('storage/C1/' . basename($existingC1->img_c1)) }}" alt="C1 Image"
+                                    class="img-fluid">
+                            </div>
+                        @endif
                         <form action="{{ route('c1.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

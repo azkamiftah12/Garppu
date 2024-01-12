@@ -17,7 +17,6 @@ class C1Controller extends Controller
 
     public function create()
     {
-
         $batches = Batch::all();
         return view('c1.create', compact('batches'));
     }
