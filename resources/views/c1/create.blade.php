@@ -32,7 +32,7 @@
                             </div>
                             <a class="btn btn-red mr-2 mb-2" href="{{ route('votes.index') }}">Batal</a>
                             <button type="submit" class="btn btn-soft-blue mr-2 mb-2"
-                                @if ($existingC1) disabled @endif>Simpan C1</button>
+                                @if ($existingC1 ?? false) disabled @endif>Simpan C1</button>
                         </form>
                     </div>
                 </div>

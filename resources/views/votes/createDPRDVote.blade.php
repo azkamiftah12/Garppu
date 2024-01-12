@@ -50,7 +50,7 @@
                         </div>
                         <a class="btn btn-red mr-2" href="{{ route('votes.index') }}">Cancel</a>
                         <button type="submit" class="btn btn-soft-blue"
-                            @if ($existingVote) disabled @endif>Input Votes</button>
+                            @if ($existingVote ?? false) disabled @endif>Input Votes</button>
                         <a class="btn btn-yellow" href="{{ route('c1.create') }}">Input C1</a>
 
                     </form>
