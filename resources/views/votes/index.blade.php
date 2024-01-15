@@ -11,7 +11,7 @@
                             <h1 class="text-center">Hasil QuickCount</h1>
 
                             {{-- Tampilkan total hasil jumlah_vote per kandidat --}}
-                            @foreach ($candidatesWithVotes as $candidate)
+                            @foreach ($candidatesWithVotesDPRD as $candidate)
                                 <div class="mb-3">
                                     <h4>Nama Paslon: {{ $candidate->name ?? '-' }}</h4>
                                     <p>Partai: {{ $candidate->nama_partai ?? '-' }}</p>

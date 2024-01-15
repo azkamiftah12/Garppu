@@ -47,11 +47,10 @@ Route::get('/votes/createDPRDVote', [VoteController::class, 'createDPRDVote'])->
 Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
 Route::get('/votes/{vote}', [VoteController::class, 'show'])->name('votes.show');
 Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
+Route::put('/votes/{vote}/updateacc', [VoteController::class, 'updateACC'])->name('votes.updateACC');
 Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
 Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
-
-// Tambahkan rute untuk quickCount
-Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCount');
+Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCountDPRD');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
@@ -100,6 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/relawan', [AdminController::class, 'getUsersRelawan'])->name('admin.relawan');
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
+    Route::get('/votes', [AdminController::class, 'AllVote'])->name('admin.votes');
 
 
     // Candidate routes
