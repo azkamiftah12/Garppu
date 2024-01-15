@@ -12,8 +12,11 @@ class VoteController extends Controller
 {
     public function index()
     {
-        $votes = Vote::all();
-        return view('votes.index', compact('votes'));
+        // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
+        $candidatesWithVotes = $this->quickCount();
+
+        // Gunakan data yang diperoleh dalam view
+        return view('votes.index', compact('candidatesWithVotes'));
     }
 
     public function createDPRDVote()
@@ -59,6 +62,27 @@ class VoteController extends Controller
     return redirect()->route('votes.index')->with('success', 'Votes berhasil disimpan.');
 }
 
+    public function quickCount()
+    {
+    // Ambil semua kandidat beserta jumlah vote
+    $candidatesWithVotes = Candidate::with('votes')->get();
+
+    return $candidatesWithVotes;
+    }
+
+    public function calculateTotalVotesPerCandidate()
+    {
+        // Ambil semua kandidat beserta jumlah vote
+        $candidatesWithVotes = Candidate::with('votes')->get();
+
+        // Loop melalui setiap kandidat dan hitung total vote
+        foreach ($candidatesWithVotes as $candidate) {
+            $totalVotes = $candidate->votes->sum('jumlah_vote');
+            // Sekarang $totalVotes berisi jumlah vote untuk kandidat tertentu
+            // Lakukan sesuatu dengan nilai ini, misalnya tampilkan atau simpan ke database
+            // echo "Candidate Name: " . $candidate->name . " - Party: " . $candidate->nama_partai . " - Total Votes: " . $totalVotes . "<br>";
+        }
+    }
 
     public function show(Vote $vote)
     {

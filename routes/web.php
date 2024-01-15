@@ -50,6 +50,9 @@ Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.e
 Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
 Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
 
+// Tambahkan rute untuk quickCount
+Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCount');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
 Route::resource('userprofiles', UserProfileController::class);

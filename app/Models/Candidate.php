@@ -26,10 +26,8 @@ class Candidate extends Model
     {
         return $this->belongsTo(Batch::class, 'batch_id');
     }
-
-    // Define the relationship with votes
-    // public function votes()
-    // {
-    //     return $this->hasMany(Vote::class);
-    // }
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'candidate_id', 'id');
+    }
 }
