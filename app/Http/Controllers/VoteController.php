@@ -13,10 +13,10 @@ class VoteController extends Controller
     public function index()
     {
         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
-        $candidatesWithVotes = $this->quickCount();
+        $$candidatesWithVotesDPRD = $this->quickCountDPRD();
 
         // Gunakan data yang diperoleh dalam view
-        return view('votes.index', compact('candidatesWithVotes'));
+        return view('votes.index', compact('candidatesWithVotesDPRD'));
     }
 
     public function createDPRDVote()
@@ -62,12 +62,15 @@ class VoteController extends Controller
     return redirect()->route('votes.index')->with('success', 'Votes berhasil disimpan.');
 }
 
-    public function quickCount()
+    public function quickCountDPRD()
     {
     // Ambil semua kandidat beserta jumlah vote
-    $candidatesWithVotes = Candidate::with('votes')->get();
+    $user = Auth::user();
+    $candidatesWithVotesDPRD = Candidate::whereHas('batch', function($query) {
+        $query->where('vote_type', 'Pemilu DPRD 2024');
+    }) -> where('id_dapil', $user->id_dapil) -> with('votes')->get();
 
-    return $candidatesWithVotes;
+    return $candidatesWithVotesDPRD;
     }
 
     public function calculateTotalVotesPerCandidate()
