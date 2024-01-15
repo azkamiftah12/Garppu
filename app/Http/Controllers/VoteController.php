@@ -13,7 +13,7 @@ class VoteController extends Controller
     public function index()
     {
         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
-        $$candidatesWithVotesDPRD = $this->quickCountDPRD();
+        $candidatesWithVotesDPRD = $this->quickCountDPRD();
 
         // Gunakan data yang diperoleh dalam view
         return view('votes.index', compact('candidatesWithVotesDPRD'));
@@ -22,16 +22,17 @@ class VoteController extends Controller
     public function createDPRDVote()
     {
         $user = Auth::user();
+        $votes = Vote::all();
         // $VoteType= Batch::where('vote_type' , 'Pemilu DPRD 2024')->get('id');
         $candidates = Candidate::whereHas('batch', function($query) {
             $query->where('vote_type', 'Pemilu DPRD 2024');
         }) -> where('id_dapil', $user->id_dapil) -> get() ;
         // dd($candidates);
-        return view('votes.createDPRDVote', compact('candidates'));
+        return view('votes.createDPRDVote', compact('candidates', 'votes'));
     }
 
     public function store(Request $request)
-{
+    {
     // Validasi input jika diperlukan
     $request->validate([
         'jumlah_vote_*' => 'required|integer|numeric|min:0', // Adjust the validation rule based on your needs
@@ -56,6 +57,7 @@ class VoteController extends Controller
             'nik' => $nik,
             'candidate_id' => $candidateId,
             'jumlah_vote' => $jumlahVote,
+            'status_acc' => 0,
         ]);
     }
 
@@ -92,27 +94,38 @@ class VoteController extends Controller
         return view('votes.show', compact('vote'));
     }
 
-    public function edit(Vote $vote)
+    public function edit($id)
     {
-        $candidates = Candidate::all();
-        return view('votes.edit', compact('vote', 'candidates'));
+        $user = Auth::user();
+        $vote  = Vote::where('nik', $user->nik)->findOrFail($id);
+        return view('votes.edit', compact('vote'));
     }
 
-    public function update(Request $request, Vote $vote)
+    public function update(Request $request, $id)
     {
+        $vote = Vote::findOrFail($id);
         // Validasi input jika diperlukan
         $request->validate([
-            'candidate_id' => 'required|exists:candidates,id',
             'jumlah_vote' => 'required|integer',
         ]);
 
         // Update data di dalam database
-        $vote->update([
-            'candidate_id' => $request->input('candidate_id'),
-            'jumlah_vote' => $request->input('jumlah_vote'),
-        ]);
+        $vote->update($request->all());
 
         return redirect()->route('votes.index')->with('success', 'Vote berhasil diperbarui.');
+    }
+
+    public function updateACC(Request $request, Vote $vote)
+    {
+    // Validasi input jika diperlukan
+    $request->validate([
+        'status_acc' => 'required|integer',
+    ]);
+    $vote->update([
+        'status_acc' => 0,
+    ]);
+
+    return redirect()->route('votes.index')->with('success', 'Status ACC berhasil diperbarui.');
     }
 
     public function destroy(Vote $vote)

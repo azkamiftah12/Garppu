@@ -4,6 +4,7 @@
     @php
         // Check if there is an existing vote for the current user and candidate
         $existingVote = \App\Models\Vote::where('nik', Auth::user()->nik)->first();
+        $votesbyuser = \App\Models\Vote::where('nik', Auth::user()->nik)->get();
     @endphp
     <div class="wrapper">
         <div class="container">
@@ -29,24 +30,48 @@
                                                     <th>Nomor Urut</th>
                                                     <th>Nama Paslon</th>
                                                     <th>Jumlah Suara</th>
+                                                    <th>Menu</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($candidates as $candidate)
-                                                    <tr>
-                                                        <td>{{ $candidate->nomor_urut }}</td>
-                                                        <td>{{ $candidate->name }}</td>
-                                                        <td class="d-flex justify-content-center">
-                                                            <input type="hidden" name="candidate_ids[]"
-                                                                value="{{ $candidate->id }}">
-                                                            <input type="text" class="form-control text-center w-25"
-                                                                name="jumlah_vote_{{ $candidate->id }}" pattern="[0-9]+"
-                                                                title="Hanya Bisa diinput Oleh Angka!" required
-                                                                @if ($existingVote) value="{{ $existingVote->jumlah_vote }}"
-                                                                readonly  {{-- Make the input readonly if an existing vote is found --}} @endif>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                @if ($existingVote ?? false)
+    @foreach ($votes as $vote)
+        <tr>
+            <td>{{ $vote->candidate->nomor_urut }}</td>
+            <td>{{ $vote->candidate->name }}</td>
+            <td class="d-flex justify-content-center">
+                <input type="text" class="form-control text-center w-25"
+                    name="jumlah_vote_{{ $vote->id }}" pattern="[0-9]+"
+                    title="Hanya Bisa diinput Oleh Angka!" required
+                    @if ($existingVote) value="{{ $vote->jumlah_vote }}"
+                    readonly  {{-- Make the input readonly if an existing vote is found --}} @endif>
+            </td>
+            <td>
+                @if ($existingVote ?? false) <a href="{{ route('votes.edit', $vote->id) }}" class="btn btn-yellow mr-2">Edit</a> @endif
+            </td>
+        </tr>
+    @endforeach
+@else
+    @foreach ($candidates as $candidate)
+        <tr>
+            <td>{{ $candidate->nomor_urut }}</td>
+            <td>{{ $candidate->name }}</td>
+            <td class="d-flex justify-content-center">
+                <input type="hidden" name="candidate_ids[]"
+                    value="{{ $candidate->id }}">
+                <input type="text" class="form-control text-center w-25"
+                    name="jumlah_vote_{{ $candidate->id }}" pattern="[0-9]+"
+                    title="Hanya Bisa diinput Oleh Angka!" required
+                    @if ($existingVote) value="{{ $existingVote->jumlah_vote }}"
+                    readonly  {{-- Make the input readonly if an existing vote is found --}} @endif>
+            </td>
+            <td>
+                @if ($existingVote ?? false) <a href="{{ route('votes.edit', $candidate->id) }}" class="btn btn-yellow mr-2">Edit</a> @endif
+            </td>
+        </tr>
+    @endforeach
+@endif
+
                                             </tbody>
                                         </table>
                                     </div>

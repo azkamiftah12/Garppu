@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Vote;
+
 
 class AdminController extends Controller
 {
@@ -60,5 +62,14 @@ public function allSubRelawans()
         ->get();
     return view('admin.anggota-relawan', compact('subRelawans'));
 }
+
+public function AllVote()
+    {
+        // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
+        $votes = Vote::all();
+
+        // Gunakan data yang diperoleh dalam view
+        return view('admin.votes.index', compact('votes'));
+    }
 
 }
