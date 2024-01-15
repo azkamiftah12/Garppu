@@ -22,7 +22,7 @@ class VoteController extends Controller
     public function createDPRDVote()
     {
         $user = Auth::user();
-        $votes = Vote::all();
+        $votes = Vote::where('nik', $user->nik) -> get();
         // $VoteType= Batch::where('vote_type' , 'Pemilu DPRD 2024')->get('id');
         $candidates = Candidate::whereHas('batch', function($query) {
             $query->where('vote_type', 'Pemilu DPRD 2024');
