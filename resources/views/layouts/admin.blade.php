@@ -115,6 +115,9 @@
                         <li class="{{ Request::is('admin/candidates') ? 'active' : '' }}">
                             <a href="{{ url('/admin/candidates') }}">Paslon</a>
                         </li>
+                        <li class="{{ Request::is('admin/votes') ? 'active' : '' }}">
+                            <a href="{{ url('/admin/votes') }}">Votes</a>
+                        </li>
                     @endif
                     <form action="{{ route('logout') }}" method="post">
                         @csrf

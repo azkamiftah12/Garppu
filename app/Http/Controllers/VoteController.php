@@ -70,19 +70,21 @@ class VoteController extends Controller
     return $candidatesWithVotes;
     }
 
-    public function calculateTotalVotesPerCandidate()
-    {
-        // Ambil semua kandidat beserta jumlah vote
-        $candidatesWithVotes = Candidate::with('votes')->get();
+    // public function calculateTotalVotesPerCandidate()
+    // {
+    //     // Ambil semua kandidat beserta jumlah vote
+    //     $candidatesWithVotes = Candidate::whereHas('batch', function($query) {
+    //         $query->where('vote_type', 'Pemilu DPRD 2024');
+    //     })->with('votes')->get();
 
-        // Loop melalui setiap kandidat dan hitung total vote
-        foreach ($candidatesWithVotes as $candidate) {
-            $totalVotes = $candidate->votes->sum('jumlah_vote');
-            // Sekarang $totalVotes berisi jumlah vote untuk kandidat tertentu
-            // Lakukan sesuatu dengan nilai ini, misalnya tampilkan atau simpan ke database
-            // echo "Candidate Name: " . $candidate->name . " - Party: " . $candidate->nama_partai . " - Total Votes: " . $totalVotes . "<br>";
-        }
-    }
+    //     // // Loop melalui setiap kandidat dan hitung total vote
+    //     // foreach ($candidatesWithVotes as $candidate) {
+    //     //     $totalVotes = $candidate->votes->sum('jumlah_vote');
+    //     //     // Sekarang $totalVotes berisi jumlah vote untuk kandidat tertentu
+    //     //     // Lakukan sesuatu dengan nilai ini, misalnya tampilkan atau simpan ke database
+    //     //     // echo "Candidate Name: " . $candidate->name . " - Party: " . $candidate->nama_partai . " - Total Votes: " . $totalVotes . "<br>";
+    //     // }
+    // }
 
     public function show(Vote $vote)
     {

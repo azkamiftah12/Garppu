@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-
         <div class="row">
             <div class="col-md-12">
                 @if (session('success'))
@@ -20,20 +19,26 @@
                 @error('old_password')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <h1>Nama: {{ $user->nama }}</h1>
-                <h5>NIK: {{ $user->nik }}</h5>
-                <h5>No Telp: {{ $user->noTelp }}</h5>
-                <h5>Dapil anda: {{ $user->dapil->nama_dapil }}</h5>
-                <h5>Kelurahan: {{ $user->kelurahan ?? '-' }}</h5>
-                <h5>RT: {{ $user->rt ?? '-' }}</h5>
-                <h5>RW: {{ $user->rw ?? '-' }}</h5>
-                <h5>Nomor TPS: {{ $user->rw ?? '-' }}</h5>
-                <h5>Nama Bank: {{ $user->rekening_bank ?? '-' }}</h5>
-                <h5>Nomor Rekening Bank: {{ $user->no_rekening ?? '-' }}</h5>
-                <a href="{{ route('profile.edit.form') }}" class="btn btn-yellow my-4 mr-4">Edit Profile Saya</a>
-                <button type="button" class="btn btn-red my-4 mr-4" data-toggle="modal" data-target="#exampleModal">
-                    Ganti Password
-                </button>
+                <div class="card border-0 shadow rounded">
+                    <div class="card-body p-5">
+                        <h1 class="text-center mb-3">ProfileKU</h1>
+                        <h5>Nama: {{ $user->nama }}</h5>
+                        <h5>NIK: {{ $user->nik }}</h5>
+                        <h5>No Telp: {{ $user->noTelp }}</h5>
+                        <h5>Dapil anda: {{ $user->dapil->nama_dapil }}</h5>
+                        <h5>Kelurahan: {{ $user->kelurahan ?? '-' }}</h5>
+                        <h5>RT: {{ $user->rt ?? '-' }}</h5>
+                        <h5>RW: {{ $user->rw ?? '-' }}</h5>
+                        <h5>Nomor TPS: {{ $user->rw ?? '-' }}</h5>
+                        <h5>Nama Bank: {{ $user->rekening_bank ?? '-' }}</h5>
+                        <h5>Nomor Rekening Bank: {{ $user->no_rekening ?? '-' }}</h5>
+                        <a href="{{ route('profile.edit.form') }}" class="btn btn-yellow my-4 mr-4">Edit Profile Saya</a>
+                        <button type="button" class="btn btn-red my-4 mr-4" data-toggle="modal"
+                            data-target="#exampleModal">
+                            Ganti Password
+                        </button>
+                    </div>
+                </div>
                 {{-- modal start --}}
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">

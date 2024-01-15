@@ -74,6 +74,9 @@
                     <li class="{{ Request::is('quickcount') ? 'active' : '' }}">
                         <a href="{{ url('/quickcount') }}">Quick Count</a>
                     </li>
+                    <li class="{{ Request::is('votes') ? 'active' : '' }}">
+                        <a href="{{ url('/votes') }}">Vote</a>
+                    </li>
                     <li class="{{ Request::is('help') ? 'active' : '' }}">
                         <a href="{{ url('/help') }}">Pusat Bantuan</a>
                     </li>
