@@ -63,13 +63,41 @@ public function allSubRelawans()
     return view('admin.anggota-relawan', compact('subRelawans'));
 }
 
+// public function AllVote()
+//     {
+//         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
+//         $votes = Vote::all();
+
+//         // Gunakan data yang diperoleh dalam view
+//         return view('admin.votes.index', compact('votes'));
+//     }
+
 public function AllVote()
     {
         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
         $votes = Vote::all();
-
         // Gunakan data yang diperoleh dalam view
         return view('admin.votes.index', compact('votes'));
     }
 
+public function VoteAcc()
+    {
+        // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
+        $votesacc = Vote::where('status_acc', 1)->get();
+
+        // Gunakan data yang diperoleh dalam view
+        return view('admin.votes.acc', compact('votesacc'));
+ }
+
+ public function VoteNoAcc()
+ {
+     // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
+     $votesnoacc = Vote::where('status_acc', 0)->get();
+
+     // Gunakan data yang diperoleh dalam view
+     return view('admin.votes.noacc', compact('votesnoacc'));
+ }
+
 }
+
+
