@@ -81,7 +81,7 @@ class C1Controller extends Controller
         'img_c1' => $imgC1Path,
     ]);
 
-    return redirect()->route('c1.index')->with('success', 'Data C1 berhasil diperbarui.');
+    return redirect()->route('votes.index')->with('success', 'Data C1 berhasil diperbarui.');
 }
 
 

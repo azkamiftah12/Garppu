@@ -1,4 +1,4 @@
-@extends('layouts.app') {{-- Assuming you have a default app layout --}}
+@extends('layouts.app')
 
 @section('content')
     @php
@@ -19,8 +19,12 @@
                                     class="img-fluid">
                             </div>
                         @endif
-                        <form action="{{ route('c1.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ $existingC1 ? route('c1.update', $existingC1->id) : route('c1.store') }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
+                            @if ($existingC1)
+                                @method('PUT') {{-- If updating, include the PUT method --}}
+                            @endif
                             <div class="form-group">
                                 <label class="font-weight-bold">GAMBAR</label>
                                 <input type="file" class="form-control @error('img_c1') is-invalid @enderror"
@@ -33,7 +37,7 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <label class="form-label" for="batch_id">Pilih Batch:</label>
+                                <label class="form-label" for="batch_id">Pilih Type Pemilihan:</label>
                                 <select name="batch_id" id="batchDropdown" class="form-control" required>
                                     @foreach ($batches as $batch)
                                         <option value="{{ $batch->id }}">{{ $batch->vote_type }}</option>
@@ -41,8 +45,13 @@
                                 </select>
                             </div>
                             <a class="btn btn-red mr-2 mb-2" href="{{ route('votes.index') }}">Batal</a>
-                            <button type="submit" class="btn btn-soft-blue mr-2 mb-2"
-                                @if ($existingC1 ?? false) disabled @endif>Simpan C1</button>
+                            @if ($existingC1)
+                                <button type="submit" class="btn btn-yellow mr-2 mb-2">Ubah
+                                    C1</button>
+                            @else
+                                <button type="submit" class="btn btn-soft-blue mr-2 mb-2">Simpan
+                                    C1</button>
+                            @endif
                         </form>
                     </div>
                 </div>

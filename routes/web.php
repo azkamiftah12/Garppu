@@ -40,6 +40,7 @@ Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('pr
 //C1
 Route::get('/c1/create', [C1Controller::class, 'create'])->name('c1.create');
 Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
+Route::put('/c1/{c1}', [C1Controller::class, 'update'])->name('c1.update');
 
 // Vote
 Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');

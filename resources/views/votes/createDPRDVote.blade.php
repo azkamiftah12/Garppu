@@ -15,7 +15,7 @@
                         <div class="col-md-12 p-4">
                             @if ($existingVote ?? false)
                                 <div class="alert alert-success">
-                                    <h3 class="text-center">Anda telah Menginput Vote di TPS anda</h3>
+                                    <h3 class="text-center">Anda telah Menginput jumlah suara di TPS anda.</h3>
                                 </div>
                             @endif
                             <br>
@@ -77,10 +77,15 @@
                                         </table>
                                     </div>
                                 </div>
-                                <a class="btn btn-red mr-2" href="{{ route('votes.index') }}">Cancel</a>
-                                <button type="submit" class="btn btn-soft-blue"
-                                    @if ($existingVote ?? false) disabled @endif>Input Votes</button>
-                                <a class="btn btn-yellow" href="{{ route('c1.create') }}">Input C1</a>
+
+
+                                <div class="container d-flex flex-column align-items-center justify-content-center mt-3"
+                                    style="max-width: 250px">
+                                    <a class="btn btn-red btn-block mb-2" href="{{ route('votes.index') }}">Cancel</a>
+                                    {{-- <button type="submit" class="btn btn-soft-blue btn-block mb-2"
+                                        @if ($existingVote ?? false) disabled @endif>Input Votes</button> --}}
+                                    <a class="btn btn-yellow btn-block" href="{{ route('c1.create') }}">Input C1</a>
+                                </div>
 
                             </form>
                         </div>
