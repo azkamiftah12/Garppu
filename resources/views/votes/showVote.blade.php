@@ -1,11 +1,6 @@
 @extends('layouts.app') {{-- Assuming you have a default app layout --}}
 
 @section('content')
-    @php
-        // Check if there is an existing vote for the current user and candidate
-        $existingVote = \App\Models\Vote::where('nik', Auth::user()->nik)->first();
-        $votesbyuser = \App\Models\Vote::where('nik', Auth::user()->nik)->get();
-    @endphp
     <div class="wrapper">
         <div class="container">
             <div class="col-md-12">
@@ -15,7 +10,12 @@
                         <div class="col-md-12 p-4">
                             @if ($existingVote ?? false)
                                 <div class="alert alert-success">
-                                    <h3 class="text-center">Anda telah Menginput jumlah suara di TPS anda.</h3>
+                                    <h3 class="text-center">Anda telah Menginput jumlah suara @foreach ($batch as $batchnya)
+                                            <strong>
+                                                {{ $batchnya->vote_type }}
+                                            </strong>
+                                        @endforeach di TPS
+                                        anda.</h3>
                                 </div>
                             @endif
                             <br>
@@ -30,7 +30,9 @@
                                                     <th>Nomor Urut</th>
                                                     <th>Nama Paslon</th>
                                                     <th>Jumlah Suara</th>
-                                                    <th>Menu</th>
+                                                    @if ($existingVote ?? false)
+                                                        <th>Menu</th>
+                                                    @endif
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -63,8 +65,9 @@
                                                                 <input type="hidden" name="candidate_ids[]"
                                                                     value="{{ $candidate->id }}">
                                                                 <input type="text" class="form-control text-center w-25"
-                                                                    name="jumlah_vote_{{ $candidate->id }}" pattern="[0-9]+"
-                                                                    title="Hanya Bisa diinput Oleh Angka!" required>
+                                                                    name="jumlah_vote_{{ $candidate->id }}"
+                                                                    pattern="[0-9]+" title="Hanya Bisa diinput Oleh Angka!"
+                                                                    required>
                                                             </td>
                                                             <td>
 
@@ -82,9 +85,17 @@
                                 <div class="container d-flex flex-column align-items-center justify-content-center mt-3"
                                     style="max-width: 250px">
                                     <a class="btn btn-red btn-block mb-2" href="{{ route('votes.index') }}">Cancel</a>
-                                    {{-- <button type="submit" class="btn btn-soft-blue btn-block mb-2"
-                                        @if ($existingVote ?? false) disabled @endif>Input Votes</button> --}}
-                                    <a class="btn btn-yellow btn-block" href="{{ route('c1.create') }}">Input C1</a>
+                                    <button type="submit" class="btn btn-soft-blue btn-block mb-2"
+                                        @if ($existingVote ?? false) hidden @endif>Input Votes</button>
+                                    @foreach ($batch as $batchnya)
+                                        <a class="btn btn-yellow btn-block"
+                                            href="{{ route('c1.create', $batchnya->id) }}">Input C1
+                                            <br>
+                                            <strong>
+                                                {{ $batchnya->vote_type }}
+                                            </strong>
+                                        </a>
+                                    @endforeach
                                 </div>
 
                             </form>

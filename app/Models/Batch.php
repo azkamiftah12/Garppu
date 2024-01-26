@@ -21,4 +21,8 @@ class Batch extends Model
     {
         return $this->hasMany(C1::class);
     }
+    public function candidates()
+    {
+        return $this->hasMany(Candidate::class);
+    }
 }

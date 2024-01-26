@@ -38,15 +38,14 @@ Route::get('/profileku/edit', [AuthController::class, 'editProfileForm'])->name(
 Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
 
 //C1
-Route::get('/c1/create', [C1Controller::class, 'create'])->name('c1.create');
+Route::get('/c1/create/{batchID}', [C1Controller::class, 'create'])->name('c1.create');
 Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
 Route::put('/c1/{c1}', [C1Controller::class, 'update'])->name('c1.update');
 
 // Vote
 Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
-Route::get('/votes/createDPRDVote', [VoteController::class, 'createDPRDVote'])->name('votes.createDPRDVote');
 Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
-Route::get('/votes/{vote}', [VoteController::class, 'show'])->name('votes.show');
+Route::get('/votes/{batchID}', [VoteController::class, 'show'])->name('votes.showVote');
 Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
 Route::put('/votes/{vote}/updateacc', [VoteController::class, 'updateACC'])->name('votes.updateACC');
 Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');

@@ -16,14 +16,22 @@ class C1Controller extends Controller
         return view('c1.index', compact('c1Data'));
     }
 
-    public function create()
+    public function create($batchID)
     {
-        $batches = Batch::all();
-        return view('c1.create', compact('batches'));
+        $batches = Batch::where('id', $batchID)->get();
+        $existingC1 = C1::where('nik', Auth::user()->nik)
+            ->
+            // whereHas('candidate', function ($query) use ($batchID) {
+            //     $query->where('batch_id', $batchID);
+            // })
+            where('batch_id', $batchID)
+            ->first();
+        return view('c1.create', compact('batches', 'existingC1'));
     }
 
     public function store(Request $request)
-    {
+{
+    try {
         $request->validate([
             'img_c1' => 'required|image|mimes:png,jpg,jpeg',
             'batch_id' => 'required|exists:batches,id'
@@ -34,19 +42,22 @@ class C1Controller extends Controller
         // Automatically fill the 'nik' field with the user's 'nik'
         $request->merge(['nik' => $user->nik]);
 
-
         $imgC1Path = $request->file('img_c1')->store('public/C1');
         $imgC1Path = str_replace('public/', 'storage/', $imgC1Path);
-
 
         C1::create([
             'nik' => $request->nik,
             'img_c1' => $imgC1Path,
-            'batch_id' =>$request->batch_id
+            'batch_id' => $request->batch_id
         ]);
 
         return redirect()->route('votes.index')->with('success', 'Data C1 berhasil disimpan.');
+    } catch (\Exception $e) {
+        // An error occurred during C1 creation
+        return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data C1. Silakan coba lagi.');
     }
+}
+
 
     public function show(C1 $c1)
     {

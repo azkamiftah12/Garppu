@@ -2,7 +2,7 @@
 
 @section('content')
     @php
-        $existingC1 = \App\Models\C1::where('nik', Auth::user()->nik)->first();
+
     @endphp
     <div class="wrapper">
         <div class="container">
@@ -17,6 +17,11 @@
                             <div class="d-flex justify-content-center my-5">
                                 <img src="{{ asset('storage/C1/' . basename($existingC1->img_c1)) }}" alt="C1 Image"
                                     class="img-fluid">
+                            </div>
+                        @endif
+                        @if (isset($error))
+                            <div class="alert alert-danger">
+                                {{ $error }}
                             </div>
                         @endif
                         <form action="{{ $existingC1 ? route('c1.update', $existingC1->id) : route('c1.store') }}"
@@ -36,9 +41,9 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="batch_id">Pilih Type Pemilihan:</label>
-                                <select name="batch_id" id="batchDropdown" class="form-control" required>
+                            <div class="form-group mb-5">
+                                <label class="form-label" for="batch_id" hidden>Pilih Type Pemilihan:</label>
+                                <select name="batch_id" id="batchDropdown" class="form-control" required hidden>
                                     @foreach ($batches as $batch)
                                         <option value="{{ $batch->id }}">{{ $batch->vote_type }}</option>
                                     @endforeach

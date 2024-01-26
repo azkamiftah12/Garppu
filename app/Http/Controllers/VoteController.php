@@ -14,22 +14,39 @@ class VoteController extends Controller
     {
         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
         $candidatesWithVotesDPRD = $this->quickCountDPRD();
+        $batches = Batch::with('candidates')->get();
+
 
         // Gunakan data yang diperoleh dalam view
-        return view('votes.index', compact('candidatesWithVotesDPRD'));
+        return view('votes.index', compact('candidatesWithVotesDPRD', 'batches'));
     }
-
-    public function createDPRDVote()
+    public function show($batchID)
     {
         $user = Auth::user();
-        $votes = Vote::where('nik', $user->nik) -> get();
-        // $VoteType= Batch::where('vote_type' , 'Pemilu DPRD 2024')->get('id');
-        $candidates = Candidate::whereHas('batch', function($query) {
-            $query->where('vote_type', 'Pemilu DPRD 2024');
-        }) -> where('id_dapil', $user->id_dapil) -> get() ;
-        // dd($candidates);
-        return view('votes.createDPRDVote', compact('candidates', 'votes'));
+        $batch = Batch::where('id', $batchID)->get();
+        $votes = Vote::where('nik', $user->nik)->whereHas('candidate', function ($query) use ($batchID) {
+            $query->where('batch_id', $batchID);
+        })->get();
+        $candidates = Candidate::where('batch_id', $batchID) -> where('id_dapil', $user->id_dapil) -> get() ;
+        $existingVote = Vote::where('nik', Auth::user()->nik)
+            ->whereHas('candidate', function ($query) use ($batchID) {
+                $query->where('batch_id', $batchID);
+            })
+            ->first();
+        return view('votes.showVote', compact('votes', 'candidates', 'batch','existingVote'));
     }
+
+    // public function createDPRDVote()
+    // {
+    //     $user = Auth::user();
+    //     $votes = Vote::where('nik', $user->nik) -> get();
+    //     // $VoteType= Batch::where('vote_type' , 'Pemilu DPRD 2024')->get('id');
+    //     $candidates = Candidate::whereHas('batch', function($query) {
+    //         $query->where('vote_type', 'Pemilu DPRD 2024');
+    //     }) -> where('id_dapil', $user->id_dapil) -> get() ;
+    //     // dd($candidates);
+    //     return view('votes.createDPRDVote', compact('candidates', 'votes'));
+    // }
 
     public function store(Request $request)
     {
@@ -91,10 +108,6 @@ class VoteController extends Controller
     //     // }
     // }
 
-    public function show(Vote $vote)
-    {
-        return view('votes.show', compact('vote'));
-    }
 
     public function edit($id)
     {
