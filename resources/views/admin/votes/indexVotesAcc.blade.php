@@ -12,9 +12,7 @@
                             <th>No</th>
                             <th>NIK</th>
                             <th>Nama Relawan</th>
-                            <th>Nomor Paslon</th>
-                            <th>Nama Paslon</th>
-                            <th>Jumlah Vote</th>
+                            <th>Detail Data</th> {{-- Tambah kolom Detail --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -23,11 +21,8 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $vote->nik }}</td>
                                 <td>{{ $vote->userprofile->nama ?? '-' }}</td>
-                                <td>{{ $vote->candidate->nomor_urut }}</td>
-                                <td>{{ $vote->candidate->name ?? '-' }}</td>
-                                <td>{{ $vote->jumlah_vote }}</td>
-                                <td class="d-flex space-between">
-                                    <!-- Add your action buttons here if needed -->
+                                <td>
+                                    <a href="{{ route('admin.votes.detail', ['nik' => $vote->nik]) }}" class="btn btn-info">Detail</a>
                                 </td>
                             </tr>
                         @endforeach

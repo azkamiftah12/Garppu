@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\C1;
 use App\Models\User;
 use App\Models\SubRelawan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Vote;
 
 
@@ -80,19 +81,26 @@ public function AllVote()
         return view('admin.votes.index', compact('votes'));
     }
 
-public function VoteAcc()
+    public function VoteAcc()
     {
         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
-        $votesacc = Vote::where('status_acc', 1)->get();
+        $votesacc = Vote::select('nik', DB::raw('COUNT(*) as totalSuara'))
+                        ->where('status_acc', 1)
+                        ->groupBy('nik')
+                        ->get();
 
         // Gunakan data yang diperoleh dalam view
         return view('admin.votes.indexVotesAcc', compact('votesacc'));
- }
+    }
+
 
  public function VoteNoAcc()
  {
      // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
-     $votesnoacc = Vote::where('status_acc', 0)->get();
+     $votesnoacc = Vote::select('nik', DB::raw('COUNT(*) as totalSuara'))
+                        ->where('status_acc', 0)
+                        ->groupBy('nik')
+                        ->get();
 
      // Gunakan data yang diperoleh dalam view
      return view('admin.votes.indexVotesNoAcc', compact('votesnoacc'));
@@ -115,6 +123,61 @@ public function VoteAcc()
 
      return view('admin.votes.indexVotesNoAcc', compact('votesnoacc'))->with('success', 'Status ACC berhasil diperbarui.');
  }
+
+ public function detailVote($nik)
+{
+    // Ambil detail kepemilikan nik yang sesuai
+    $voteDetails = Vote::where('votes.nik', $nik)
+    ->where('votes.status_acc', 1)
+    ->leftJoin('c1', 'votes.nik', '=', 'c1.nik')
+    ->select(
+        'votes.*',
+        'c1.img_c1 as img_c1'
+    )
+    ->get();
+
+    // Gunakan data yang diperoleh dalam view
+    return view('admin.votes.detailVotes', compact('voteDetails'));
+}
+
+public function detailVotesNoAcc($nik)
+{
+    // Ambil detail kepemilikan nik yang sesuai dan belum divalidasi
+    $voteDetailsNoAcc = Vote::where('votes.nik', $nik)
+        ->where('votes.status_acc', 0)
+        ->leftJoin('c1', 'votes.nik', '=', 'c1.nik')
+        ->select(
+            'votes.*',
+            'c1.img_c1 as img_c1'
+        )
+        ->get();
+    return view('admin.votes.detailVotesNoAcc', compact('voteDetailsNoAcc'));
+}
+
+
+public function c1File($nik)
+{
+    // Ambil detail kepemilikan nik yang sesuai
+    $c1Details = C1::where('nik', $nik)->get();
+
+    // Gunakan data yang diperoleh dalam view
+    return view('admin.votes.detailVotesNoAcc', compact('voteDetails'));
+}
+
+public function updateStatusAcc(Request $request)
+{
+    try {
+        $nik = $request->input('nik');
+
+        // Implement logic to update status_acc to 1 for data related to the viewed NIK
+        Vote::where('nik', $nik)->update(['status_acc' => 1]);
+
+        return response()->json(['success' => true, 'message' => 'Status updated successfully.']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => 'Error updating status.']);
+    }
+}
+
 
 
 }

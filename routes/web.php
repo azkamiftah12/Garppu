@@ -103,7 +103,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/votesacc', [AdminController::class, 'VoteAcc'])->name('admin.votes');
     Route::get('/votesnoacc', [AdminController::class, 'VoteNoAcc'])->name('admin.votes');
     Route::put('/votes/{vote}/accvalidasi', [AdminController::class, 'accvalidasi'])->name('admin.votes.accvalidasi');
-
+    Route::get('/votes/{nik}/detail', [AdminController::class, 'detailVote'])->name('admin.votes.detail');
+    Route::get('/votesnoacc/{nik}/detail', [AdminController::class, 'detailVotesNoAcc'])->name('admin.votes.noacc.detail');
+    Route::post('/admin/votes/update-status-acc', [AdminController::class, 'updateStatusAcc'])->name('admin.votes.updateStatusAcc');
 
     // Candidate routes
     Route::get('/candidates', [CandidateController::class, 'index'])->name('admin.candidates.index');
