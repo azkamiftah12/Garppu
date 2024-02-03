@@ -137,7 +137,7 @@ class VoteController extends Controller
         'status_acc' => 'required|integer',
     ]);
     $vote->update([
-        'status_acc' => 0,
+        'status_acc' => 1,
     ]);
 
     return redirect()->route('votes.index')->with('success', 'Status ACC berhasil diperbarui.');

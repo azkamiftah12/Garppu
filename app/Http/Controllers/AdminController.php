@@ -86,7 +86,7 @@ public function VoteAcc()
         $votesacc = Vote::where('status_acc', 1)->get();
 
         // Gunakan data yang diperoleh dalam view
-        return view('admin.votes.acc', compact('votesacc'));
+        return view('admin.votes.indexVotesAcc', compact('votesacc'));
  }
 
  public function VoteNoAcc()
@@ -95,8 +95,27 @@ public function VoteAcc()
      $votesnoacc = Vote::where('status_acc', 0)->get();
 
      // Gunakan data yang diperoleh dalam view
-     return view('admin.votes.noacc', compact('votesnoacc'));
+     return view('admin.votes.indexVotesNoAcc', compact('votesnoacc'));
  }
+
+ public function accvalidasi(Request $request, Vote $vote)
+ {
+     // Validasi input jika diperlukan
+     $request->validate([
+         'status_acc' => 'required|integer',
+     ]);
+
+     // Update status_acc sesuai dengan input form
+     $vote->update([
+         'status_acc' => $request->input('status_acc'),
+     ]);
+
+     // Tambahkan pesan sukses dan arahkan kembali ke tampilan admin.votes.indexVotesNoAcc
+     $votesnoacc = Vote::where('status_acc', 0)->get();
+
+     return view('admin.votes.indexVotesNoAcc', compact('votesnoacc'))->with('success', 'Status ACC berhasil diperbarui.');
+ }
+
 
 }
 

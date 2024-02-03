@@ -100,8 +100,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/relawan', [AdminController::class, 'getUsersRelawan'])->name('admin.relawan');
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
     Route::get('/votes', [AdminController::class, 'AllVote'])->name('admin.votes');
-    Route::get('/votes/acc', [AdminController::class, 'VoteAcc'])->name('admin.votes');
-    Route::get('/votes/noacc', [AdminController::class, 'VoteNoAcc'])->name('admin.votes');
+    Route::get('/votesacc', [AdminController::class, 'VoteAcc'])->name('admin.votes');
+    Route::get('/votesnoacc', [AdminController::class, 'VoteNoAcc'])->name('admin.votes');
+    Route::put('/votes/{vote}/accvalidasi', [AdminController::class, 'accvalidasi'])->name('admin.votes.accvalidasi');
 
 
     // Candidate routes

@@ -3,9 +3,7 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-
-
-            <h1 class="my-5 text-center">Votes</h1>
+            <h1 class="my-5 text-center">Votes yang Sudah Di ACC</h1>
 
             <div class="table-container" style="overflow-x: auto">
                 <table class="table table-secondary my-3 text-center">
@@ -20,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($votes as $index => $vote)
+                        @foreach ($votesacc as $index => $vote)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $vote->nik }}</td>
@@ -29,6 +27,7 @@
                                 <td>{{ $vote->candidate->name ?? '-' }}</td>
                                 <td>{{ $vote->jumlah_vote }}</td>
                                 <td class="d-flex space-between">
+                                    <!-- Add your action buttons here if needed -->
                                 </td>
                             </tr>
                         @endforeach
