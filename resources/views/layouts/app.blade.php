@@ -26,6 +26,18 @@
                 font-size: 24px;
             }
 
+            h2 {
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            h4 {
+                font-size: 19px;
+            }
+
             h5 {
                 font-size: 18px;
             }
@@ -74,7 +86,7 @@
                     <li class="{{ Request::is('quickcount') ? 'active' : '' }}">
                         <a href="{{ url('/quickcount') }}">Quick Count</a>
                     </li>
-                    <li class="{{ Request::is('votes') ? 'active' : '' }}">
+                    <li class="{{ Request::is('votes*') ? 'active' : '' }}">
                         <a href="{{ url('/votes') }}">Vote</a>
                     </li>
                     <li class="{{ Request::is('help') ? 'active' : '' }}">

@@ -57,7 +57,7 @@
                                                         </tr>
                                                     @endforeach
                                                 @else
-                                                    @foreach ($candidates as $candidate)
+                                                    @foreach ($candidates->sortBy('nomor_urut') as $candidate)
                                                         <tr>
                                                             <td>{{ $candidate->nomor_urut }}</td>
                                                             <td>{{ $candidate->name }}</td>

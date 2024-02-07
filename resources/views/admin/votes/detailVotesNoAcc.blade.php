@@ -5,15 +5,13 @@
         <div class="container">
             <div class="card border-0 shadow rounded">
                 <div class="card-body">
-
-
                     <h1 class="my-5 text-center">Vote belum Dikonfirmasi {{ $relawan->nama }}</h1>
                     @foreach ($batches as $batch)
                         <div class="border-0 shadow rounded col-md-12 p-4 mb-5"
                             style="background-color: var(--color-white-brown)">
 
 
-                            <h1 class="text-center">Vote {{ $batch->vote_type }}</h1>
+                            <h2 class="text-center">Vote {{ $batch->vote_type }}</h2>
 
                             {{-- C1 show start --}}
                             @php
@@ -43,9 +41,8 @@
 
                             <div class="table-container" style="overflow-x: auto">
                                 <table class="table table-light table-striped my-3 text-center">
-                                    <thead>
+                                    <thead class="thead-dark">
                                         <tr>
-                                            <th>No</th>
                                             <th>Nomor Paslon</th>
                                             <th>Nama Paslon</th>
                                             <th>Jumlah Vote</th>
@@ -56,9 +53,8 @@
                                         $userVotes = $voteDetailsNoAcc->where('nik', $nik);
                                     @endphp
                                     <tbody>
-                                        @foreach ($batch->candidates as $index => $detail)
+                                        @foreach ($batch->candidates->sortBy('nomor_urut') as $index => $detail)
                                             <tr>
-                                                <td>{{ $index + 1 }}</td>
                                                 <td>{{ $detail->nomor_urut ?? '-' }}</td>
                                                 <td>{{ $detail->name }}</td>
                                                 <td>

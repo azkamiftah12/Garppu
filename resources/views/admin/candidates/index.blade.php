@@ -27,7 +27,7 @@
 
                         <div class="table-container" style="overflow-x: auto">
                             <table class="table table-light table-striped my-3 text-center">
-                                <thead>
+                                <thead class="thead-dark">
                                     <tr>
                                         {{-- <th>No</th> --}}
                                         <th>Nomor Urut</th>
@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($candidates as $index => $candidate)
+                                    @foreach ($candidates->sortBy(['batch.vote_type', 'nomor_urut']) as $index => $candidate)
                                         <tr>
                                             {{-- <td>{{ $index + 1 }}</td> --}}
                                             <td>{{ $candidate->nomor_urut }}</td>

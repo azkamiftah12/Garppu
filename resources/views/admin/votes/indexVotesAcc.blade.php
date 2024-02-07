@@ -3,48 +3,53 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-            <h1 class="my-5 text-center">Votes yang Sudah Di ACC</h1>
+            <div class="card border-0 shadow rounded">
+                <div class="card-body">
+                    <h1 class="my-5 text-center">Votes yang Sudah Di ACC</h1>
 
-            <div class="table-container" style="overflow-x: auto">
-                <table class="datatable table table-light table-striped my-3 text-center">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama Relawan</th>
-                            <th>Detail Data</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($votesacc as $index => $vote)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $vote->nik }}</td>
-                                <td>{{ $vote->userprofile->nama ?? '-' }}</td>
-                                <td class="d-flex space-between">
-                                    <a href="{{ route('admin.votes.detail', ['nik' => $vote->nik]) }}"
-                                        class="btn btn-info mr-2">Detail Votes</a>
-                                    <!-- Validation Button and Modal -->
-                                    <div class="text-center my-3">
-                                        <button type="button" class="btn btn-primary validationBtn" data-toggle="modal"
-                                            data-target="#validationModal" data-nik="{{ $vote->nik }}"
-                                            data-nama="{{ $vote->userprofile->nama ?? '-' }}"
-                                            data-noTelp="{{ $vote->userprofile->where('nik', $vote->nik)->first()->noTelp ?? '-' }}"
-                                            data-dapil="{{ $vote->userprofile->where('nik', $vote->nik)->first()->dapil->nama_dapil ?? '-' }}"
-                                            data-kelurahan="{{ $vote->userprofile->where('nik', $vote->nik)->first()->kelurahan ?? '-' }}"
-                                            data-rt="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rt ?? '-' }}"
-                                            data-rw="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rw ?? '-' }}"
-                                            data-nomorTps="{{ $vote->userprofile->where('nik', $vote->nik)->first()->nomor_tps ?? '-' }}"
-                                            data-namaBank="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rekening_bank ?? '-' }}"
-                                            data-nomorRekeningBank="{{ $vote->userprofile->where('nik', $vote->nik)->first()->no_rekening ?? '-' }}">
-                                            Transfer
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                    <div class="table-container" style="overflow-x: auto">
+                        <table class="datatable table table-light table-striped my-3 text-center">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th>NIK</th>
+                                    <th>Nama Relawan</th>
+                                    <th>Detail Data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($votesacc as $index => $vote)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $vote->nik }}</td>
+                                        <td>{{ $vote->userprofile->nama ?? '-' }}</td>
+                                        <td class="d-flex space-between">
+                                            <a href="{{ route('admin.votes.detail', ['nik' => $vote->nik]) }}"
+                                                class="btn btn-info mr-2">Detail Votes</a>
+                                            <!-- Validation Button and Modal -->
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-primary validationBtn"
+                                                    data-toggle="modal" data-target="#validationModal"
+                                                    data-nik="{{ $vote->nik }}"
+                                                    data-nama="{{ $vote->userprofile->nama ?? '-' }}"
+                                                    data-noTelp="{{ $vote->userprofile->where('nik', $vote->nik)->first()->noTelp ?? '-' }}"
+                                                    data-dapil="{{ $vote->userprofile->where('nik', $vote->nik)->first()->dapil->nama_dapil ?? '-' }}"
+                                                    data-kelurahan="{{ $vote->userprofile->where('nik', $vote->nik)->first()->kelurahan ?? '-' }}"
+                                                    data-rt="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rt ?? '-' }}"
+                                                    data-rw="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rw ?? '-' }}"
+                                                    data-nomorTps="{{ $vote->userprofile->where('nik', $vote->nik)->first()->nomor_tps ?? '-' }}"
+                                                    data-namaBank="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rekening_bank ?? '-' }}"
+                                                    data-nomorRekeningBank="{{ $vote->userprofile->where('nik', $vote->nik)->first()->no_rekening ?? '-' }}">
+                                                    Transfer
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -76,12 +81,14 @@
                         </div>
                     </div>
                     <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <span
-                            id="modalNikConfirm"></span> dan nama relawan <span id="modalNamaConfirm"></span>? Data yang
+                            id="modalNikConfirm"></span> dan nama relawan <span id="modalNamaConfirm"></span>? Data
+                        yang
                         sudah disimpan tidak dapat diubah, silahkan cek kembali!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Konfirmasi Vote</button>
+                    <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Konfirmasi
+                        Vote</button>
                 </div>
             </div>
         </div>
