@@ -27,7 +27,7 @@
                                     @foreach ($batch->candidates as $candidate)
                                         <div class="mb-3">
                                             <h4>Nama Paslon: {{ $candidate->name ?? '-' }}</h4>
-                                            <p>Partai: {{ $candidate->nama_partai ?? '-' }}</p>
+                                            <p>Partai: {{ $candidate->partai->nama_partai ?? '-' }}</p>
                                             <p>Total Votes: {{ $candidate->votes->sum('jumlah_vote') ?? '-' }}</p>
                                         </div>
                                     @endforeach

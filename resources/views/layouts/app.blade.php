@@ -162,7 +162,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('.table').DataTable();
+            $('.datatable').DataTable();
         });
     </script>
     <script src="{{ asset('js/popper.js') }}"></script>

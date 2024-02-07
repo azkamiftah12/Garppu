@@ -5,7 +5,7 @@
         <div class="container">
             <h1 class="my-5 text-center">Detail Data Votes</h1>
 
-             @if ($voteDetails->isNotEmpty())
+            @if ($voteDetails->isNotEmpty())
                 @php $c1Found = false; @endphp
                 @foreach ($voteDetails as $detail)
                     @if ($detail->img_c1 && !$c1Found)
@@ -23,7 +23,7 @@
             @endif
 
             <div class="table-container" style="overflow-x: auto">
-                <table class="table table-secondary my-3 text-center">
+                <table class="datatable table table-light table-striped my-3 text-center">
                     <thead>
                         <tr>
                             <th>No</th>

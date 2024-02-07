@@ -121,19 +121,16 @@
                                 class="dropdown-toggle">Votes</a>
                             <ul class="collapse list-unstyled" id="homeSubmenuVotes">
                                 <li class="{{ Request::is('admin/votes') ? 'active' : '' }}">
-                                    <a href="{{ url('/admin/votes') }}">Votes</a>
+                                    <a href="{{ url('/admin/votes') }}">Votes Log</a>
                                 </li>
-                                <li class="{{ Request::is('admin/votesacc') ? 'active' : '' }}">
+                                <li class="{{ Request::is('admin/votesacc*') ? 'active' : '' }}">
                                     <a href="{{ url('/admin/votesacc') }}">Tervalidasi</a>
                                 </li>
-                                <li class="{{ Request::is('admin/votesnoacc') ? 'active' : '' }}">
+                                <li class="{{ Request::is('admin/votesnoacc*') ? 'active' : '' }}">
                                     <a href="{{ url('/admin/votesnoacc') }}">Belum Tervalidasi</a>
                                 </li>
                             </ul>
                         </li>
-
-
-
                     @endif
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
@@ -185,7 +182,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('.table').DataTable({
+            $('.datatable').DataTable({
                 dom: 'lBfrtip',
                 buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
                 lengthMenu: [

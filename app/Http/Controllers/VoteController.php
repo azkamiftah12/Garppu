@@ -13,12 +13,12 @@ class VoteController extends Controller
     public function index()
     {
         // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
-        $candidatesWithVotesDPRD = $this->quickCountDPRD();
+        // $candidatesWithVotesDPRD = $this->quickCountDPRD();
         $batches = Batch::with('candidates')->get();
-
-
         // Gunakan data yang diperoleh dalam view
-        return view('votes.index', compact('candidatesWithVotesDPRD', 'batches'));
+        return view('votes.index', compact(
+            // 'candidatesWithVotesDPRD',
+         'batches'));
     }
     public function show($batchID)
     {
@@ -81,16 +81,16 @@ class VoteController extends Controller
     return redirect()->route('votes.index')->with('success', 'Votes berhasil disimpan.');
 }
 
-    public function quickCountDPRD()
-    {
-    // Ambil semua kandidat beserta jumlah vote
-    $user = Auth::user();
-    $candidatesWithVotesDPRD = Candidate::whereHas('batch', function($query) {
-        $query->where('vote_type', 'Pemilu DPRD 2024');
-    }) -> where('id_dapil', $user->id_dapil) -> with('votes')->get();
+    // public function quickCountDPRD()
+    // {
+    // // Ambil semua kandidat beserta jumlah vote
+    // $user = Auth::user();
+    // $candidatesWithVotesDPRD = Candidate::whereHas('batch', function($query) {
+    //     $query->where('vote_type', 'Pemilu DPRD 2024');
+    // }) -> where('id_dapil', $user->id_dapil) -> with('votes')->get();
 
-    return $candidatesWithVotesDPRD;
-    }
+    // return $candidatesWithVotesDPRD;
+    // }
 
     // public function calculateTotalVotesPerCandidate()
     // {

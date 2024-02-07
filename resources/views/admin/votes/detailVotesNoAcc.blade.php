@@ -3,81 +3,122 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-            <h1 class="my-5 text-center">Detail Kepemilikan NIK yang Belum Di ACC</h1>
-            @if ($voteDetailsNoAcc->isNotEmpty())
-                @php $c1Found = false; $nama = ''; $nik = ''; @endphp
-                @foreach ($voteDetailsNoAcc as $index => $detail)
-                    @if ($detail->img_c1 && !$c1Found)
-                        <div class="d-flex justify-content-center my-5">
-                            <img src="{{ asset('storage/C1/' . basename($detail->img_c1)) }}" alt="C1 Image" class="img-fluid">
-                        </div>
-                        @php $c1Found = true; $nik = $detail->nik; $nama = $detail->userprofile->nama ?? '-'; @endphp
-                    @endif
-                @endforeach
-                @if (!$c1Found)
-                    <p>Gambar C1 tidak tersedia.</p>
-                @endif
-            @else
-                <p>Data tidak tersedia.</p>
-            @endif
+            <div class="card border-0 shadow rounded">
+                <div class="card-body">
 
-            <div class="table-container" style="overflow-x: auto">
-                <table class="table table-secondary my-3 text-center">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama Relawan</th>
-                            <th>Nomor Paslon</th>
-                            <th>Nama Paslon</th>
-                            <th>Jumlah Vote</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($voteDetailsNoAcc as $index => $detail)
-                            <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $detail->nik }}</td>
-                                <td>{{ $detail->userprofile->nama ?? '-' }}</td>
-                                <td>{{ $detail->candidate->nomor_urut ?? '-' }}</td>
-                                <td>{{ $detail->candidate->name ?? '-' }}</td>
-                                <td>{{ $detail->jumlah_vote }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
 
-            <!-- Validation Button and Modal -->
-            <div class="text-center my-3">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validationModal">
-                    Validasi
-                </button>
-            </div>
+                    <h1 class="my-5 text-center">Vote belum Dikonfirmasi {{ $relawan->nama }}</h1>
+                    @foreach ($batches as $batch)
+                        <div class="border-0 shadow rounded col-md-12 p-4 mb-5"
+                            style="background-color: var(--color-white-brown)">
 
-            <!-- Validation Modal -->
-            <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="validationModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="validationModalLabel">Konfirmasi Update</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+
+                            <h1 class="text-center">Vote {{ $batch->vote_type }}</h1>
+
+                            {{-- C1 show start --}}
+                            @php
+                                $c1Found = false;
+                                $nama = $relawan->nama;
+                                $nik = $relawan->nik;
+                            @endphp
+                            @foreach ($C1DetailsNoAcc->where('batch_id', $batch->id) as $index => $detail)
+                                @if ($detail->img_c1 && !$c1Found)
+                                    <div class="d-flex justify-content-center my-5">
+                                        <img src="{{ asset('storage/C1/' . basename($detail->img_c1)) }}" alt="C1 Image"
+                                            class="img-fluid">
+                                    </div>
+                                    @php
+                                        $c1Found = true;
+                                        $nik = $detail->nik;
+                                        $nama = $detail->userprofile->nama ?? '-';
+                                    @endphp
+                                @endif
+                            @endforeach
+                            @if (!$c1Found)
+                                <div class="text-center alert alert-danger my-5">
+                                    <h3>Gambar C1 tidak tersedia.</h3>
+                                </div>
+                            @endif
+                            {{-- C1 show End --}}
+
+                            <div class="table-container" style="overflow-x: auto">
+                                <table class="table table-light table-striped my-3 text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nomor Paslon</th>
+                                            <th>Nama Paslon</th>
+                                            <th>Jumlah Vote</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        // Filter votes for the current user
+                                        $userVotes = $voteDetailsNoAcc->where('nik', $nik);
+                                    @endphp
+                                    <tbody>
+                                        @foreach ($batch->candidates as $index => $detail)
+                                            <tr>
+                                                <td>{{ $index + 1 }}</td>
+                                                <td>{{ $detail->nomor_urut ?? '-' }}</td>
+                                                <td>{{ $detail->name }}</td>
+                                                <td>
+
+                                                    @php
+                                                        // Sum up the jumlah_vote for the current candidate associated with the user's votes
+$candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vote');
+                                                    @endphp
+                                                    {{ $candidateVotes }}
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            Anda yakin ingin memvalidasi data dengan NIK {{ $nik }} dan nama relawan {{ $nama }}? Data yang sudah di simpan tidak dapat diubah, silahkan cek kembali !
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Validasi</button>
+                    @endforeach
+
+                    <!-- Validation Button and Modal -->
+                    <div class="text-center my-3">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validationModal">
+                            Validasi
+                        </button>
+                    </div>
+
+                    <!-- Validation Modal -->
+                    <div class="modal fade" id="validationModal" tabindex="-1" role="dialog"
+                        aria-labelledby="validationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="validationModalLabel">Konfirmasi Update</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Anda yakin ingin Konfirmasi Vote dengan NIK <strong>
+                                        {{ $nik }}
+                                    </strong>
+                                    dan nama relawan
+                                    <strong>
+                                        {{ $nama }}
+                                    </strong>? Data yang sudah di simpan tidak dapat diubah, silahkan cek kembali
+                                    !
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Konfirmasi
+                                        Vote</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <script>
         function updateStatusAcc() {
@@ -104,5 +145,4 @@
             });
         }
     </script>
-
 @endsection

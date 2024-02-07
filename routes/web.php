@@ -106,6 +106,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/votes/{nik}/detail', [AdminController::class, 'detailVote'])->name('admin.votes.detail');
     Route::get('/votesnoacc/{nik}/detail', [AdminController::class, 'detailVotesNoAcc'])->name('admin.votes.noacc.detail');
     Route::post('/admin/votes/update-status-acc', [AdminController::class, 'updateStatusAcc'])->name('admin.votes.updateStatusAcc');
+    Route::post('/admin/votes/update-status-transfer', [AdminController::class, 'updateStatusTransfer'])->name('admin.votes.updateStatusTransfer');
 
     // Candidate routes
     Route::get('/candidates', [CandidateController::class, 'index'])->name('admin.candidates.index');

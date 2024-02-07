@@ -53,6 +53,10 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany(SubRelawan::class, 'nik', 'nik');
     }
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class, 'nik', 'nik');
+    }
 
     /**
      * Get the token value for the "remember me" session.
