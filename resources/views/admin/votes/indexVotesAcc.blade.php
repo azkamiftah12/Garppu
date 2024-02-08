@@ -25,7 +25,7 @@
                                         <td>{{ $vote->userprofile->nama ?? '-' }}</td>
                                         <td class="d-flex space-between justify-content-center">
                                             <a href="{{ route('admin.votes.detail', ['nik' => $vote->nik]) }}"
-                                                class="btn btn-info mr-2">Detail Votes</a>
+                                                class="btn btn-soft-blue mr-2">Detail Votes</a>
                                             <!-- Validation Button and Modal -->
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-primary validationBtn"
@@ -68,16 +68,19 @@
                     <div id="userData" class="card border-0 shadow rounded">
                         <div class="card-body p-5">
                             <h1 class="text-center mb-3">Profile Relawan</h1>
-                            <h5>Nama: <span id="modalNama"></span></h5>
-                            <h5>NIK: <span id="modalNik"></span></h5>
-                            <h5>No Telp: <span id="modalNoTelp"></span></h5>
-                            <h5>Dapil anda: <span id="modalDapil"></span></h5>
-                            <h5>Kelurahan: <span id="modalKelurahan"></span></h5>
-                            <h5>RT: <span id="modalRt"></span></h5>
-                            <h5>RW: <span id="modalRw"></span></h5>
-                            <h5>Nomor TPS: <span id="modalNomorTps"></span></h5>
-                            <h5>Nama Bank: <span id="modalNamaBank"></span></h5>
-                            <h5>Nomor Rekening Bank: <span id="modalNomorRekeningBank"></span></h5>
+                            <div class="border-0 shadow rounded col-md-12 p-4 mb-5"
+                                style="background-color: var(--color-white-brown)">
+                                <h5>Nama: <span id="modalNama"></span></h5>
+                                <h5>NIK: <span id="modalNik"></span></h5>
+                                <h5>No Telp: <span id="modalNoTelp"></span></h5>
+                                <h5>Dapil anda: <span id="modalDapil"></span></h5>
+                                <h5>Kelurahan: <span id="modalKelurahan"></span></h5>
+                                <h5>RT: <span id="modalRt"></span></h5>
+                                <h5>RW: <span id="modalRw"></span></h5>
+                                <h5>Nomor TPS: <span id="modalNomorTps"></span></h5>
+                                <h5>Nama Bank: <span id="modalNamaBank"></span></h5>
+                                <h5>Nomor Rekening Bank: <span id="modalNomorRekeningBank"></span></h5>
+                            </div>
                         </div>
                     </div>
                     <h4 class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <strong

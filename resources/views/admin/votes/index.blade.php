@@ -9,7 +9,7 @@
                     <h1 class="my-5 text-center">Votes Log</h1>
 
                     <div class="table-container" style="overflow-x: auto">
-                        <table class="datatable table table-light table-striped my-3 text-center">
+                        <table id="votesTable" class="datatable table table-light table-striped my-3 text-center">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No</th>
@@ -29,8 +29,6 @@
                                         <td>{{ $vote->candidate->nomor_urut }}</td>
                                         <td>{{ $vote->candidate->name ?? '-' }}</td>
                                         <td>{{ $vote->jumlah_vote }}</td>
-                                        <td class="d-flex space-between">
-                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -41,3 +39,12 @@
         </div>
     </div>
 @endsection
+
+{{-- menggunakan script tambahan karena developer tidak menemukan bug pada library data table yang tidak terpanggil hanya di page ini --}}
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#votesTable').DataTable();
+        });
+    </script>
+@endpush

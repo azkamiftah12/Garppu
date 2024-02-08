@@ -49,7 +49,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <a class="btn btn-red mr-2 mb-2" href="{{ route('votes.index') }}">Batal</a>
+                            <a class="btn btn-red mr-2 mb-2" href="{{ route('votes.index') }}">Kembali</a>
                             @if ($existingC1)
                                 <button type="submit" class="btn btn-yellow mr-2 mb-2">Ubah
                                     C1</button>

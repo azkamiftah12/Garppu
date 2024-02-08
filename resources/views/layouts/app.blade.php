@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-        content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu yang memiliki tujuan untuk memonitor kegiatan pemilu.">
+        content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu yang memiliki fungsi untuk mengawal kegiatan pemilu.">
     <link rel="icon" href="{{ asset('images/garppu-logo.png') }}" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         .dataTables_length {
             margin-bottom: 20px;

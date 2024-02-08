@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <h1 class="mb-5 text-center">Silahkan Masukkan Hasil Voting di TPS anda!</h1>
+                        <h1 class="text-center">Silahkan Masukkan Hasil Voting di TPS anda!</h1>
                         <div class="col-md-12 p-4">
                             @if ($existingVote ?? false)
                                 <div class="alert alert-success">
@@ -69,9 +69,6 @@
                                                                     pattern="[0-9]+" title="Hanya Bisa diinput Oleh Angka!"
                                                                     required>
                                                             </td>
-                                                            <td>
-
-                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
@@ -84,12 +81,12 @@
 
                                 <div class="container d-flex flex-column align-items-center justify-content-center mt-3"
                                     style="max-width: 250px">
-                                    <a class="btn btn-red btn-block mb-2" href="{{ route('votes.index') }}">Cancel</a>
+                                    <a class="btn btn-red btn-block mb-2" href="{{ route('votes.index') }}">Kembali</a>
                                     <button type="submit" class="btn btn-soft-blue btn-block mb-2"
-                                        @if ($existingVote ?? false) hidden @endif>Input Votes</button>
+                                        @if ($existingVote ?? false) hidden @endif>Masukkan Votes</button>
                                     @foreach ($batch as $batchnya)
                                         <a class="btn btn-yellow btn-block"
-                                            href="{{ route('c1.create', $batchnya->id) }}">Input C1
+                                            href="{{ route('c1.create', $batchnya->id) }}">Masukkan C1
                                             <br>
                                             <strong>
                                                 {{ $batchnya->vote_type }}

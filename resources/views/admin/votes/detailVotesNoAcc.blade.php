@@ -76,7 +76,7 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
 
                     <!-- Validation Button and Modal -->
                     <div class="text-center my-3">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validationModal">
+                        <button type="button" class="btn btn-soft-blue" data-toggle="modal" data-target="#validationModal">
                             Validasi
                         </button>
                     </div>
@@ -103,8 +103,8 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
                                     !
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                    <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Konfirmasi
+                                    <button type="button" class="btn btn-red" data-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-soft-blue" onclick="updateStatusAcc()">Konfirmasi
                                         Vote</button>
                                 </div>
                             </div>
