@@ -10,8 +10,8 @@
                 </div>
             @endif
             <div class="table-container" style="overflow-x: auto">
-                <table class="table table-secondary my-3 text-center">
-                    <thead>
+                <table class="datatable table table-light table-striped my-3 text-center">
+                    <thead class="thead-dark">
                         <tr>
                             <th>No</th>
                             <th>NIK</th>
@@ -24,7 +24,6 @@
                             <th>No. TPS</th>
                             <th>rekening bank</th>
                             <th>No. Rekening</th>
-                            <th>Type Pemilihan</th>
                             <th>Dapil</th>
                             <th>Waktu Input</th>
                             <th>Role</th>
@@ -45,7 +44,6 @@
                                 <td>{{ $user->no_tps ?? '-' }}</td>
                                 <td>{{ $user->rekening_bank ?? '-' }}</td>
                                 <td>{{ $user->no_rekening ?? '-' }}</td>
-                                <td>{{ $user->dapil->batch->vote_type ?? ('-' ?? '-') }}</td>
                                 <td>{{ $user->dapil->nama_dapil ?? ('-' ?? '-') }}</td>
                                 <td>{{ $user->created_at ?? '-' }}</td>
                                 <td>{{ $user->userRole ?? '-' }}</td>

@@ -23,7 +23,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $vote->nik }}</td>
                                         <td>{{ $vote->userprofile->nama ?? '-' }}</td>
-                                        <td class="d-flex space-between">
+                                        <td class="d-flex space-between justify-content-center">
                                             <a href="{{ route('admin.votes.detail', ['nik' => $vote->nik]) }}"
                                                 class="btn btn-info mr-2">Detail Votes</a>
                                             <!-- Validation Button and Modal -->
@@ -67,7 +67,7 @@
                 <div class="modal-body">
                     <div id="userData" class="card border-0 shadow rounded">
                         <div class="card-body p-5">
-                            <h1 class="text-center mb-3">ProfileKU</h1>
+                            <h1 class="text-center mb-3">Profile Relawan</h1>
                             <h5>Nama: <span id="modalNama"></span></h5>
                             <h5>NIK: <span id="modalNik"></span></h5>
                             <h5>No Telp: <span id="modalNoTelp"></span></h5>
@@ -80,13 +80,13 @@
                             <h5>Nomor Rekening Bank: <span id="modalNomorRekeningBank"></span></h5>
                         </div>
                     </div>
-                    <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <span
-                            id="modalNikConfirm"></span> dan nama relawan <span id="modalNamaConfirm"></span>? Data
+                    <h4 class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <strong
+                            id="modalNikConfirm"></strong> dan nama relawan <strong id="modalNamaConfirm"></strong>? Data
                         yang
-                        sudah disimpan tidak dapat diubah, silahkan cek kembali!</p>
+                        sudah disimpan tidak dapat diubah, silahkan cek kembali!</h4>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-red" data-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Konfirmasi
                         Vote</button>
                 </div>

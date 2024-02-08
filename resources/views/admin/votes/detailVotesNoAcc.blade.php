@@ -34,7 +34,7 @@
                             @endforeach
                             @if (!$c1Found)
                                 <div class="text-center alert alert-danger my-5">
-                                    <h3>Gambar C1 tidak tersedia.</h3>
+                                    <h3>Gambar C1 Belum Diinput.</h3>
                                 </div>
                             @endif
                             {{-- C1 show End --}}

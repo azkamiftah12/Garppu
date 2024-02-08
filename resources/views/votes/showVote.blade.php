@@ -24,8 +24,8 @@
                                 @csrf
                                 <div class="container">
                                     <div class="table-container" style="overflow-x: auto">
-                                        <table class="table table-secondary my-3 text-center">
-                                            <thead>
+                                        <table class="table table-light table-striped my-3 text-center">
+                                            <thead class="thead-dark">
                                                 <tr>
                                                     <th>Nomor Urut</th>
                                                     <th>Nama Paslon</th>
@@ -37,7 +37,7 @@
                                             </thead>
                                             <tbody>
                                                 @if ($existingVote ?? false)
-                                                    @foreach ($votes as $vote)
+                                                    @foreach ($votes->sortBy('candidate.nomor_urut') as $vote)
                                                         <tr>
                                                             <td>{{ $vote->candidate->nomor_urut }}</td>
                                                             <td>{{ $vote->candidate->name }}</td>
