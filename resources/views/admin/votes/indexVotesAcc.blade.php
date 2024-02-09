@@ -132,7 +132,7 @@
             console.log(response);
             $('#validationModal').modal('hide');
             // Redirect to detailVotesNoAcc page
-            window.location.href = '{{ route('admin.votes', ['nik' => $nik]) }}';
+            window.location.href = '{{ route('admin.votes.acc', ['nik' => $nik]) }}';
         },
         error: function(error) {
             console.error(error);
