@@ -26,7 +26,7 @@
                                         <td>{{ $vote->totalSuara }}</td>
                                         <td>
                                             <a href="{{ route('admin.votes.noacc.detail', ['nik' => $vote->nik]) }}"
-                                                class="btn btn-info">Detail</a>
+                                                class="btn btn-soft-blue">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach

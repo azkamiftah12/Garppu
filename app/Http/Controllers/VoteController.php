@@ -150,4 +150,20 @@ class VoteController extends Controller
 
         return redirect()->route('votes.index')->with('success', 'Vote berhasil dihapus.');
     }
+
+    public function indexQuickCount()
+    {
+        $batches = Batch::with('candidates')->get();
+        $user = Auth::user();
+
+        return view('quickcount.index', compact('user','batches'));
+    }
+
+    public function getQuickCountData()
+{
+    $batches = Batch::with('candidates')->get();
+    $user = Auth::user();
+
+    return response()->json(['batches' => $batches, 'user' => $user]);
+}
 }

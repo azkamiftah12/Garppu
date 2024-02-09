@@ -144,18 +144,20 @@ public function DetailUser($nik)
 
  public function detailVote($nik)
 {
-    // Ambil detail kepemilikan nik yang sesuai
+    // Ambil detail kepemilikan Vote yang sesuai dengan nik
     $voteDetails = Vote::where('votes.nik', $nik)
     ->where('votes.status_acc', 1)
-    ->leftJoin('c1', 'votes.nik', '=', 'c1.nik')
-    ->select(
-        'votes.*',
-        'c1.img_c1 as img_c1'
-    )
+    // ->leftJoin('c1', 'votes.nik', '=', 'c1.nik')
+    // ->select(
+    //     'votes.*',
+    //     'c1.img_c1 as img_c1'
+    // )
     ->get();
-
-    // Gunakan data yang diperoleh dalam view
-    return view('admin.votes.detailVotes', compact('voteDetails'));
+    $C1DetailsAcc = C1::where('C1.nik', $nik)
+    ->get();
+    $batches = Batch::with('candidates')->get();
+        $relawan = User::where('nik' ,$nik)->first();
+    return view('admin.votes.detailVotes', compact('voteDetails', 'C1DetailsAcc', 'batches', 'relawan'));
 }
 
 public function detailVotesNoAcc($nik)

@@ -15,8 +15,8 @@
             </div>
 
             <div class="table-container" style="overflow-x: auto">
-                <table class="table table-secondary my-3 text-center">
-                    <thead>
+                <table class="table table-light table-striped my-3 text-center">
+                    <thead class="thead-dark">
                         <tr>
                             {{-- <th>ID</th> --}}
                             <th>No</th>

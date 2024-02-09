@@ -3,15 +3,15 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-            <h1 class="my-5 text-center">All Relawan</h1>
+            <h1 class="my-5 text-center">All Paslon</h1>
             @if (session('success'))
                 <div class="alert alert-success">
                     <h5>{!! session('success') !!}</h5>
                 </div>
             @endif
             <div class="table-container" style="overflow-x: auto">
-                <table class="table table-secondary my-3 text-center">
-                    <thead>
+                <table class="table table-light table-striped my-3 text-center">
+                    <thead class="thead-dark">
                         <tr>
                             <td>No.</td>
                             <td>Nomor Urut</td>

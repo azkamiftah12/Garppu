@@ -5,15 +5,13 @@
         <div class="container">
             <div class="card border-0 shadow rounded">
                 <div class="card-body">
-
-
                     <h1 class="my-5 text-center">Vote belum Dikonfirmasi {{ $relawan->nama }}</h1>
                     @foreach ($batches as $batch)
                         <div class="border-0 shadow rounded col-md-12 p-4 mb-5"
                             style="background-color: var(--color-white-brown)">
 
 
-                            <h1 class="text-center">Vote {{ $batch->vote_type }}</h1>
+                            <h2 class="text-center">Vote {{ $batch->vote_type }}</h2>
 
                             {{-- C1 show start --}}
                             @php
@@ -36,16 +34,15 @@
                             @endforeach
                             @if (!$c1Found)
                                 <div class="text-center alert alert-danger my-5">
-                                    <h3>Gambar C1 tidak tersedia.</h3>
+                                    <h3>Gambar C1 Belum Diinput.</h3>
                                 </div>
                             @endif
                             {{-- C1 show End --}}
 
                             <div class="table-container" style="overflow-x: auto">
                                 <table class="table table-light table-striped my-3 text-center">
-                                    <thead>
+                                    <thead class="thead-dark">
                                         <tr>
-                                            <th>No</th>
                                             <th>Nomor Paslon</th>
                                             <th>Nama Paslon</th>
                                             <th>Jumlah Vote</th>
@@ -56,9 +53,8 @@
                                         $userVotes = $voteDetailsNoAcc->where('nik', $nik);
                                     @endphp
                                     <tbody>
-                                        @foreach ($batch->candidates as $index => $detail)
+                                        @foreach ($batch->candidates->sortBy('nomor_urut') as $index => $detail)
                                             <tr>
-                                                <td>{{ $index + 1 }}</td>
                                                 <td>{{ $detail->nomor_urut ?? '-' }}</td>
                                                 <td>{{ $detail->name }}</td>
                                                 <td>
@@ -80,7 +76,7 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
 
                     <!-- Validation Button and Modal -->
                     <div class="text-center my-3">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#validationModal">
+                        <button type="button" class="btn btn-soft-blue" data-toggle="modal" data-target="#validationModal">
                             Validasi
                         </button>
                     </div>
@@ -107,8 +103,8 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
                                     !
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                    <button type="button" class="btn btn-primary" onclick="updateStatusAcc()">Konfirmasi
+                                    <button type="button" class="btn btn-red" data-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-soft-blue" onclick="updateStatusAcc()">Konfirmasi
                                         Vote</button>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Daftar Anggota</h1>
+        <h1 class="text-center">Daftar Anggota</h1>
         <div class="d-flex justify-content-center my-5">
             <a href="{{ route('subrelawan.create') }}" class="btn btn-soft-blue">Tambah Anggota</a>
         </div>
@@ -14,8 +14,8 @@
         @endif
 
         <div class="table-container" style="overflow-x: auto">
-            <table class="table table-secondary my-3 text-center">
-                <thead>
+            <table class="table table-light table-striped my-3 text-center">
+                <thead class="thead-dark">
                     <tr>
                         <th>No</th>
                         <th>Nik Anggota</th>
@@ -34,7 +34,7 @@
                             <td>{{ $subRelawan->telephone }}</td>
                             <td>{{ $subRelawan->userprofile->nama ?? 'Unknown' }}</td>
                             <td>
-                                <div class="d-flex">
+                                <div class="d-flex space-between justify-content-center">
                                     <a href="{{ route('subrelawan.show', $subRelawan->nikSubRelawan) }}"
                                         class="btn btn-soft-blue mr-1">Lihat</a>
                                     <a href="{{ route('subrelawan.edit', $subRelawan->nikSubRelawan) }}"

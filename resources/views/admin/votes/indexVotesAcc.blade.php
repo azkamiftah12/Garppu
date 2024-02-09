@@ -3,7 +3,9 @@
 @section('content')
     <div class="wrapper">
         <div class="container">
-            <h1 class="my-5 text-center">Votes yang Sudah Di ACC</h1>
+            <div class="card border-0 shadow rounded">
+                <div class="card-body">
+                    <h1 class="my-5 text-center">Votes yang Sudah Di ACC</h1>
 
             <div class="table-container" style="overflow-x: auto">
                 <table class="datatable table table-light table-striped my-3 text-center">

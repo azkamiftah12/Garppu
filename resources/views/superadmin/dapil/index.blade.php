@@ -15,12 +15,11 @@
             </div>
 
             <div class="table-container" style="overflow-x: auto">
-                <table class="table table-secondary my-3 text-center">
-                    <thead>
+                <table class="table table-light table-striped my-3 text-center">
+                    <thead class="thead-dark">
                         <tr>
                             <th>No</th>
                             <th>Dapil</th>
-                            <th>Type Pemilihan</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -29,7 +28,6 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $dapil->nama_dapil }}</td>
-                                <td>{{ $dapil->batch->vote_type }}</td>
                                 <td>
                                     <a href="{{ route('superadmin.dapil.edit', $dapil->id) }}"
                                         class="btn btn-yellow">Edit</a>
