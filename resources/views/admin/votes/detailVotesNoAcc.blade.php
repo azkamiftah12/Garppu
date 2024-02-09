@@ -132,7 +132,7 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
                     console.log(response);
                     $('#validationModal').modal('hide');
                     // Redirect to detailVotesNoAcc page
-                    window.location.href = '{{ route('admin.votes', ['nik' => $nik]) }}';
+                    window.location.href = '{{ route('admin.votes.noacc', ['nik' => $nik]) }}';
                 },
                 error: function(error) {
                     console.error(error);

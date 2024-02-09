@@ -143,8 +143,8 @@
                                 <li class="{{ Request::is('admin/votesnoacc*') ? 'active' : '' }}">
                                     <a href="{{ url('/admin/votesnoacc') }}">Belum Tervalidasi</a>
                                 </li>
-                                <li class="{{ Request::is('admin/votesnoacc*') ? 'active' : '' }}">
-                                    <a href="{{ url('/admin/votesnoacc') }}">Belum Tervalidasi</a>
+                                <li class="{{ Request::is('admin/votestransfer*') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votestransfer') }}">Sudah Transfer</a>
                                 </li>
                             </ul>
                         </li>

@@ -124,6 +124,18 @@ public function DetailUser($nik)
      return view('admin.votes.indexVotesNoAcc', compact('votesnoacc'));
  }
 
+ public function VoteTransfer()
+ {
+     // Panggil metode quickCount untuk mendapatkan data kandidat dan jumlah vote
+     $votestransfer = Vote::select('nik', DB::raw('COUNT(*) as totalSuara'))
+                        ->where('status_acc', 2)
+                        ->groupBy('nik')
+                        ->get();
+
+     // Gunakan data yang diperoleh dalam view
+     return view('admin.votes.indexVotesTransfer', compact('votestransfer'));
+ }
+
  public function accvalidasi(Request $request, Vote $vote)
  {
      // Validasi input jika diperlukan
@@ -147,16 +159,11 @@ public function DetailUser($nik)
     // Ambil detail kepemilikan Vote yang sesuai dengan nik
     $voteDetails = Vote::where('votes.nik', $nik)
     ->where('votes.status_acc', 1)
-    // ->leftJoin('c1', 'votes.nik', '=', 'c1.nik')
-    // ->select(
-    //     'votes.*',
-    //     'c1.img_c1 as img_c1'
-    // )
     ->get();
-    $C1DetailsAcc = C1::where('C1.nik', $nik)
+    $C1DetailsAcc = C1::where('c1.nik', $nik)
     ->get();
     $batches = Batch::with('candidates')->get();
-        $relawan = User::where('nik' ,$nik)->first();
+    $relawan = User::where('nik' ,$nik)->first();
     return view('admin.votes.detailVotes', compact('voteDetails', 'C1DetailsAcc', 'batches', 'relawan'));
 }
 
@@ -165,16 +172,11 @@ public function detailVotesNoAcc($nik)
     // Ambil detail kepemilikan nik yang sesuai dan belum divalidasi
     $voteDetailsNoAcc = Vote::where('votes.nik', $nik)
         ->where('votes.status_acc', 0)
-        // ->leftJoin('c1', 'votes.nik', '=', 'c1.nik')
-        // ->select(
-        //     'votes.*',
-        //     'c1.img_c1 as img_c1'
-        // )
         ->get();
-    $C1DetailsNoAcc = C1::where('C1.nik', $nik)
+    $C1DetailsNoAcc = C1::where('c1.nik', $nik)
         ->get();
-        $batches = Batch::with('candidates')->get();
-        $relawan = User::where('nik' ,$nik)->first();
+    $batches = Batch::with('candidates')->get();
+    $relawan = User::where('nik' ,$nik)->first();
     return view('admin.votes.detailVotesNoAcc', compact('voteDetailsNoAcc',  'C1DetailsNoAcc', 'batches', 'relawan'));
 }
 

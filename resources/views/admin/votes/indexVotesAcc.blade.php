@@ -31,7 +31,6 @@
                                         <button type="button" class="btn btn-primary validationBtn" data-toggle="modal"
                                             data-target="#validationModal" data-nik="{{ $vote->nik }}"
                                             data-nama="{{ $vote->userprofile->nama ?? '-' }}"
-                                            data-nik="{{ $vote->userprofile->nik ?? '-' }}"
                                             data-noTelp="{{ $vote->userprofile->where('nik', $vote->nik)->first()->noTelp ?? '-' }}"
                                             data-dapil="{{ $vote->userprofile->where('nik', $vote->nik)->first()->dapil->nama_dapil ?? '-' }}"
                                             data-kelurahan="{{ $vote->userprofile->where('nik', $vote->nik)->first()->kelurahan ?? '-' }}"
@@ -39,7 +38,8 @@
                                             data-rw="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rw ?? '-' }}"
                                             data-no_tps="{{ $vote->userprofile->where('nik', $vote->nik)->first()->no_tps ?? '-' }}"
                                             data-rekening_bank="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rekening_bank ?? '-' }}"
-                                            data-no_rekening="{{ $vote->userprofile->where('nik', $vote->nik)->first()->no_rekening ?? '-' }}">
+                                            data-no_rekening="{{ $vote->userprofile->where('nik', $vote->nik)->first()->no_rekening ?? '-' }}"
+                                            onclick="updateStatusTransfer('{{ $vote->nik }}')">
                                             Transfer
                                         </button>
                                     </div>
@@ -78,13 +78,13 @@
                             <h5>Nomor Rekening Bank: <span id="modalNomorRekeningBank"></span></h5>
                         </div>
                     </div>
-                    <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <span
-                            id="modalNikConfirm"></span> dan nama relawan <span id="modalNamaConfirm"></span>? Data yang
+                    <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <strong
+                            id="modalNikConfirm"></strong> dan nama relawan <strong id="modalNamaConfirm"></strong>? Sebelum klik tombol <strong>Sudah Transfer</strong> harap lakukan transfer ke relawan terlebih dahulu sampai Berhasil ! Jika sudah harap simpan bukti transfer. Jika sudah silahkan klik tombol <strong>Sudah Transfer.</strong> Data yang
                         sudah disimpan tidak dapat diubah, silahkan cek kembali!</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" onclick="updateStatusTransfer()">Konfirmasi Vote</button>
+                    <button type="button" class="btn btn-primary" onclick="updateStatusTransfer()">Sudah Transfer</button>
                 </div>
             </div>
         </div>
@@ -104,9 +104,9 @@
                 var no_rekening = $(this).data('no_rekening');
 
                 $('#modalNama').text(nama);
-                // $('#modalNamaConfirm').text(nama);
+                $('#modalNamaConfirm').text(nama);
                 $('#modalNik').text(nik);
-                // $('#modalNikConfirm').text(nik);
+                $('#modalNikConfirm').text(nik);
                 $('#modalnoTelp').text(noTelp);
                 $('#modalDapil').text(dapil);
                 $('#modalKelurahan').text(kelurahan);
@@ -117,28 +117,28 @@
                 $('#modalNomorRekeningBank').text(no_rekening);
             });
         });
-        function updateStatusTransfer() {
-            // Implement logic to update status_acc to 1 for data related to the viewed NIK
-            var viewedNik = '{{ $nik }}';
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('admin.votes.updateStatusTransfer') }}',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    nik: viewedNik,
-                    // Tambahkan data lain yang diperlukan, jika ada
-                },
-                success: function(response) {
-                    console.log(response);
-                    $('#validationModal').modal('hide');
-                    // Redirect to detailVotesNoAcc page
-                    window.location.href = '{{ route('admin.votes', ['nik' => $nik]) }}';
-                },
-                error: function(error) {
-                    console.error(error);
-                    $('#validationModal').modal('hide');
-                }
-            });
+        function updateStatusTransfer(nik) {
+    // Implement logic to update status_acc to 1 for data related to the viewed NIK
+    var viewedNik = nik;
+    $.ajax({
+        type: 'POST',
+        url: '{{ route('admin.votes.updateStatusTransfer') }}',
+        data: {
+            _token: '{{ csrf_token() }}',
+            nik: viewedNik,
+            // Tambahkan data lain yang diperlukan, jika ada
+        },
+        success: function(response) {
+            console.log(response);
+            $('#validationModal').modal('hide');
+            // Redirect to detailVotesNoAcc page
+            window.location.href = '{{ route('admin.votes', ['nik' => $nik]) }}';
+        },
+        error: function(error) {
+            console.error(error);
+            $('#validationModal').modal('hide');
         }
+    });
+}
     </script>
 @endsection

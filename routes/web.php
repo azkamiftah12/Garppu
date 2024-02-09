@@ -50,6 +50,7 @@ Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.e
 Route::put('/votes/{vote}/updateacc', [VoteController::class, 'updateACC'])->name('votes.updateACC');
 Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
 Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
+Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCountDPRD');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
@@ -100,9 +101,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
     Route::get('/votes', [AdminController::class, 'AllVote'])->name('admin.votes');
     Route::get('/votesacc', [AdminController::class, 'VoteAcc'])->name('admin.votes');
-    Route::get('/votesnoacc', [AdminController::class, 'VoteNoAcc'])->name('admin.votes');
+    Route::get('/votesnoacc', [AdminController::class, 'VoteNoAcc'])->name('admin.votes.noacc');
+    Route::get('/votestransfer', [AdminController::class, 'VoteTransfer'])->name('admin.votes');
     Route::put('/votes/{vote}/accvalidasi', [AdminController::class, 'accvalidasi'])->name('admin.votes.accvalidasi');
-    Route::get('/votesacc/{nik}/detail', [AdminController::class, 'detailVote'])->name('admin.votes.detail');
+    Route::get('/votes/{nik}/detail', [AdminController::class, 'detailVote'])->name('admin.votes.detail');
     Route::get('/votesnoacc/{nik}/detail', [AdminController::class, 'detailVotesNoAcc'])->name('admin.votes.noacc.detail');
     Route::post('/admin/votes/update-status-acc', [AdminController::class, 'updateStatusAcc'])->name('admin.votes.updateStatusAcc');
     Route::post('/admin/votes/update-status-transfer', [AdminController::class, 'updateStatusTransfer'])->name('admin.votes.updateStatusTransfer');
@@ -127,12 +129,9 @@ Route::middleware(['auth.check'])->group(function () {
         Route::get('/anggota-relawan', function () {
             return view('anggota-relawan');
         });
-        // Route::get('/quickcount', function () {
-        //     return view('quickcount.index');
-        // });
-        Route::get('/quickcount', [VoteController::class, 'indexQuickCount'])->name('quickcount.index');
-        Route::get('/quickcount/data', [VoteController::class, 'getQuickCountData'])->name('quickcount.data');
-
+        Route::get('/quickcount', function () {
+            return view('quickcount.index');
+        });
         Route::get('/help', function () {
             return view('help');
         });
