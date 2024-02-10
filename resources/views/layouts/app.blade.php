@@ -23,6 +23,12 @@
             margin-bottom: 20px;
         }
 
+        @media (min-width: 600px) {
+            .voteField {
+                width: 25% !important;
+            }
+        }
+
         @media (max-width: 575.98px) {
             h1 {
                 font-size: 24px;

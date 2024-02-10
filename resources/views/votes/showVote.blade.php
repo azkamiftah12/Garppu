@@ -7,7 +7,7 @@
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <h1 class="text-center">Silahkan Masukkan Hasil Voting di TPS anda!</h1>
-                        <div class="col-md-12 p-4">
+                        <div class="col-md-12">
                             @if ($existingVote ?? false)
                                 <div class="alert alert-success">
                                     <h3 class="text-center">Anda telah Menginput jumlah suara @foreach ($batch as $batchnya)
@@ -22,60 +22,57 @@
                             <br>
                             <form method="post" action="{{ route('votes.store') }}">
                                 @csrf
-                                <div class="container">
-                                    <div class="table-container" style="overflow-x: auto">
-                                        <table class="table table-light table-striped my-3 text-center">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th>Nomor Urut</th>
-                                                    <th>Nama Paslon</th>
-                                                    <th>Jumlah Suara</th>
-                                                    @if ($existingVote ?? false)
-                                                        <th>Menu</th>
-                                                    @endif
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                <div class="table-container" style="overflow-x: auto">
+                                    <table class="table table-light table-striped my-3 text-center">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Nomor Urut</th>
+                                                <th>Nama Paslon</th>
+                                                <th>Jumlah Suara</th>
                                                 @if ($existingVote ?? false)
-                                                    @foreach ($votes->sortBy('candidate.nomor_urut') as $vote)
-                                                        <tr>
-                                                            <td>{{ $vote->candidate->nomor_urut }}</td>
-                                                            <td>{{ $vote->candidate->name }}</td>
-                                                            <td class="d-flex justify-content-center">
-                                                                <input type="text" class="form-control text-center w-25"
-                                                                    name="jumlah_vote_{{ $vote->id }}" pattern="[0-9]+"
-                                                                    title="Hanya Bisa diinput Oleh Angka!" required
-                                                                    @if ($existingVote) value="{{ $vote->jumlah_vote }}"
-                                                                    readonly  {{-- Make the input readonly if an existing vote is found --}} @endif>
-                                                            </td>
-                                                            <td>
-                                                                @if ($existingVote ?? false)
-                                                                    <a href="{{ route('votes.edit', $vote->id) }}"
-                                                                        class="btn btn-yellow mr-2">Edit</a>
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @else
-                                                    @foreach ($candidates->sortBy('nomor_urut') as $candidate)
-                                                        <tr>
-                                                            <td>{{ $candidate->nomor_urut }}</td>
-                                                            <td>{{ $candidate->name }}</td>
-                                                            <td class="d-flex justify-content-center">
-                                                                <input type="hidden" name="candidate_ids[]"
-                                                                    value="{{ $candidate->id }}">
-                                                                <input type="text" class="form-control text-center w-25"
-                                                                    name="jumlah_vote_{{ $candidate->id }}"
-                                                                    pattern="[0-9]+" title="Hanya Bisa diinput Oleh Angka!"
-                                                                    required>
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
+                                                    <th>Menu</th>
                                                 @endif
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($existingVote ?? false)
+                                                @foreach ($votes->sortBy('candidate.nomor_urut') as $vote)
+                                                    <tr>
+                                                        <td>{{ $vote->candidate->nomor_urut }}</td>
+                                                        <td>{{ $vote->candidate->name }}</td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <input type="text" class="form-control text-center voteField"
+                                                                name="jumlah_vote_{{ $vote->id }}" pattern="[0-9]+"
+                                                                title="Hanya Bisa diinput Oleh Angka!" required
+                                                                @if ($existingVote) value="{{ $vote->jumlah_vote }}"
+                                                                    readonly  {{-- Make the input readonly if an existing vote is found --}} @endif>
+                                                        </td>
+                                                        <td>
+                                                            @if ($existingVote ?? false)
+                                                                <a href="{{ route('votes.edit', $vote->id) }}"
+                                                                    class="btn btn-yellow mr-2">Edit</a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                @foreach ($candidates->sortBy('nomor_urut') as $candidate)
+                                                    <tr>
+                                                        <td>{{ $candidate->nomor_urut }}</td>
+                                                        <td>{{ $candidate->name }}</td>
+                                                        <td class="d-flex justify-content-center">
+                                                            <input type="hidden" name="candidate_ids[]"
+                                                                value="{{ $candidate->id }}">
+                                                            <input type="text" class="form-control text-center voteField"
+                                                                name="jumlah_vote_{{ $candidate->id }}" pattern="[0-9]+"
+                                                                title="Hanya Bisa diinput Oleh Angka!" required>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        </tbody>
+                                    </table>
                                 </div>
 
 

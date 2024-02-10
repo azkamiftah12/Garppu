@@ -32,9 +32,9 @@
                                                     data-toggle="modal" data-target="#validationModal"
                                                     data-nik="{{ $vote->nik }}"
                                                     data-nama="{{ $vote->userprofile->nama ?? '-' }}"
-                                                    data-noTelp="{{ $vote->userprofile->where('nik', $vote->nik)->first()->noTelp ?? '-' }}"
+                                                    data-telp="{{ $vote->userprofile->noTelp ?? '-' }}"
                                                     data-dapil="{{ $vote->userprofile->where('nik', $vote->nik)->first()->dapil->nama_dapil ?? '-' }}"
-                                                    data-kelurahan="{{ $vote->userprofile->where('nik', $vote->nik)->first()->kelurahan ?? '-' }}"
+                                                    data-kelurahan="{{ $vote->userprofile->kelurahan ?? '-' }}"
                                                     data-rt="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rt ?? '-' }}"
                                                     data-rw="{{ $vote->userprofile->where('nik', $vote->nik)->first()->rw ?? '-' }}"
                                                     data-no_tps="{{ $vote->userprofile->where('nik', $vote->nik)->first()->no_tps ?? '-' }}"
@@ -68,7 +68,7 @@
                                     <h1 class="text-center mb-3">Profile Relawan</h1>
                                     <h5>Nama: <span id="modalNama"></span></h5>
                                     <h5>NIK: <span id="modalNik"></span></h5>
-                                    <h5>No Telepon: <span id="modalnoTelp"></span></h5>
+                                    <h5>No Telepon: <span id="modalTelp"></span></h5>
                                     <!-- Menambahkan ini untuk no telepon -->
                                     <h5>Dapil: <span id="modalDapil"></span></h5>
                                     <h5>Kelurahan: <span id="modalKelurahan"></span></h5>
@@ -80,13 +80,13 @@
                                 </div>
                             </div>
                             <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <span
-                                    id="modalNikConfirm"></span> dan nama relawan <span id="modalNamaConfirm"></span>? Data
+                                    id="modalNik"></span> dan nama relawan <span id="modalNama"></span>? Data
                                 yang
                                 sudah disimpan tidak dapat diubah, silahkan cek kembali!</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-red" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-soft-blue transferBtn">Konfirmasi
+                            <button type="button" class="btn btn-soft-blue transferBtn">Transfer
                                 Vote</button>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     $('.validationBtn').click(function() {
                         var nama = $(this).data('nama');
                         nik = $(this).data('nik'); // Assign the value to the nik variable
-                        var noTelp = $(this).data('noTelp');
+                        var telp = $(this).data('telp');
                         var dapil = $(this).data('dapil');
                         var kelurahan = $(this).data('kelurahan');
                         var rt = $(this).data('rt');
@@ -111,7 +111,7 @@
                         // $('#modalNamaConfirm').text(nama);
                         $('#modalNik').text(nik);
                         // $('#modalNikConfirm').text(nik);
-                        $('#modalnoTelp').text(noTelp);
+                        $('#modalTelp').text(telp);
                         $('#modalDapil').text(dapil);
                         $('#modalKelurahan').text(kelurahan);
                         $('#modalRt').text(rt);

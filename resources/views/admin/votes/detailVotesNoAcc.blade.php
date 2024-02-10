@@ -76,6 +76,9 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
 
                     <!-- Validation Button and Modal -->
                     <div class="text-center my-3">
+                        <a href="{{ url('/admin/votesnoacc') }}" class="btn btn-red mr-4" href>
+                            Kembali
+                        </a>
                         <button type="button" class="btn btn-soft-blue" data-toggle="modal" data-target="#validationModal">
                             Validasi
                         </button>
