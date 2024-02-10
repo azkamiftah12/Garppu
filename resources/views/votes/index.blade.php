@@ -12,20 +12,40 @@
                             @else
                                 <div class="border-0 shadow rounded col-md-12 p-4 mb-5"
                                     style="background-color: var(--color-white-brown)">
-                                    <h1 class="text-center" style="color: var(--color-yellow)">Hasil QuickCount
+                                    <h1 class="text-center" style="color: var(--color-yellow)">Paslon
                                         {{ $batch->vote_type }}</h1>
 
-                                    {{-- Tampilkan total hasil jumlah_vote per kandidat --}}
-                                    {{-- @foreach ($candidatesWithVotesDPRD as $candidate)
-                                <div class="mb-3">
-                                    <h4>Nama Paslon: {{ $candidate->name ?? '-' }}</h4>
-                                    <p>Partai: {{ $candidate->nama_partai ?? '-' }}</p>
-                                    <p>Total Votes: {{ $candidate->votes->sum('jumlah_vote') ?? '-' }}</p>
-                                </div>
-                            @endforeach --}}
+                                    <div class="d-flex justify-content-center my-3">
+                                        <a class="btn btn-soft-blue flex-fill" style="max-width: 350px"
+                                            href="{{ route('votes.showVote', $batch->id) }}">Input Vote
+                                            {{ $batch->vote_type }}</a>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        @foreach ($batch->candidates->sortBy('nomor_urut') as $candidate)
+                                            <div class="col-md-4 my-3">
+                                                <div class="card border-0 shadow rounded h-100">
+                                                    <div class="card-body d-flex flex-column">
+                                                        <div>
+                                                            <h4 class="text-center font-weight-bold">Nomor Urut:
+                                                                {{ $candidate->nomor_urut ?? '-' }}</h4>
+                                                            <h4 class="text-center font-weight-bold my-4"
+                                                                style="color: var(--indigo)">
+                                                                {{ $candidate->name ?? '-' }}
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer border-top border-bottom mb-3"
+                                                        style="height: 110px;">
+                                                        <h5 class="pb-2 mb-0 text-center">
+                                                            {{ $candidate->partai->nama_partai ?? '-' }}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
 
-
-                                    @foreach ($batch->candidates->sortBy('nomor_urut') as $candidate)
+                                    {{-- @foreach ($batch->candidates->sortBy('nomor_urut') as $candidate)
                                         <div class="card border-0 shadow rounded mb-3">
                                             <div class="card-body">
                                                 <h4 class="font-weight-bold">Nomor Urut: {{ $candidate->nomor_urut ?? '-' }}
@@ -38,13 +58,8 @@
                                                 <h5>Total Suara: {{ $candidate->votes->sum('jumlah_vote') ?? '-' }}</h5>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    @endforeach --}}
 
-                                    <div class="d-flex justify-content-center my-3">
-                                        <a class="btn btn-soft-blue flex-fill" style="max-width: 350px"
-                                            href="{{ route('votes.showVote', $batch->id) }}">Input Vote
-                                            {{ $batch->vote_type }}</a>
-                                    </div>
                                 </div>
                             @endif
                         @endforeach
