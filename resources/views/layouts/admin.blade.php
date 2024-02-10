@@ -134,17 +134,17 @@
                             <a href="#homeSubmenuVotes" data-toggle="collapse" aria-expanded="false"
                                 class="dropdown-toggle">Votes</a>
                             <ul class="collapse list-unstyled" id="homeSubmenuVotes">
-                                <li class="{{ Request::is('admin/votes') ? 'active' : '' }}">
-                                    <a href="{{ url('/admin/votes') }}">Votes Log</a>
+                                <li class="{{ Request::is('admin/votesnoacc*') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votesnoacc') }}">Belum Tervalidasi</a>
                                 </li>
                                 <li class="{{ Request::is('admin/votesacc*') ? 'active' : '' }}">
                                     <a href="{{ url('/admin/votesacc') }}">Tervalidasi</a>
                                 </li>
-                                <li class="{{ Request::is('admin/votesnoacc*') ? 'active' : '' }}">
-                                    <a href="{{ url('/admin/votesnoacc') }}">Belum Tervalidasi</a>
-                                </li>
                                 <li class="{{ Request::is('admin/votestransfer*') ? 'active' : '' }}">
                                     <a href="{{ url('/admin/votestransfer') }}">Sudah Transfer</a>
+                                </li>
+                                <li class="{{ Request::is('admin/votes') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votes') }}">Votes Log</a>
                                 </li>
                             </ul>
                         </li>

@@ -75,6 +75,10 @@ $candidateVotes = $userVotes->where('candidate_id', $detail->id)->sum('jumlah_vo
                         </div>
                     @endforeach
 
+                    <div class="text-center my-3">
+                        <a class="btn btn-red" href="{{ url('/admin/votesacc') }}">Kembali</a>
+                    </div>
+
                     {{-- @if ($voteDetails->isNotEmpty())
                         @php $c1Found = false; @endphp
                         @foreach ($voteDetails as $detail)

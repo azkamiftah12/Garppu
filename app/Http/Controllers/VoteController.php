@@ -161,9 +161,21 @@ class VoteController extends Controller
 
     public function getQuickCountData()
 {
-    $batches = Batch::with('candidates')->get();
-    $user = Auth::user();
+    $batches = Batch::with(['candidates' => function ($query) {
+        $query->withSum('votes', 'jumlah_vote'); // Eager load candidates with the sum of jumlah_vote
+    }])->get();
 
-    return response()->json(['batches' => $batches, 'user' => $user]);
+    $data = [];
+    foreach ($batches as $batch) {
+        $batchData = [];
+        foreach ($batch->candidates as $candidate) {
+            $candidateData = $candidate->toArray();
+            $candidateData['jumlah_vote'] = $candidate->votes_sum_jumlah_vote ?? 0; // Access the summed value
+            $batchData[] = $candidateData;
+        }
+        $data[$batch->id] = $batchData;
+    }
+
+    return response()->json($data);
 }
 }

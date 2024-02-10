@@ -16,19 +16,23 @@
                                 <canvas class="my-5" id="myChart_{{ $batch->id }}" width="400"
                                     height="200"></canvas>
 
+                                {{-- <button class="btn btn-red"
+                                    onclick="updateChartWithData({{ $batch->id }})">Fetch</button> --}}
+
                                 @php
-                                    $labels = $batch->candidates->pluck('name')->toArray();
-                                    $data = $batch->candidates
+                                    $sortedCandidates = $batch->candidates->sortBy('nomor_urut');
+                                    $labels = $sortedCandidates->pluck('name')->toArray();
+                                    $data = $sortedCandidates
                                         ->pluck('votes')
                                         ->map(function ($votes) {
                                             return $votes->sum('jumlah_vote');
                                         })
                                         ->toArray();
 
-                                    // Generate random colors for each bar
-                                    $colors = [];
-                                    for ($i = 0; $i < count($labels); $i++) {
-                                        $colors[] = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.8)';
+                                    // Generate random colors for each bar. first 6 color is already generated
+                                    $colors = ['rgba(184, 76, 125, 0.7)', 'rgba(80, 180, 123, 0.7)', 'rgba(134, 80, 166, 0.7)', 'rgba(104, 129, 216, 0.7)', 'rgba(193, 135, 57, 0.7)', 'rgba(184, 76, 62, 0.7)'];
+                                    for ($i = 6; $i < count($sortedCandidates); $i++) {
+                                        $colors[] = 'rgba(' . rand(0, 255) . ', ' . rand(0, 255) . ', ' . rand(0, 255) . ', 0.7)';
                                     }
                                 @endphp
                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"
@@ -70,30 +74,73 @@
                                         },
                                         plugins: [ChartDataLabels],
                                     });
+
+                                    async function updateChartWithData(batchId) {
+                                        const url = '{{ route('quickcount.data') }}';
+                                        const response = await fetch(url);
+                                        const datapoints = await response.json();
+
+                                        // Map the fetched data to the sorted order of candidates based on nomor_urut
+                                        const sortedCandidates = @json($sortedCandidates->pluck('id')->toArray());
+                                        const sortedData = sortedCandidates.map(candidateId => {
+                                            const candidateData = datapoints[batchId].find(candidate => candidate.id === candidateId);
+                                            return candidateData ? candidateData.jumlah_vote : 0;
+                                        });
+
+                                        const ctx = document.getElementById('myChart_' + batchId);
+                                        const chart = Chart.getChart(ctx);
+                                        chart.data.datasets[0].data = sortedData;
+
+                                        const maxVote = datapoints[batchId].reduce((sum, candidate) => sum + parseInt(candidate.jumlah_vote || 0),
+                                            0);
+                                        chart.options.scales.y.max = maxVote;
+                                        chart.update();
+                                    }
+                                    setInterval(() => {
+                                        updateChartWithData({{ $batch->id }});
+                                    }, 10000);
                                 </script>
 
-                                @foreach ($batch->candidates->sortBy('nomor_urut') as $candidate)
-                                    <div class="card border-0 shadow rounded mb-3">
-                                        <div class="card-body">
-                                            <h4 class="font-weight-bold">Nomor Urut: {{ $candidate->nomor_urut ?? '-' }}
-                                            </h4>
-                                            <h4 class="text-center font-weight-bold mb-5"
-                                                style="color: var(--color-yellow)">{{ $candidate->name ?? '-' }}</h4>
-                                            <h5 class="border-bottom pb-2">Partai:
-                                                {{ $candidate->partai->nama_partai ?? '-' }}</h5>
-                                            <h5>Total Suara: {{ $candidate->votes->sum('jumlah_vote') ?? '-' }}</h5>
+                                <div class="row justify-content-center">
+                                    @foreach ($batch->candidates->sortBy('nomor_urut') as $index => $candidate)
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card border-0 shadow rounded h-100"
+                                                style="background-color: {{ $colors[$loop->index] }}">
+                                                <div class="card-body d-flex flex-column">
+                                                    <div>
+                                                        <h4 class="text-center font-weight-bold">Nomor Urut:
+                                                            {{ $candidate->nomor_urut ?? '-' }}</h4>
+                                                        <h4 class="text-center font-weight-bold my-4"
+                                                            style="color: var(--indigo)">
+                                                            {{ $candidate->name ?? '-' }}
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer border-top border-bottom mb-3"
+                                                    style="height: 110px;">
+                                                    <h5 class="pb-2 mb-0 text-center">
+                                                        {{ $candidate->partai->nama_partai ?? '-' }}
+                                                    </h5>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
+
+
+
+
+                                {{--
                                 <div class="card border-0 shadow rounded mb-3">
                                     <div class="card-body">
                                         <h4 class="text-center font-weight-bold mb-5" style="color: var(--color-yellow)">
                                             Total Suara Masuk</h4>
-                                        <h5>Total Suara:
+                                            <h5>Total Suara:
                                             {{ $batch->candidates->sum(function ($candidate) {return $candidate->votes->sum('jumlah_vote');}) }}
                                         </h5>
                                     </div>
                                 </div>
+                                --}}
                             </div>
                         @endif
                     @endforeach

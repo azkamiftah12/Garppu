@@ -37,21 +37,6 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::get('/profileku/edit', [AuthController::class, 'editProfileForm'])->name('profile.edit.form');
 Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
 
-//C1
-Route::get('/c1/create/{batchID}', [C1Controller::class, 'create'])->name('c1.create');
-Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
-Route::put('/c1/{c1}', [C1Controller::class, 'update'])->name('c1.update');
-
-// Vote
-Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
-Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
-Route::get('/votes/{batchID}', [VoteController::class, 'show'])->name('votes.showVote');
-Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
-Route::put('/votes/{vote}/updateacc', [VoteController::class, 'updateACC'])->name('votes.updateACC');
-Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
-Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
-Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCountDPRD');
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
 Route::resource('userprofiles', UserProfileController::class);
@@ -129,12 +114,26 @@ Route::middleware(['auth.check'])->group(function () {
         Route::get('/anggota-relawan', function () {
             return view('anggota-relawan');
         });
-        Route::get('/quickcount', function () {
-            return view('quickcount.index');
-        });
+        Route::get('/quickcount', [VoteController::class, 'indexQuickCount'])->name('quickcount.index');
+        Route::get('/quickcount/data', [VoteController::class, 'getQuickCountData'])->name('quickcount.data');
         Route::get('/help', function () {
             return view('help');
         });
         Route::get('/profileku', [AuthController::class, 'profileku'])->name('profileku');
+
+        //C1
+Route::get('/c1/create/{batchID}', [C1Controller::class, 'create'])->name('c1.create');
+Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
+Route::put('/c1/{c1}', [C1Controller::class, 'update'])->name('c1.update');
+
+// Vote
+Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
+Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
+Route::get('/votes/{batchID}', [VoteController::class, 'show'])->name('votes.showVote');
+Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
+Route::put('/votes/{vote}/updateacc', [VoteController::class, 'updateACC'])->name('votes.updateACC');
+Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
+Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
+Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCountDPRD');
     });
 
