@@ -79,15 +79,15 @@
                                     <h5>Nomor Rekening Bank: <span id="modalNomorRekeningBank"></span></h5>
                                 </div>
                             </div>
-                            <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <span
-                                    id="modalNik"></span> dan nama relawan <span id="modalNama"></span>? Data
+                            <p class="text-center mt-3">Anda yakin ingin Konfirmasi Vote dengan NIK <strong
+                                    id="modalNikConfirm"></strong> dan nama relawan <strong id="modalNamaConfirm"></strong>?
+                                Data
                                 yang
                                 sudah disimpan tidak dapat diubah, silahkan cek kembali!</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-red" data-dismiss="modal">Batal</button>
-                            <button type="button" class="btn btn-soft-blue transferBtn">Transfer
-                                Vote</button>
+                            <button type="button" class="btn btn-soft-blue transferBtn">Konfirmasi Transfer</button>
                         </div>
                     </div>
                 </div>
@@ -108,9 +108,9 @@
                         var no_rekening = $(this).data('no_rekening');
 
                         $('#modalNama').text(nama);
-                        // $('#modalNamaConfirm').text(nama);
+                        $('#modalNamaConfirm').text(nama);
                         $('#modalNik').text(nik);
-                        // $('#modalNikConfirm').text(nik);
+                        $('#modalNikConfirm').text(nik);
                         $('#modalTelp').text(telp);
                         $('#modalDapil').text(dapil);
                         $('#modalKelurahan').text(kelurahan);

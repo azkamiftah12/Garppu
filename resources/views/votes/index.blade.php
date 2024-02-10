@@ -17,7 +17,7 @@
 
                                     <div class="d-flex justify-content-center my-3">
                                         <a class="btn btn-soft-blue flex-fill" style="max-width: 350px"
-                                            href="{{ route('votes.showVote', $batch->id) }}">Input Vote
+                                            href="{{ route('votes.showVote', $batch->id) }}">Input Hasil Suara
                                             {{ $batch->vote_type }}</a>
                                     </div>
                                     <div class="row justify-content-center">
