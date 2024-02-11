@@ -15,6 +15,7 @@ class Vote extends Model
         'nik',
         'candidate_id',
         'jumlah_vote',
+        'status_acc',
     ];
 
     // Relasi ke model Candidate

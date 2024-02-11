@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\C1;
-use App\Models\User; // Pastikan model Userprofile diimpor
-
+use App\Models\Batch;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 class C1Controller extends Controller
 {
     public function index()
@@ -14,46 +16,85 @@ class C1Controller extends Controller
         return view('c1.index', compact('c1Data'));
     }
 
-    public function create()
+    public function create($batchID)
     {
-
-        return view('c1.create');
+        $batches = Batch::where('id', $batchID)->get();
+        $existingC1 = C1::where('nik', Auth::user()->nik)
+            ->
+            // whereHas('candidate', function ($query) use ($batchID) {
+            //     $query->where('batch_id', $batchID);
+            // })
+            where('batch_id', $batchID)
+            ->first();
+        return view('c1.create', compact('batches', 'existingC1'));
     }
 
     public function store(Request $request)
-    {
+{
+    try {
         $request->validate([
-            'nik' => 'required|exists:userprofile,nik',
-            'img_c1' => 'required|string',
+            'img_c1' => 'required|image|mimes:png,jpg,jpeg',
+            'batch_id' => 'required|exists:batches,id'
         ]);
 
-        C1::create($request->all());
+        $user = Auth::user();
 
-        return redirect()->route('c1.index')->with('success', 'Data C1 berhasil disimpan.');
+        // Automatically fill the 'nik' field with the user's 'nik'
+        $request->merge(['nik' => $user->nik]);
+
+        $imgC1Path = $request->file('img_c1')->store('public/C1');
+        $imgC1Path = str_replace('public/', 'storage/', $imgC1Path);
+
+        C1::create([
+            'nik' => $request->nik,
+            'img_c1' => $imgC1Path,
+            'batch_id' => $request->batch_id
+        ]);
+
+        return redirect()->route('votes.index')->with('success', 'Data C1 berhasil disimpan.');
+    } catch (\Exception $e) {
+        // An error occurred during C1 creation
+        return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data C1. Silakan coba lagi.');
     }
+}
+
 
     public function show(C1 $c1)
     {
         return view('c1.show', compact('c1'));
     }
 
-    public function edit(C1 $c1)
+    public function edit($id)
     {
-        $userprofiles = User::all();
-        return view('c1.edit', compact('c1', 'userprofiles'));
+        $user = Auth::user();
+        $c1  = C1::where('nik', $user->nik)->findOrFail($id);
+        return view('c1.edit', compact('c1'));
     }
 
-    public function update(Request $request, C1 $c1)
-    {
-        $request->validate([
-            'nik' => 'required|exists:userprofile,nik',
-            'img_c1' => 'required|string',
-        ]);
+    public function update(Request $request, $id)
+{
+    $c1 = C1::findOrFail($id);
 
-        $c1->update($request->all());
+    // Validasi input jika diperlukan
+    $request->validate([
+        'img_c1' => 'required|image|mimes:png,jpg,jpeg',
+    ]);
 
-        return redirect()->route('c1.index')->with('success', 'Data C1 berhasil diperbarui.');
-    }
+    // Hapus gambar lama sebelum menyimpan yang baru
+    Storage::delete(str_replace('storage/', 'public/', $c1->img_c1));
+
+    // Simpan gambar baru
+    $imgC1Path = $request->file('img_c1')->store('public/C1');
+    $imgC1Path = str_replace('public/', 'storage/', $imgC1Path);
+
+    // Update data di dalam database
+    $c1->update([
+        'img_c1' => $imgC1Path,
+    ]);
+
+    return redirect()->route('votes.index')->with('success', 'Data C1 berhasil diperbarui.');
+}
+
 
     public function destroy(C1 $c1)
     {

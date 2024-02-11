@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description"
-        content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu yang memiliki tujuan untuk memonitor kegiatan pemilu.">
+        content="Garppu merupakan singkatan dari Gerakan Pemantau Pemilu yang memiliki fungsi untuk mengawal kegiatan pemilu.">
     <link rel="icon" href="{{ asset('images/garppu-logo.png') }}" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -28,6 +28,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js">
+    </script>
 
     <style>
         .dataTables_length {
@@ -35,10 +38,27 @@
             margin-right: 20px;
         }
 
+        @media (min-width: 600px) {
+            .voteField {
+                width: 25% !important;
+            }
+        }
 
         @media (max-width: 575.98px) {
             h1 {
                 font-size: 24px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            h4 {
+                font-size: 19px;
             }
 
             h5 {
@@ -115,6 +135,25 @@
                         <li class="{{ Request::is('admin/candidates') ? 'active' : '' }}">
                             <a href="{{ url('/admin/candidates') }}">Paslon</a>
                         </li>
+
+                        <li class="">
+                            <a href="#homeSubmenuVotes" data-toggle="collapse" aria-expanded="false"
+                                class="dropdown-toggle">Votes</a>
+                            <ul class="collapse list-unstyled" id="homeSubmenuVotes">
+                                <li class="{{ Request::is('admin/votesnoacc*') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votesnoacc') }}">Belum Tervalidasi</a>
+                                </li>
+                                <li class="{{ Request::is('admin/votesacc*') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votesacc') }}">Tervalidasi</a>
+                                </li>
+                                <li class="{{ Request::is('admin/votestransfer*') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votestransfer') }}">Sudah Transfer</a>
+                                </li>
+                                <li class="{{ Request::is('admin/votes') ? 'active' : '' }}">
+                                    <a href="{{ url('/admin/votes') }}">Votes Log</a>
+                                </li>
+                            </ul>
+                        </li>
                     @endif
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
@@ -166,7 +205,7 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('.table').DataTable({
+            $('.datatable').DataTable({
                 dom: 'lBfrtip',
                 buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
                 lengthMenu: [

@@ -26,6 +26,7 @@ use App\Http\Controllers\SubRelawanController;
 use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DapilController;
 use App\Http\Controllers\VoteController;
+use App\Http\Controllers\C1Controller;
 
 Route::redirect('/', '/dashboard');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -35,15 +36,6 @@ Route::post('/signup', [AuthController::class, 'signup']);
 
 Route::get('/profileku/edit', [AuthController::class, 'editProfileForm'])->name('profile.edit.form');
 Route::post('/profileku/edit', [AuthController::class, 'editProfile'])->name('profile.edit');
-
-// Vote
-Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
-Route::get('/votes/create', [VoteController::class, 'create'])->name('votes.create');
-Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
-Route::get('/votes/{vote}', [VoteController::class, 'show'])->name('votes.show');
-Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
-Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
-Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::resource('subrelawan', SubRelawanController::class);
@@ -92,7 +84,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/relawan', [AdminController::class, 'getUsersRelawan'])->name('admin.relawan');
     Route::get('/anggota-relawan', [AdminController::class, 'allSubRelawans'])->name('admin.anggota-relawan');
-
+    Route::get('/votes', [AdminController::class, 'AllVote'])->name('admin.votes');
+    Route::get('/votesacc', [AdminController::class, 'VoteAcc'])->name('admin.votes.acc');
+    Route::get('/votesnoacc', [AdminController::class, 'VoteNoAcc'])->name('admin.votes.noacc');
+    Route::get('/votestransfer', [AdminController::class, 'VoteTransfer'])->name('admin.votes');
+    Route::put('/votes/{vote}/accvalidasi', [AdminController::class, 'accvalidasi'])->name('admin.votes.accvalidasi');
+    Route::get('/votes/{nik}/detail', [AdminController::class, 'detailVote'])->name('admin.votes.detail');
+    Route::get('/votesnoacc/{nik}/detail', [AdminController::class, 'detailVotesNoAcc'])->name('admin.votes.noacc.detail');
+    Route::post('/admin/votes/update-status-acc', [AdminController::class, 'updateStatusAcc'])->name('admin.votes.updateStatusAcc');
+    Route::post('/admin/votes/update-status-transfer', [AdminController::class, 'updateStatusTransfer'])->name('admin.votes.updateStatusTransfer');
 
     // Candidate routes
     Route::get('/candidates', [CandidateController::class, 'index'])->name('admin.candidates.index');
@@ -114,12 +114,26 @@ Route::middleware(['auth.check'])->group(function () {
         Route::get('/anggota-relawan', function () {
             return view('anggota-relawan');
         });
-        Route::get('/quickcount', function () {
-            return view('quickcount.index');
-        });
+        Route::get('/quickcount', [VoteController::class, 'indexQuickCount'])->name('quickcount.index');
+        Route::get('/quickcount/data', [VoteController::class, 'getQuickCountData'])->name('quickcount.data');
         Route::get('/help', function () {
             return view('help');
         });
         Route::get('/profileku', [AuthController::class, 'profileku'])->name('profileku');
+
+        //C1
+Route::get('/c1/create/{batchID}', [C1Controller::class, 'create'])->name('c1.create');
+Route::post('/c1', [C1Controller::class, 'store'])->name('c1.store');
+Route::put('/c1/{c1}', [C1Controller::class, 'update'])->name('c1.update');
+
+// Vote
+Route::get('/votes', [VoteController::class, 'index'])->name('votes.index');
+Route::post('/votes', [VoteController::class, 'store'])->name('votes.store');
+Route::get('/votes/{batchID}', [VoteController::class, 'show'])->name('votes.showVote');
+Route::get('/votes/{vote}/edit', [VoteController::class, 'edit'])->name('votes.edit');
+Route::put('/votes/{vote}/updateacc', [VoteController::class, 'updateACC'])->name('votes.updateACC');
+Route::put('/votes/{vote}', [VoteController::class, 'update'])->name('votes.update');
+Route::delete('/votes/{vote}', [VoteController::class, 'destroy'])->name('votes.destroy');
+Route::get('/quick-count', [VoteController::class, 'index'])->name('quickCountDPRD');
     });
 

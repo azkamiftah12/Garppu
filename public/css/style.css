@@ -226,6 +226,7 @@ th {
 
 label {
   display: inline-block;
+  font-weight: 800;
   margin-bottom: 0.5rem; }
 
 button {
@@ -4898,7 +4899,7 @@ a.close.disabled {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 800px;
     margin: 1.75rem auto; }
   .modal-dialog-scrollable {
     max-height: calc(100% - 3.5rem); }
