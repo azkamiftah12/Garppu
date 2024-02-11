@@ -51,7 +51,7 @@ class C1Controller extends Controller
             'batch_id' => $request->batch_id
         ]);
 
-        return redirect()->route('votes.index')->with('success', 'Data C1 berhasil disimpan.');
+        return redirect()->route('votes.index')->with('success', 'Gambar C1 berhasil disimpan.');
     } catch (\Exception $e) {
         // An error occurred during C1 creation
         return redirect()->back()->withInput()->with('error', 'Gagal menyimpan data C1. Silakan coba lagi.');

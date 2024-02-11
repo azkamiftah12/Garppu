@@ -82,8 +82,12 @@
                                     <button type="submit" class="btn btn-soft-blue btn-block mb-2"
                                         @if ($existingVote ?? false) hidden @endif>Masukkan Votes</button>
                                     @foreach ($batch as $batchnya)
-                                        <a class="btn btn-yellow btn-block"
-                                            href="{{ route('c1.create', $batchnya->id) }}">Masukkan C1
+                                        <a class="btn btn-yellow btn-block" href="{{ route('c1.create', $batchnya->id) }}">
+                                            @if ($existingC1 ?? false)
+                                                Lihat C1 Saya Untuk
+                                            @else
+                                                Masukkan C1
+                                            @endif
                                             <br>
                                             <strong>
                                                 {{ $batchnya->vote_type }}

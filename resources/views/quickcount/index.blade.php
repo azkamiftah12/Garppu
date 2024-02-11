@@ -80,22 +80,24 @@
                                         const response = await fetch(url);
                                         const datapoints = await response.json();
 
-                                        // Map the fetched data to the sorted order of candidates based on nomor_urut
-                                        const sortedCandidates = @json($sortedCandidates->pluck('id')->toArray());
-                                        const sortedData = sortedCandidates.map(candidateId => {
-                                            const candidateData = datapoints[batchId].find(candidate => candidate.id === candidateId);
-                                            return candidateData ? candidateData.jumlah_vote : 0;
-                                        });
+                                        // Filter data by batch ID
+                                        const batchData = datapoints[batchId];
+
+                                        // Sort the filtered data by nomor_urut
+                                        const sortedData = batchData.sort((a, b) => a.nomor_urut - b.nomor_urut);
+
+                                        // Map the sorted data to jumlah_vote
+                                        const data = sortedData.map(candidate => candidate.jumlah_vote);
 
                                         const ctx = document.getElementById('myChart_' + batchId);
                                         const chart = Chart.getChart(ctx);
-                                        chart.data.datasets[0].data = sortedData;
+                                        chart.data.datasets[0].data = data;
 
-                                        const maxVote = datapoints[batchId].reduce((sum, candidate) => sum + parseInt(candidate.jumlah_vote || 0),
-                                            0);
+                                        const maxVote = sortedData.reduce((sum, candidate) => sum + parseInt(candidate.jumlah_vote || 0), 0);
                                         chart.options.scales.y.max = maxVote;
                                         chart.update();
                                     }
+
                                     setInterval(() => {
                                         updateChartWithData({{ $batch->id }});
                                     }, 10000);

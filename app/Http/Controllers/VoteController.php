@@ -6,6 +6,7 @@ use App\Models\Batch;
 use Illuminate\Http\Request;
 use App\Models\Vote;
 use App\Models\Candidate;
+use App\Models\C1;
 use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
@@ -33,7 +34,11 @@ class VoteController extends Controller
                 $query->where('batch_id', $batchID);
             })
             ->first();
-        return view('votes.showVote', compact('votes', 'candidates', 'batch','existingVote'));
+            $existingC1 = C1::where('nik', Auth::user()->nik)
+            ->
+            where('batch_id', $batchID)
+            ->first();
+        return view('votes.showVote', compact('votes', 'candidates', 'batch','existingVote', 'existingC1'));
     }
 
     // public function createDPRDVote()
@@ -78,7 +83,7 @@ class VoteController extends Controller
         ]);
     }
 
-    return redirect()->route('votes.index')->with('success', 'Votes berhasil disimpan.');
+    return redirect()->route('votes.index')->with('success', 'Anda Berhasil Input Hasil Suara.');
 }
 
     // public function quickCountDPRD()

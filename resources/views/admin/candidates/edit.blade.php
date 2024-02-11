@@ -31,7 +31,7 @@
                     <label class="form-label" for="batch_id">Pilih Type Pemilihan Paslon:</label>
                     <select name="batch_id" id="partaiDropdown" class="form-control" required>
                         <option value="" {{ is_null($candidate->batch_id) ? 'selected' : '' }}>Click untuk pilih
-                            Partai
+                            Type Pemilihan
                             Paslon</option>
                         @foreach ($batches as $batch)
                             <option value="{{ $batch->id }}" {{ $batch->id == $candidate->batch_id ? 'selected' : '' }}>
