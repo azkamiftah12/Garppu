@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="jumlah_vote">Jumlah Suara:</label>
                     <input type="text" name="jumlah_vote" id="jumlah_vote" class="form-control"
-                        value="{{ $vote->jumlah_vote }}" required>
+                        value="{{ $vote->jumlah_vote }}" pattern="[0-9]+" title="Hanya Bisa diinput Oleh Angka!" required>
                 </div>
                 <a href="/votes" class="btn btn-red mb-2">Batal</a>
                 <button type="button" class="btn btn-yellow mr-2 mb-2" data-toggle="modal"
