@@ -63,7 +63,7 @@
             <input class="form-control" id="noTelp" type="text" name="noTelp" required
                 placeholder="Masukkan Nomor Telephone anda">
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label class="form-label" for="rekening_bank">Nama Bank</label>
             <input class="form-control" id="rekening_bank" type="text" name="rekening_bank" required
                 placeholder="Masukkan Nama Bank anda, contoh: BCA, Mandiri, BRI">
@@ -72,7 +72,7 @@
             <label class="form-label" for="no_rekening">Nomor Rekening</label>
             <input class="form-control" id="no_rekening" type="text" name="no_rekening" required
                 placeholder="Masukkan Nomor Rekening anda">
-        </div>
+        </div> --}}
         <div class="mb-3">
             <label class="form-label" for="password">Password</label>
             <input class="form-control" id="password" type="password" name="password" required
