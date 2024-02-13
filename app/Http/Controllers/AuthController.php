@@ -63,8 +63,8 @@ class AuthController extends Controller
             'rt' => 'nullable|string',
             'rw' => 'nullable|string',
             'no_tps' => 'nullable|string',
-            'rekening_bank' => 'nullable|string',
-            'no_rekening' => 'nullable|string',
+            // 'rekening_bank' => 'nullable|string',
+            // 'no_rekening' => 'nullable|string',
             'id_dapil' => 'nullable|exists:dapil,id',
         ], [
             'nik.unique' => 'NIK sudah terdaftar. Masuk atau Login jika sudah mempunyai akun atau kontak admin jika butuh pertolongan. 0877-7670-0102',
@@ -83,8 +83,8 @@ class AuthController extends Controller
             'rt' => $data['rt'],
             'rw' => $data['rw'],
             'no_tps' => $data['no_tps'],
-            'rekening_bank' => $data['rekening_bank'],
-            'no_rekening' => $data['no_rekening'],
+            // 'rekening_bank' => $data['rekening_bank'],
+            // 'no_rekening' => $data['no_rekening'],
             'id_dapil' => $data['id_dapil'],
         ]);
 
